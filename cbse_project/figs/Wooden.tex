@@ -1,0 +1,28 @@
+\begin{tikzpicture}[scale=0.8]
+            % Top Scooped Hemisphere Pattern Shading
+            \path[pattern=north east lines, pattern color=black!70] 
+                (-1.5, 2) arc (180:360:1.5 and 1.5) 
+                arc (0:180:1.5 and 0.5) -- cycle;
+
+            % Bottom Scooped Hemisphere Pattern Shading
+            \path[pattern=north east lines, pattern color=black!70] 
+                (-1.5, -2) arc (180:0:1.5 and 1.5) 
+                arc (360:180:1.5 and 0.5) -- cycle;
+
+            % Main Cylinder Body Outline
+            \draw[thick] (-1.5, -2) -- (-1.5, 2);
+            \draw[thick] (1.5, -2) -- (1.5, 2);
+            
+            % Top Cylinder Rim
+            \draw[thick] (0, 2) ellipse (1.5 and 0.5);
+            
+            % Bottom Cylinder Rim
+            \draw[thick] (0, -2) ellipse (1.5 and 0.5);
+            
+            % Top Scooped Hemisphere Arc
+            \draw[thick] (-1.5, 2) arc (180:360:1.5 and 1.5);
+            
+            % Bottom Scooped Hemisphere Arc
+            \draw[thick] (-1.5, -2) arc (180:0:1.5 and 1.5);
+            
+        \end{tikzpicture}

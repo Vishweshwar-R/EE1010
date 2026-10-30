@@ -1,0 +1,47 @@
+\begin{tikzpicture}[scale=0.35]
+    % Coordinates of Square Vertices
+    \coordinate (A) at (0, 12);
+    \coordinate (B) at (12, 12);
+    \coordinate (C) at (12, 0);
+    \coordinate (D) at (0, 0);
+
+    % Midpoints
+    \coordinate (P) at (6, 12);
+    \coordinate (Q) at (12, 6);
+    \coordinate (R) at (6, 0);
+    \coordinate (S) at (0, 6);
+
+    % Fill Shaded Region (Square minus 4 quadrant arcs)
+    \begin{scope}
+        \clip (A) -- (B) -- (C) -- (D) -- cycle;
+        % Fill the full square first with pattern/color
+        \fill[pattern=north east lines, pattern color=black!70] (A) -- (B) -- (C) -- (D) -- cycle;
+        
+        % Un-clip/white-out the 4 corner circular quadrants
+        \fill[white] (A) -- (P) arc (0:-90:6) -- cycle;
+        \fill[white] (B) -- (Q) arc (-90:-180:6) -- cycle;
+        \fill[white] (C) -- (R) arc (180:90:6) -- cycle;
+        \fill[white] (D) -- (S) arc (90:0:6) -- cycle;
+    \end{scope}
+
+    % Draw Outer Square
+    \draw[line width=1.2pt] (A) -- (B) -- (C) -- (D) -- cycle;
+
+    % Draw Arcs
+    \draw[line width=1pt] (P) arc (0:-90:6);
+    \draw[line width=1pt] (Q) arc (-90:-180:6);
+    \draw[line width=1pt] (R) arc (180:90:6);
+    \draw[line width=1pt] (S) arc (90:0:6);
+
+    % Label Vertices
+    \node[above left] at (A) {\textbf{A}};
+    \node[above right] at (B) {\textbf{B}};
+    \node[below right] at (C) {\textbf{C}};
+    \node[below left] at (D) {\textbf{D}};
+
+    % Label Midpoints
+    \node[above] at (P) {\textbf{P}};
+    \node[right] at (Q) {\textbf{Q}};
+    \node[below] at (R) {\textbf{R}};
+    \node[left] at (S) {\textbf{S}};
+\end{tikzpicture}

@@ -1,0 +1,21 @@
+\begin{tikzpicture}[scale=0.8]
+        \draw[thick] (0,0) circle (1.5cm);
+        \coordinate (O) at (0,0);
+        \coordinate (P) at (4,0);
+        \coordinate (A) at (0.56, 1.39);
+        \coordinate (B) at (0.56, -1.39);
+        
+        \draw[dashed] (O) -- (A);
+        \draw[dashed] (O) -- (B);
+        \draw[dashed] (O) -- (P);
+        \draw[thick] (P) -- (A);
+        \draw[thick] (P) -- (B);
+        
+        \filldraw (O) circle (1.5pt) node[left] {$O$};
+        \filldraw (P) circle (1.5pt) node[right] {$P$};
+        \filldraw (A) circle (1.5pt) node[above] {$A$};
+        \filldraw (B) circle (1.5pt) node[below] {$B$};
+        
+        % Right angle symbol at A
+        \draw (0.42,1.25) -- (0.55,1.12) -- (0.69,1.26);
+    \end{tikzpicture}
