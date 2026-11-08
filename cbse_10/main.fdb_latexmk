@@ -1,11 +1,11 @@
 # Fdb version 4
-["makeindex main.idx"] 1793351851.70668 "main.idx" "main.ind" "main" 1793351853.05202 0
-  "main.idx" 1793351852.3559 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex main.idx"] 1793351851.70668 "main.idx" "main.ind" "main" 1794171014.14562 0
+  "main.idx" 1794171013.355 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "main.ilg"
   "main.ind"
   (rewritten before read)
-["pdflatex"] 1793351851.79767 "main.tex" "main.pdf" "main" 1793351853.05212 0
+["pdflatex"] 1794171012.80323 "main.tex" "main.pdf" "main" 1794171014.1457 0
   "/etc/texmf/web2c/texmf.cnf" 1792342716.02184 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -49,13 +49,18 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm" 1229303445 688 37338d6ab346c2f1466b29e195316aa4 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm" 1229303445 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/rsfs/rsfs7.tfm" 1229303445 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb" 1248133631 32007 e8fa0078355f39467039935974716569 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1248133631 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1248133631 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1248133631 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
@@ -315,7 +320,7 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1792426380 5541477 3118940318599480888143717dd32d64 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1792426405 3642830 ba571fd502c64bbaa66e30598fb58e53 ""
   "chapters/cbse-2018.tex" 1793330890 41693 eae77ad26b8494c94c72812a6e60f311 ""
-  "chapters/cbse-2018_formulae.tex" 1793330890 5805 411ea71609bd0661d46177f37258a2a5 ""
+  "chapters/cbse-2018_formulae.tex" 1794165353 17367 67b0e30c21e3eb2465b274e2a389a616 ""
   "figs/Construction.png" 1793330788 44338 22b40b128ba374d706cc7c6eb8514f0b ""
   "figs/Identity.png" 1793330788 32838 c71ef771ca849b95c953d7424a938bde ""
   "figs/Lighthouse.tex" 1793330888 1251 6c5b8d6ec007418220dd6f1f92841c39 ""
@@ -330,14 +335,14 @@
   "figs/Tangent.tex" 1793330888 756 53cfdf9f2dfc129b7b38e51f6b4ab045 ""
   "figs/Tangents.tex" 1793330888 1042 00696a8f47057970f1913c6c010def81 ""
   "figs/Wooden.tex" 1793330888 1101 cb095c94795167484f2dbad619e94dc0 ""
-  "figs/logo.jpg" 1793351834.52796 382648 cd8c4760ef18efd0782613502d16e226 ""
+  "figs/logo.jpg" 1793351834 382648 cd8c4760ef18efd0782613502d16e226 ""
   "gvv-book.sty" 1793330894 2363 72dd097fc960842e38a2d2c1f2d93726 ""
   "gvv.sty" 1793330894 4434 bde4aa22cab0cf1e9425c3111a94b6d2 ""
-  "main.aux" 1793351852.9589 7013 e2482de4e2651cc8c3c71963b8eca0e4 "pdflatex"
-  "main.ind" 1793351851.7879 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
-  "main.out" 1793351852.9589 361 0081276a3ca89c77a699cc61f1857ae2 "pdflatex"
-  "main.tex" 1793351846.6503 1642 211b3ca94390cb11afeee9cfd432ab0c ""
-  "main.toc" 1793351852.9589 227 c6cf9c5da104e6931dcf03556566298d "pdflatex"
+  "main.aux" 1794171014.039 7026 03c483885e01398d465e37c53ef72d09 "pdflatex"
+  "main.ind" 1793351851 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
+  "main.out" 1794171014.04 361 0081276a3ca89c77a699cc61f1857ae2 "pdflatex"
+  "main.tex" 1793351846 1642 211b3ca94390cb11afeee9cfd432ab0c ""
+  "main.toc" 1794171014.04 228 7099ff3b8a838b3095a2797465fb7d71 "pdflatex"
   (generated)
   "main.aux"
   "main.idx"
