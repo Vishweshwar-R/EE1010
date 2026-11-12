@@ -240,9 +240,111 @@ Thus, all zeroes are $2+\sqrt{3}$, $2-\sqrt{3}$, $1$, and $-\frac{1}{2}$.The fol
         \end{center}
         
         \item If $A(-5,7)$, $B(-4,-5)$, $C(-1,-6)$ and $D(4,5)$ are the vertices of a quadrilateral, find the area of the quadrilateral $ABCD$.
-    \end{enumerate}
+    \end{enumerate} \vspace{2pt}
+    \textbf{(a) Solution:} In a parallelogram, the diagonals bisect each other. Therefore, the midpoint of diagonal $AC$ is equal to the midpoint of diagonal $BD$.
+
+From \eqref{eq:EE26BTECH11225-section} with $k=1$, the midpoint of $AC$ is:
+\begin{align}
+    M_{AC} &= \left( \frac{-2 + 4}{2}, \frac{1 + b}{2} \right) = \left( 1, \frac{1 + b}{2} \right)
+\end{align}
+Midpoint of $BD$:
+\begin{align}
+    M_{BD} &= \left( \frac{a + 1}{2}, \frac{0 + 2}{2} \right) = \left( \frac{a + 1}{2}, 1 \right)
+\end{align}
+Equating the $x$-coordinates and $y$-coordinates:
+\begin{align}
+    \frac{a + 1}{2} = 1 &\implies a + 1 = 2 \implies a = 1 \\
+    \frac{1 + b}{2} = 1 &\implies 1 + b = 2 \implies b = 1
+\end{align}
+Thus, the vertices are $A(-2,1)$, $B(1,0)$, $C(4,1)$, and $D(1,2)$. \\[4pt]
+Now, from \eqref{eq:EE26BTECH11225-distance}, the lengths of the sides are:
+\begin{align}
+    AB &= \sqrt{(1 - (-2))^2 + (0 - 1)^2} = \sqrt{3^2 + (-1)^2} = \sqrt{9 + 1} = \sqrt{10} \\
+    BC &= \sqrt{(4 - 1)^2 + (1 - 0)^2} = \sqrt{3^2 + 1^2} = \sqrt{9 + 1} = \sqrt{10}
+\end{align}
+Since opposite sides of a parallelogram are equal:
+\begin{align}
+    CD &= AB = \sqrt{10} \\
+    AD &= BC = \sqrt{10}
+\end{align}
+Thus, $a = 1, b = 1$, and all four sides have length $\sqrt{10}$ units. \\[8pt]
+\textbf{(b) Solution:} Joining diagonal $AC$ divides quadrilateral $ABCD$ into two triangles: $\Delta ABC$ and $\Delta ADC$.
+
+From \eqref{eq:EE26BTECH11225-area-triangle}, the area of a triangle with vertices $(x_1,y_1), (x_2,y_2), (x_3,y_3)$ is given by:
+\begin{align}
+    \text{Area} &= \frac{1}{2} \big| x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2) \big|
+\end{align}
+
+For $\Delta ABC$ with $A(-5,7)$, $B(-4,-5)$, and $C(-1,-6)$:
+\begin{align}
+    \text{Area}(\Delta ABC) &= \frac{1}{2} \big| -5(-5 - (-6)) + (-4)(-6 - 7) + (-1)(7 - (-5)) \big| \\
+    &= \frac{1}{2} \big| -5(1) + (-4)(-13) + (-1)(12) \big| \\
+    &= \frac{1}{2} \big| -5 + 52 - 12 \big| \\
+    &= \frac{1}{2} |35| = 17.5\text{ sq. units}
+\end{align}
+
+For $\Delta ADC$ with $A(-5,7)$, $D(4,5)$, and $C(-1,-6)$:
+\begin{align}
+    \text{Area}(\Delta ADC) &= \frac{1}{2} \big| -5(5 - (-6)) + 4(-6 - 7) + (-1)(7 - 5) \big| \\
+    &= \frac{1}{2} \big| -5(11) + 4(-13) + (-1)(2) \big| \\
+    &= \frac{1}{2} \big| -55 - 52 - 2 \big| \\
+    &= \frac{1}{2} |-109| = 54.5\text{ sq. units}
+\end{align}
+
+From \eqref{eq:EE26BTECH11225-area-quad}, the total area of quadrilateral $ABCD$ is:
+\begin{align}
+    \text{Area}(ABCD) &= \text{Area}(\Delta ABC) + \text{Area}(\Delta ADC) \\
+    &= 17.5 + 54.5 = 72\text{ sq. units}
+\end{align}
+Thus, the area of quadrilateral $ABCD$ is $72\text{ sq. units}$.The following code verifies both parts and generates \figref{fig:quad_q15}.
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.15.py}@*)
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figs/1.2.15.png}
+    \caption{(a) Parallelogram $ABCD$ and (b) quadrilateral $ABCD$}
+    \label{fig:quad_q15}
+\end{figure}
 
     \item A plane left 30 minutes late than its scheduled time and in order to reach the destination 1500 km away in time, it had to increase its speed by 100 km/h from the usual speed. Find its usual speed.
+
+\solution
+Let the usual speed be $x$ km/h. The delay of $\frac{1}{2}$ hour on $1500$ km gives
+\begin{align}
+\frac{1500}{x} - \frac{1500}{x+100} = \frac{1}{2} \implies f(x) = x^2 + 100x - 300000 = 0
+\end{align}
+The speed is the positive root of $f$. With $f'(x) = 2x + 100$, the Newton--Raphson iteration is
+\begin{align}
+x_{n+1} = x_n - \frac{x_n^2 + 100x_n - 300000}{2x_n + 100}
+\end{align}
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-newton})}}\par
+Starting from $x_0 = 1000$ and from $x_0 = -1000$, the C program gives
+\[
+\begin{array}{c|r|r}
+n & x_n\;(x_0=1000) & x_n\;(x_0=-1000)\\\hline
+0 & 1000.000000 & -1000.000000 \\
+1 & 619.047619 & -684.210526 \\
+2 & 510.591425 & -605.590740 \\
+3 & 500.100054 & -600.028129 \\
+4 & 500.000009 & -600.000001 \\
+5 & 500.000000 & -600.000000 \\
+6 & 500.000000 & -600.000000
+\end{array}
+\]
+The iterates settle at $500$ and $-600$. Speed cannot be negative, so the usual speed is $\boxed{500\text{ km/h}}$. This agrees with $f(x) = (x-500)(x+600)$. The C program prints the iterates and checks both roots, and the Python program draws the first three Newton steps as tangent lines using CoordGeo in \figref{fig:newton_q16}.
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.16.c}@*)
+\end{lstlisting}
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.16.py}@*)
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{figs/1.2.16.png}
+    \caption{Newton--Raphson steps for $f(x) = x^2 + 100x - 300000$ from $x_0 = 1000$}
+    \label{fig:newton_q16}
+\end{figure}
 
     \item 
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
