@@ -1,0 +1,74 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm]{geometry}
+\usepackage{tfrupee} % Include tfrupee package
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usetikzlibrary{patterns}
+\lstset{aboveskip=12pt}
+\usepackage[center]{caption}
+\raggedbottom
+\setlength{\multicolsep}{0pt}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=black % Changes text color instead of placing a box around it
+}
+\usepackage{amsfonts}
+\makeindex
+
+\begin{document}
+\bibliographystyle{IEEEtran}
+\onecolumn
+
+\title{CBSE 2018 Mathematics\\Class 10 and Class 12 Question Papers\\
+\large Math for EE\\[-0.5em]
+\rule{0.4\columnwidth}{0.4pt}
+}
+
+\author{Vishweshwar - ee26btech11225
+\vspace{10cm}
+\begin{center}
+    \includegraphics[width=0.2\columnwidth]{10/figs/logo.jpg}\\
+    {\huge G. V. V. Sharma}
+\end{center}
+}
+
+\maketitle
+\newpage
+
+\section*{About this Book}
+This document contains the questions and solutions from the CBSE 2018 Mathematics question papers. Section 1 covers the unique questions from the Class 10 question paper sets. Section 2 covers the Class 12 question paper, Series BVM/5, Code No. 65/5/2 (Set 2).
+
+Questions are typed in their original wording, with the original options and diagrams wherever applicable.
+
+Where the same question appears in multiple sets, it will be included only once, provided the wording, values, options, and diagrams are identical.
+
+\newpage
+\tableofcontents
+\newpage
+\onecolumn
+
+\numberwithin{equation}{enumi}
+\numberwithin{figure}{enumi}
+\renewcommand{\thetable}{\theenumi}
+
+\section{CBSE CLASS-10 MATH 2018}
+\subsection{Formulae}
+\input{10/formulae/formulae.tex}
+\subsection{Problems}
+\graphicspath{{10/}}
+\input{10/chapters/cbse-2018.tex}
+\clearpage
+
+\section{CBSE CLASS-12 MATH 2018}
+\subsection{Formulae}
+\input{12/formulae/formulae.tex}
+\subsection{Problems}
+\graphicspath{{12/}}
+\input{12/chapters/65-5-2.tex}
+
+\end{document}

@@ -1,0 +1,396 @@
+\begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
+
+\item Determinant properties for square matrices $\vec{A}, \vec{B}$ of order $n$ and a scalar $k$:
+\begin{align}
+	\begin{split}
+		\mydet{\vec{A}\vec{B}} &= \mydet{\vec{A}}\mydet{\vec{B}}
+		\\
+		\mydet{\vec{A}^{\top}} &= \mydet{\vec{A}}
+		\\
+		\mydet{k\vec{A}} &= k^n\mydet{\vec{A}}
+	\end{split}
+	\label{eq:EE26BTECH11225-det}
+\end{align}
+\solution
+If $\vec{A}$ is invertible, it is a product of elementary matrices,
+\begin{align}
+	\vec{A} = \vec{E}_1\vec{E}_2\cdots\vec{E}_m
+\end{align}
+and for a single elementary matrix $\mydet{\vec{E}\vec{B}} = \mydet{\vec{E}}\mydet{\vec{B}}$. Repeating this $m$ times,
+\begin{align}
+	\mydet{\vec{A}\vec{B}} = \mydet{\vec{E}_1}\cdots\mydet{\vec{E}_m}\mydet{\vec{B}}
+	= \mydet{\vec{A}}\mydet{\vec{B}}
+\end{align}
+For the transpose, $\vec{A}^{\top} = \vec{E}_m^{\top}\cdots\vec{E}_1^{\top}$ and $\mydet{\vec{E}^{\top}} = \mydet{\vec{E}}$ for any elementary matrix, so
+$\mydet{\vec{A}^{\top}} = \mydet{\vec{A}}$. If $\vec{A}$ is singular, so is $\vec{A}^{\top}$ and both determinants are $0$. Finally, $k\vec{A} = \brak{k\vec{I}}\vec{A}$ with $\mydet{k\vec{I}} = k^n$, yielding \eqref{eq:EE26BTECH11225-det}.
+
+\item Inverse trigonometric identities:
+\begin{align}
+	\cos^{-1}\brak{\cos t} &= t, \quad t \in \sbrak{0, \pi}
+	\label{eq:EE26BTECH11225-invtrig-1}
+	\\
+	\tan^{-1}a + \tan^{-1}b &= \tan^{-1}\frac{a + b}{1 - ab}, \quad ab < 1
+	\label{eq:EE26BTECH11225-invtrig-2}
+	\\
+	\tan^{-1}x + \cot^{-1}x &= \frac{\pi}{2}
+	\label{eq:EE26BTECH11225-invtrig-3}
+	\\
+	\sin^{-1}x &= \tan^{-1}\frac{x}{\sqrt{1 - x^2}}, \quad \abs{x} < 1
+	\label{eq:EE26BTECH11225-invtrig-4}
+\end{align}
+\solution
+\eqref{eq:EE26BTECH11225-invtrig-1} follows from the definition of the principal value, $\cos^{-1}:\sbrak{-1,1} \to \sbrak{0,\pi}$.
+\\
+For \eqref{eq:EE26BTECH11225-invtrig-2}, let $\alpha = \tan^{-1}a$ and $\beta = \tan^{-1}b$, both in $\brak{-\frac{\pi}{2}, \frac{\pi}{2}}$. Then
+\begin{align}
+	\tan\brak{\alpha + \beta} = \frac{\tan\alpha + \tan\beta}{1 - \tan\alpha\tan\beta} = \frac{a + b}{1 - ab}
+\end{align}
+Also $\cos\brak{\alpha + \beta} = \cos\alpha\cos\beta\brak{1 - ab} > 0$ for $ab < 1$, and $\abs{\alpha + \beta} < \pi$, so $\alpha + \beta \in \brak{-\frac{\pi}{2}, \frac{\pi}{2}}$, the principal range of $\tan^{-1}$.
+\\
+For \eqref{eq:EE26BTECH11225-invtrig-3}, let $\theta = \tan^{-1}x$. Using $\cot\brak{90^\circ - \theta} = \tan\theta = x$ with $\frac{\pi}{2} - \theta \in \brak{0, \pi}$, the principal range of $\cot^{-1}$,
+\begin{align}
+	\cot^{-1}x = \frac{\pi}{2} - \theta
+\end{align}
+For \eqref{eq:EE26BTECH11225-invtrig-4}, let $\theta = \sin^{-1}x \in \brak{-\frac{\pi}{2}, \frac{\pi}{2}}$. Then $\cos\theta = \sqrt{1 - x^2} > 0$ and
+\begin{align}
+	\tan\theta = \frac{x}{\sqrt{1 - x^2}}
+	\implies \theta = \tan^{-1}\frac{x}{\sqrt{1 - x^2}}
+\end{align}
+
+\item Angle $\theta$ between a line with direction vector $\vec{b}$ and a plane with normal vector $\vec{n}$:
+\begin{align}
+	\sin\theta = \frac{\abs{\vec{b}^{\top}\vec{n}}}{\norm{\vec{b}}\norm{\vec{n}}}
+	\label{eq:EE26BTECH11225-lineplane}
+\end{align}
+\solution
+The normal is perpendicular to the plane, so if $\phi$ is the angle between $\vec{b}$ and $\vec{n}$, then $\theta = 90^\circ - \phi$ (or its supplement). From \eqref{eq:EE26BTECH11225-dot},
+\begin{align}
+	\sin\theta = \abs{\cos\phi} = \frac{\abs{\vec{b}^{\top}\vec{n}}}{\norm{\vec{b}}\norm{\vec{n}}}
+\end{align}
+
+\item For vectors $\vec{a}$, $\vec{b}$ with angle $\theta$ between them:
+\begin{align}
+	\vec{a}^{\top}\vec{b} &= \norm{\vec{a}}\norm{\vec{b}}\cos\theta
+	\label{eq:EE26BTECH11225-dot}
+	\\
+	\norm{\vec{a} \times \vec{b}} &= \norm{\vec{a}}\norm{\vec{b}}\sin\theta
+	\label{eq:EE26BTECH11225-cross}
+\end{align}
+\solution
+The third side of the triangle formed by $\vec{a}$ and $\vec{b}$ is $\vec{a} - \vec{b}$. From the cosine rule and by expanding the norm,
+\begin{align}
+	\norm{\vec{a} - \vec{b}}^2 &= \norm{\vec{a}}^2 + \norm{\vec{b}}^2 - 2\norm{\vec{a}}\norm{\vec{b}}\cos\theta
+	\\
+	\norm{\vec{a} - \vec{b}}^2 &= \norm{\vec{a}}^2 + \norm{\vec{b}}^2 - 2\vec{a}^{\top}\vec{b}
+\end{align}
+yielding \eqref{eq:EE26BTECH11225-dot}. Using Lagrange's identity,
+\begin{align}
+	\norm{\vec{a} \times \vec{b}}^2 = \norm{\vec{a}}^2\norm{\vec{b}}^2 - \brak{\vec{a}^{\top}\vec{b}}^2
+	= \norm{\vec{a}}^2\norm{\vec{b}}^2\brak{1 - \cos^2\theta}
+\end{align}
+which yields \eqref{eq:EE26BTECH11225-cross} since $\sin\theta \geq 0$ for $\theta \in \sbrak{0, \pi}$.
+
+\item A binary operation $*$ on a set $S$ requires $a * b \in S$ for all $a, b \in S$ (closure). It is commutative if
+\begin{align}
+	a * b = b * a \quad \forall\, a, b \in S
+	\label{eq:EE26BTECH11225-binop}
+\end{align}
+\solution
+For a finite set $S = \cbrak{a_1, \ldots, a_m}$, form the operation table
+\begin{align}
+	\vec{T} = \sbrak{T_{ij}}, \quad T_{ij} = a_i * a_j
+\end{align}
+The operation is closed if every entry of $\vec{T}$ lies in $S$. It is commutative if
+\begin{align}
+	T_{ij} = T_{ji} \quad \forall\, i, j
+	\iff \vec{T} = \vec{T}^{\top}
+\end{align}
+which is \eqref{eq:EE26BTECH11225-binop}.
+
+\item Homogeneous differential equation $\frac{dy}{dx} = f\brak{\frac{y}{x}}$: substitute $y = vx$,
+\begin{align}
+	\frac{dy}{dx} = v + x\frac{dv}{dx}
+	\label{eq:EE26BTECH11225-homog}
+\end{align}
+\solution
+Differentiating $y = vx$ using the product rule yields \eqref{eq:EE26BTECH11225-homog}. Substituting in the equation, the variables separate,
+\begin{align}
+	x\frac{dv}{dx} = f\brak{v} - v
+	\implies \int\frac{dv}{f\brak{v} - v} = \ln\abs{x} + C
+\end{align}
+Finally $v$ is replaced by $\frac{y}{x}$.
+
+\item Differential equation of a family of curves with $n$ arbitrary constants $c_1, \ldots, c_n$:
+\begin{align}
+	F\brak{x, y, c_1, \ldots, c_n} = 0
+	\implies G\brak{x, y, y^{\prime}, \ldots, y^{\brak{n}}} = 0
+	\label{eq:EE26BTECH11225-family}
+\end{align}
+\solution
+Differentiating $F = 0$ $n$ times gives $n + 1$ equations in the $n$ constants. Eliminating $c_1, \ldots, c_n$ from them leaves an equation of order $n$. For example, for
+\begin{align}
+	y = c_1\cos\brak{\alpha x} + c_2\sin\brak{\alpha x}
+\end{align}
+differentiating twice,
+\begin{align}
+	y^{\prime\prime} = -\alpha^2\brak{c_1\cos\brak{\alpha x} + c_2\sin\brak{\alpha x}}
+	\implies y^{\prime\prime} = -\alpha^2 y
+\end{align}
+which has no arbitrary constants left.
+
+\item Points $A, B, C$ are collinear if $\vec{C} - \vec{B} = k\brak{\vec{B} - \vec{A}}$. Points $A, B, C, D$ are coplanar if
+\begin{align}
+	\rank\myvec{\vec{B} - \vec{A} & \vec{C} - \vec{A}} &= 1
+	\label{eq:EE26BTECH11225-collinear}
+	\\
+	\det\myvec{\vec{B} - \vec{A} & \vec{C} - \vec{A} & \vec{D} - \vec{A}} &= 0
+	\label{eq:EE26BTECH11225-coplanar}
+\end{align}
+\solution
+If $\vec{C} - \vec{B} = k\brak{\vec{B} - \vec{A}}$, then
+\begin{align}
+	\vec{C} - \vec{A} = \brak{\vec{C} - \vec{B}} + \brak{\vec{B} - \vec{A}} = \brak{k + 1}\brak{\vec{B} - \vec{A}}
+\end{align}
+so the two columns are linearly dependent, yielding \eqref{eq:EE26BTECH11225-collinear}. Similarly, if the points are coplanar, then
+\begin{align}
+	\vec{D} - \vec{A} = \alpha\brak{\vec{B} - \vec{A}} + \beta\brak{\vec{C} - \vec{A}}
+\end{align}
+so the third column is a combination of the first two. Subtracting this combination from the third column leaves a zero column, so the determinant vanishes, yielding \eqref{eq:EE26BTECH11225-coplanar}. Geometrically, the determinant is the volume of the parallelepiped on the three vectors.
+
+\item Standard integrals:
+\begin{align}
+	\int e^x\sbrak{f\brak{x} + f^{\prime}\brak{x}}dx &= e^x f\brak{x} + C
+	\label{eq:EE26BTECH11225-expint}
+	\\
+	\int \frac{du}{\sqrt{a^2 - u^2}} &= \sin^{-1}\frac{u}{a} + C
+	\label{eq:EE26BTECH11225-sininv}
+	\\
+	\int \sqrt{a^2 - u^2}\,du &= \frac{u}{2}\sqrt{a^2 - u^2} + \frac{a^2}{2}\sin^{-1}\frac{u}{a} + C
+	\label{eq:EE26BTECH11225-sqrtint}
+	\\
+	2\cos A\cos B &= \cos\brak{A + B} + \cos\brak{A - B}
+	\label{eq:EE26BTECH11225-prodsum}
+\end{align}
+\solution
+Differentiating $e^x f\brak{x}$ using the product rule gives $e^x\sbrak{f + f^{\prime}}$, yielding \eqref{eq:EE26BTECH11225-expint}.
+\\
+For \eqref{eq:EE26BTECH11225-sininv} and \eqref{eq:EE26BTECH11225-sqrtint}, let $u = a\sin\theta$, so $du = a\cos\theta\,d\theta$ and $\sqrt{a^2 - u^2} = a\cos\theta$,
+\begin{align}
+	\int \frac{du}{\sqrt{a^2 - u^2}} &= \int d\theta = \theta = \sin^{-1}\frac{u}{a}
+	\\
+	\int \sqrt{a^2 - u^2}\,du &= a^2\int\cos^2\theta\,d\theta
+	= \frac{a^2}{2}\brak{\theta + \sin\theta\cos\theta}
+\end{align}
+and $\sin\theta\cos\theta = \frac{u}{a}\cdot\frac{\sqrt{a^2 - u^2}}{a}$.
+\\
+For \eqref{eq:EE26BTECH11225-prodsum}, let $\vec{R}\brak{\theta} = \myvec{\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta}$ be the rotation matrix. Then $\vec{R}\brak{A}\vec{R}\brak{B} = \vec{R}\brak{A + B}$, and comparing the first entries,
+\begin{align}
+	\cos\brak{A + B} = \cos A\cos B - \sin A\sin B
+\end{align}
+Replacing $B$ by $-B$ gives $\cos\brak{A - B} = \cos A\cos B + \sin A\sin B$. Adding the two yields \eqref{eq:EE26BTECH11225-prodsum}.
+
+\item The plane through a point $\vec{P}_0$ with normal $\vec{n}$ is
+\begin{align}
+	\vec{n}^{\top}\brak{\vec{x} - \vec{P}_0} = 0
+	\label{eq:EE26BTECH11225-plane-eq}
+\end{align}
+A plane perpendicular to two planes with normals $\vec{n}_1, \vec{n}_2$ has normal
+\begin{align}
+	\vec{n} = \vec{n}_1 \times \vec{n}_2
+	\label{eq:EE26BTECH11225-plane}
+\end{align}
+\solution
+A point $\vec{x}$ lies on the plane if $\vec{x} - \vec{P}_0$ is perpendicular to $\vec{n}$, yielding \eqref{eq:EE26BTECH11225-plane-eq}. Two planes are perpendicular if their normals are perpendicular, so
+\begin{align}
+	\vec{n}^{\top}\vec{n}_1 = 0, \quad \vec{n}^{\top}\vec{n}_2 = 0
+	\iff \myvec{\vec{n}_1^{\top} \\[4pt] \vec{n}_2^{\top}}\vec{n} = \vec{0}
+\end{align}
+The vector $\vec{n}_1 \times \vec{n}_2$ is perpendicular to both $\vec{n}_1$ and $\vec{n}_2$. For non-parallel $\vec{n}_1, \vec{n}_2$ the solution space of this system is one-dimensional, yielding \eqref{eq:EE26BTECH11225-plane}.
+
+\item Inverse of a matrix and elementary row operations:
+\begin{align}
+	\vec{A}^{-1} &= \frac{1}{\mydet{\vec{A}}}\text{adj}\brak{\vec{A}}, \quad \mydet{\vec{A}} \neq 0
+	\label{eq:EE26BTECH11225-adj}
+	\\
+	\sbrak{\vec{A} \,|\, \vec{I}} &\xrightarrow{\text{row operations}} \sbrak{\vec{I} \,|\, \vec{A}^{-1}}
+	\label{eq:EE26BTECH11225-rowops}
+\end{align}
+A system $\vec{A}\vec{x} = \vec{b}$ with $\mydet{\vec{A}} \neq 0$ has the unique solution
+\begin{align}
+	\vec{x} = \vec{A}^{-1}\vec{b}
+	\label{eq:EE26BTECH11225-linsys}
+\end{align}
+\solution
+Let $C_{jk}$ be the cofactor of $a_{jk}$, so that $\text{adj}\brak{\vec{A}}_{kj} = C_{jk}$. Expanding the determinant along row $j$, and noting that a determinant with two equal rows is zero,
+\begin{align}
+	\brak{\vec{A}\,\text{adj}\brak{\vec{A}}}_{ij} = \sum_{k} a_{ik}C_{jk} = \mydet{\vec{A}}\delta_{ij}
+	\implies \vec{A}\,\text{adj}\brak{\vec{A}} = \mydet{\vec{A}}\vec{I}
+\end{align}
+yielding \eqref{eq:EE26BTECH11225-adj}. Each row operation is a left multiplication by an elementary matrix, so a sequence of them is $\vec{E}$ and
+\begin{align}
+	\vec{E}\sbrak{\vec{A} \,|\, \vec{I}} = \sbrak{\vec{E}\vec{A} \,|\, \vec{E}}
+\end{align}
+If $\vec{E}\vec{A} = \vec{I}$, then $\vec{E} = \vec{A}^{-1}$, yielding \eqref{eq:EE26BTECH11225-rowops}. Multiplying $\vec{A}\vec{x} = \vec{b}$ by $\vec{A}^{-1}$ gives \eqref{eq:EE26BTECH11225-linsys}.
+
+\item A relation $R$ on a set $S$ is an equivalence relation if it is reflexive, symmetric and transitive:
+\begin{align}
+	aRa, \quad aRb \implies bRa, \quad aRb \text{ and } bRc \implies aRc
+	\label{eq:EE26BTECH11225-equiv}
+\end{align}
+A function $f: X \to Y$ is invertible if it is one-one and onto.
+\\
+\solution
+For a finite set, let $\vec{M}$ be the relation matrix with $M_{ij} = 1$ if $a_i R a_j$ and $0$ otherwise. Then $R$ is reflexive if the diagonal of $\vec{M}$ is all ones, and symmetric if $\vec{M} = \vec{M}^{\top}$. For example, on the integers let $aRb$ if $3$ divides $a - b$. Then $a - a = 0$, and for $a - b = 3m$ and $b - c = 3n$,
+\begin{align}
+	b - a = -3m, \quad a - c = \brak{a - b} + \brak{b - c} = 3\brak{m + n}
+\end{align}
+so $R$ is an equivalence relation. For a function, $f$ one-one means $f\brak{x_1} = f\brak{x_2} \implies x_1 = x_2$, so each $y$ has at most one preimage. Onto means each $y$ has at least one. Hence $f^{-1}\brak{y}$ is well defined. For finite sets, the matrix of $f$ is then a permutation matrix $\vec{P}$ with
+\begin{align}
+	\vec{P}^{-1} = \vec{P}^{\top}
+\end{align}
+
+\item Logarithmic differentiation of $y = u\brak{x}^{v\brak{x}}$, $u > 0$:
+\begin{align}
+	\ln y = v\ln u \implies \frac{1}{y}\frac{dy}{dx} = v^{\prime}\ln u + \frac{v\,u^{\prime}}{u}
+	\label{eq:EE26BTECH11225-logdiff}
+\end{align}
+\solution
+Taking the natural logarithm of $y = u^v$ gives $\ln y = v\ln u$. Differentiating both sides with respect to $x$, using the chain rule on the left and the product rule on the right,
+\begin{align}
+	\frac{1}{y}\frac{dy}{dx} = v^{\prime}\ln u + v\cdot\frac{u^{\prime}}{u}
+\end{align}
+yielding \eqref{eq:EE26BTECH11225-logdiff}. Hence $\frac{dy}{dx} = u^v\brak{v^{\prime}\ln u + \frac{v u^{\prime}}{u}}$.
+
+\item If $f^{\prime}\brak{x} < 0$ on an interval, then $f$ is strictly decreasing on that interval. At a critical point $f^{\prime}\brak{x_0} = 0$, if $f^{\prime\prime}\brak{x_0} < 0$ then $f$ has a maximum.
+\begin{align}
+	f^{\prime}\brak{x} < 0 \implies f\brak{x_2} < f\brak{x_1}, \quad x_1 < x_2
+	\label{eq:EE26BTECH11225-mono}
+\end{align}
+\solution
+By the mean value theorem, for some $\xi \in \brak{x_1, x_2}$,
+\begin{align}
+	f\brak{x_2} - f\brak{x_1} = f^{\prime}\brak{\xi}\brak{x_2 - x_1} < 0
+\end{align}
+yielding \eqref{eq:EE26BTECH11225-mono}. At a critical point, the second order Taylor expansion gives
+\begin{align}
+	f\brak{x_0 + h} - f\brak{x_0} \approx \frac{1}{2}f^{\prime\prime}\brak{x_0}h^2 < 0
+\end{align}
+for small $h \neq 0$, so $f\brak{x_0}$ is a maximum.
+
+\item Area between two curves and area of a triangle with vertices $\vec{A}, \vec{B}, \vec{C}$:
+\begin{align}
+	\text{Area} &= \int_a^b \sbrak{y_1\brak{x} - y_2\brak{x}}dx
+	\label{eq:EE26BTECH11225-area-curves}
+	\\
+	\text{Area} &= \int_c^d \sbrak{x_1\brak{y} - x_2\brak{y}}dy
+	\label{eq:EE26BTECH11225-area-curves-y}
+	\\
+	\text{Area}\brak{\Delta ABC} &= \frac{1}{2}\abs{\det\myvec{\vec{B} - \vec{A} & \vec{C} - \vec{A}}}
+	\label{eq:EE26BTECH11225-area-tri}
+\end{align}
+\solution
+Divide $\sbrak{a, b}$ into strips of width $\Delta x$. For $y_1 \geq y_2$, each strip is approximately a rectangle of height $y_1\brak{x_i} - y_2\brak{x_i}$, so
+\begin{align}
+	\text{Area} = \lim_{\Delta x \to 0}\sum_i \sbrak{y_1\brak{x_i} - y_2\brak{x_i}}\Delta x
+\end{align}
+which is \eqref{eq:EE26BTECH11225-area-curves}. Interchanging the roles of $x$ and $y$ gives \eqref{eq:EE26BTECH11225-area-curves-y}. For the triangle, let $\vec{a} = \vec{B} - \vec{A}$, $\vec{b} = \vec{C} - \vec{A}$ and $\theta$ the angle at $A$. Writing $\vec{a} = \norm{\vec{a}}\myvec{\cos\phi \\ \sin\phi}$ and $\vec{b} = \norm{\vec{b}}\myvec{\cos\brak{\phi + \theta} \\ \sin\brak{\phi + \theta}}$,
+\begin{align}
+	\det\myvec{\vec{a} & \vec{b}} = \norm{\vec{a}}\norm{\vec{b}}\sbrak{\cos\phi\sin\brak{\phi + \theta} - \sin\phi\cos\brak{\phi + \theta}}
+	= \norm{\vec{a}}\norm{\vec{b}}\sin\theta
+\end{align}
+and $\text{Area} = \frac{1}{2}\norm{\vec{a}}\norm{\vec{b}}\sin\theta$, yielding \eqref{eq:EE26BTECH11225-area-tri}.
+
+\item Distance between the parallel lines $\vec{x} = \vec{a}_1 + \lambda\vec{b}$ and $\vec{x} = \vec{a}_2 + \mu\vec{b}$:
+\begin{align}
+	d = \frac{\norm{\brak{\vec{a}_2 - \vec{a}_1} \times \vec{b}}}{\norm{\vec{b}}}
+	\label{eq:EE26BTECH11225-distance-lines}
+\end{align}
+Foot of the perpendicular $\vec{Q}$ from $\vec{P}$ to the plane $\vec{n}^{\top}\vec{x} = c$, and the image $\vec{P}^{\prime}$ of $\vec{P}$:
+\begin{align}
+	\vec{Q} = \vec{P} + t\vec{n}, \quad t = \frac{c - \vec{n}^{\top}\vec{P}}{\norm{\vec{n}}^2}, \quad \vec{P}^{\prime} = \vec{P} + 2t\vec{n}
+	\label{eq:EE26BTECH11225-foot}
+\end{align}
+\solution
+The distance is that from $\vec{a}_2$ to the first line. Let $\vec{w} = \vec{a}_2 - \vec{a}_1$. The foot of the perpendicular is at $\lambda$ where
+\begin{align}
+	\vec{b}^{\top}\brak{\vec{w} - \lambda\vec{b}} = 0
+	\implies \lambda = \frac{\vec{b}^{\top}\vec{w}}{\norm{\vec{b}}^2}
+\end{align}
+and the distance is the length of the remaining component,
+\begin{align}
+	d^2 = \norm{\vec{w} - \lambda\vec{b}}^2 = \norm{\vec{w}}^2 - \frac{\brak{\vec{b}^{\top}\vec{w}}^2}{\norm{\vec{b}}^2}
+	= \frac{\norm{\vec{w} \times \vec{b}}^2}{\norm{\vec{b}}^2}
+\end{align}
+using Lagrange's identity, yielding \eqref{eq:EE26BTECH11225-distance-lines}. For the plane, $\vec{Q}$ lies along the normal from $\vec{P}$ and on the plane, so
+\begin{align}
+	\vec{n}^{\top}\brak{\vec{P} + t\vec{n}} = c
+	\implies t = \frac{c - \vec{n}^{\top}\vec{P}}{\norm{\vec{n}}^2}
+\end{align}
+The foot $\vec{Q}$ is the midpoint of $\vec{P}$ and $\vec{P}^{\prime}$, so $\vec{P}^{\prime} = 2\vec{Q} - \vec{P} = \vec{P} + 2t\vec{n}$, yielding \eqref{eq:EE26BTECH11225-foot}.
+
+\item Linear programming: the optimum of a linear objective over a bounded convex feasible region occurs at a corner point.
+\begin{align}
+	\max Z = \vec{c}^{\top}\vec{x} \quad \text{s.t.} \quad \vec{A}\vec{x} \leq \vec{b}, \; \vec{x} \geq \vec{0}
+	\label{eq:EE26BTECH11225-lpp}
+\end{align}
+\solution
+Let $\vec{v}_1, \ldots, \vec{v}_m$ be the corner points. Any feasible point is a convex combination of them,
+\begin{align}
+	\vec{x} = \sum_{i=1}^{m}\lambda_i\vec{v}_i, \quad \lambda_i \geq 0, \quad \sum_{i=1}^{m}\lambda_i = 1
+\end{align}
+Then
+\begin{align}
+	Z\brak{\vec{x}} = \vec{c}^{\top}\vec{x} = \sum_{i=1}^{m}\lambda_i\vec{c}^{\top}\vec{v}_i
+	\leq \max_i\, \vec{c}^{\top}\vec{v}_i
+\end{align}
+so the maximum is attained at a corner point.
+
+\item Cylinder inscribed in a cone of base radius $R$ and height $H$: if the cylinder has radius $r$ and height $h$, then
+\begin{align}
+	h = \frac{H\brak{R - r}}{R}, \quad \text{CSA} = 2\pi r h
+	\label{eq:EE26BTECH11225-inscribed}
+\end{align}
+\solution
+The top rim of the cylinder lies on the cone at height $h$, where the cone has radius $r$. By similar triangles,
+\begin{align}
+	\frac{H - h}{H} = \frac{r}{R}
+	\implies h = \frac{H\brak{R - r}}{R}
+\end{align}
+yielding \eqref{eq:EE26BTECH11225-inscribed}. To maximize the CSA,
+\begin{align}
+	\text{CSA}\brak{r} &= \frac{2\pi H}{R}\brak{Rr - r^2}
+	\label{eq:EE26BTECH11225-inscribed-max}
+	\\
+	\frac{d\,\text{CSA}}{dr} &= \frac{2\pi H}{R}\brak{R - 2r} = 0 \implies r = \frac{R}{2}
+\end{align}
+Since $\frac{d^2\,\text{CSA}}{dr^2} = -\frac{4\pi H}{R} < 0$, this is a maximum, with $h = \frac{H}{2}$ and $\text{CSA}_{\max} = \frac{\pi R H}{2}$.
+
+\item Gaussian elimination for $A\vec{x} = \vec{b}$, where $A$ is an $n \times n$ matrix. Forward elimination reduces $[A\,|\,\vec{b}]$ to the upper triangular form $[U\,|\,\vec{c}]$ using
+\begin{align}
+R_i \to R_i - m_{ik}R_k, \quad m_{ik} = \frac{a_{ik}}{a_{kk}}, \quad i > k \label{eq:EE26BTECH11225-gauss-mult}
+\end{align}
+and back-substitution gives
+\begin{align}
+x_i = \frac{1}{u_{ii}}\brak{c_i - \sum_{j>i} u_{ij}x_j}, \quad i = n, n-1, \ldots, 1 \label{eq:EE26BTECH11225-gauss-back}
+\end{align}
+The number of operations, and so the running time, grows as
+\begin{align}
+T(n) \approx \kappa\, n^3 \label{eq:EE26BTECH11225-gauss-cost}
+\end{align}
+\item Probability mass function (PMF) of a discrete random variable $X$, and of a pair $(X,Y)$:
+\begin{align}
+p_X(k) &= \Pr\brak{X = k}, \quad \sum_k p_X(k) = 1, \quad \Pr\brak{X \in E} = \sum_{k \in E} p_X(k) \label{eq:EE26BTECH11225-pmf} \\
+p_{XY}(i,j) &= p_X(i)\,p_Y(j) \quad \text{when $X$ and $Y$ are independent} \label{eq:EE26BTECH11225-pmf-joint}
+\end{align}
+\item Laplace transform, with $F(s) = \mathcal{L}\{f\}(s)$, and the integration property:
+\begin{align}
+F(s) &= \int_0^\infty f(x)e^{-sx}\,dx, \quad \mathcal{L}\{x^n\} = \frac{n!}{s^{n+1}}, \quad \mathcal{L}\{\cos \omega x\} = \frac{s}{s^2+\omega^2} \label{eq:EE26BTECH11225-laplace} \\
+\mathcal{L}\left\{\int_0^x f(\tau)\,d\tau\right\} &= \frac{F(s)}{s} \label{eq:EE26BTECH11225-laplace-int}
+\end{align}
+So $\int f(x)\,dx = \mathcal{L}^{-1}\{F(s)/s\} + C$, where $C$ is the value of the integral at $x = 0$.
+\item Laplace transform of derivatives and of shifted ramps, with $u$ the unit step:
+\begin{align}
+\mathcal{L}\{y'\} &= sY - y(0), \quad \mathcal{L}\{x f(x)\} = -F'(s) \label{eq:EE26BTECH11225-laplace-deriv} \\
+\mathcal{L}\{(x-a)^n u(x-a)\} &= \frac{n!\,e^{-as}}{s^{n+1}}, \quad |x-a| = (a-x) + 2(x-a)u(x-a) \label{eq:EE26BTECH11225-laplace-step}
+\end{align}
+\end{enumerate}
