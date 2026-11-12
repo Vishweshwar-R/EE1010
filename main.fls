@@ -1,4 +1,4 @@
-PWD /home/vishweshwar/Desktop/CBSE_papers_2018vv/CBSE_papers_2018
+PWD /home/vishweshwar/Desktop/CBSE_papers_2018/CBSE_papers_2018
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
@@ -620,6 +620,10 @@ INPUT 10/figs/1.1.11.tex
 INPUT ./10/chapters/cbse-2018.tex
 INPUT ./10/chapters/cbse-2018.tex
 INPUT 10/chapters/cbse-2018.tex
+INPUT ./10/figs/1.2.1.png
+INPUT ./10/figs/1.2.1.png
+INPUT ./10/figs/1.2.1.png
+INPUT ./10/figs/1.2.1.png
 INPUT ./10/figs/1.2.4.png
 INPUT ./10/figs/1.2.4.png
 INPUT ./10/figs/1.2.4.png
