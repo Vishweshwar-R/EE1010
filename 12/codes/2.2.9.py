@@ -27,6 +27,7 @@ for name, p in zip("ABC", (A, B, C)):
     ax.scatter(*p.flatten(), color="r", s=40)
     ax.text(*p.flatten(), f" {name}{tuple(int(v) for v in p.flatten())}", fontsize=8)
 ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z")
+ax.view_init(elev=28, azim=35)   # side-on view: the line is not foreshortened and A, B, C stay apart
 plt.tight_layout()
 #If using termux
 plt.savefig('figs/2.2.9.png', dpi=150)

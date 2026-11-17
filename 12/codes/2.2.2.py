@@ -25,11 +25,15 @@ print("lambda =", lam, " point =", P.T)
 
 fig = plt.figure(figsize=(10, 4.5))
 ax = fig.add_subplot(121, projection="3d")
-g = np.linspace(-3, 6, 12)
+g = np.linspace(-2, 5, 12)
 X, Y = np.meshgrid(g, g)
 ax.plot_surface(X, Y, 3 - X - Y, alpha=0.3, color="tab:green")
-L = line_dir_pt(b, a, -1.5, 1.5)
+L = line_dir_pt(b, a, -1.2, 1.2)
 ax.plot(*L, "b-")
+tq = (3 - (n.T @ a).item()) / (n.T @ b).item()      # where the line meets the plane: n^T(a + t b) = 3
+Pq = a + tq * b
+ax.scatter(*Pq.flatten(), color="r", s=40)
+ax.set_box_aspect((1, 1, 1)); ax.view_init(elev=35, azim=-70)   # plane seen from above, line visibly pierces it
 ax.set_title("(a) line and plane $x+y+z=3$")
 ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z")
 ax = fig.add_subplot(122, projection="3d")
@@ -39,6 +43,8 @@ L = line_dir_pt(d, p0, -1, 3)
 ax.plot(*L, "b-")
 ax.scatter(*P.flatten(), color="r", s=40)
 ax.text(*P.flatten(), " (0, 11, 9)")
+ax.set_box_aspect((1, 1.4, 1.2)); ax.view_init(elev=22, azim=-30)   # yz-plane seen almost face-on
+ax.set_xticks([-3, -2, -1, 0, 1])
 ax.set_title("(b) line meets yz-plane")
 ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z")
 plt.tight_layout()

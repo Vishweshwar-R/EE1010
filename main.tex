@@ -11,6 +11,21 @@
 \lstset{aboveskip=12pt}
 \usepackage[center]{caption}
 \raggedbottom
+
+% ---- layout: avoid large blank gaps at page bottoms ----
+% figures may float to the next free spot instead of leaving half a page empty
+\floatplacement{figure}{!htbp}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+% no figure taller than about a third of the page (keeps its aspect ratio)
+\setkeys{Gin}{keepaspectratio,height=0.34\textheight}
 \setlength{\multicolsep}{0pt}
 
 \hypersetup{

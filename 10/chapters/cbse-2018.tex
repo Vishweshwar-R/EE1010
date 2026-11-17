@@ -13,7 +13,7 @@ The following code solves for $k$, checks that $x=3$ is a root and plots \figref
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.1.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/1.2.1.png}
     \caption{The parabola $x^2-2kx-6$ for $k=\frac{1}{2}$ crosses the $x$-axis at $x=3$}
@@ -38,14 +38,14 @@ The first term is therefore $\boxed{28}$. The C program prints the sequence, whi
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.4.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/1.2.4.png}
     \caption{The A.P. as the sequence $x(n) = (a + (n-1)d)\,u(n-1)$}
     \label{fig:ap_q4}
 \end{figure}
     \item In \figref{fig:rectangle_q8}, $ABCD$ is a rectangle. Find the values of $x$ and $y$.
-    \begin{figure}[H]
+    \begin{figure}[!htbp]
 \centering
 \input{10/figs/1.2.8.tex}
 \caption{Rectangle $ABCD$}
@@ -75,7 +75,7 @@ The C program carries out the elimination and the Python program plots the two l
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.8.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figs/1.2.8.png}
     \caption{The lines $x+y=30$ and $x-y=14$}
@@ -93,7 +93,7 @@ Hence $m = 0$, and $P$ divides $AB$ in the ratio $\boxed{1 : 1}$. The following 
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.10.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figs/1.2.10.png}
     \caption{$P$, the midpoint of $AB$}
@@ -125,7 +125,7 @@ The program simulates $10^6$ throws of the two dice. The stem plot in \figref{fi
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.11.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/1.2.11.png}
     \caption{Theoretical and simulated $p_S(s)$}
@@ -157,7 +157,7 @@ The program simulates $10^6$ draws and compares the simulated $p_R(r)$ with the 
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.12.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/1.2.12.png}
     \caption{Theoretical and simulated $p_R(r)$}
@@ -203,7 +203,7 @@ The Python program plots $p(x)$ with its zeros in \figref{fig:poly_q14}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.14.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/1.2.14.png}
     \caption{Plot of $p(x) = 2x^4 - 9x^3 + 5x^2 + 3x - 1$ with its zeros}
@@ -242,7 +242,7 @@ The following code verifies both parts and plots them in \figref{fig:quad_q15}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.15.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/1.2.15.png}
     \caption{(a) Parallelogram $ABCD$ and (b) quadrilateral $ABCD$}
@@ -280,7 +280,7 @@ The iterates settle at $500$ and $-600$. Speed cannot be negative, so the usual 
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.16.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/1.2.16.png}
     \caption{Newton--Raphson steps for $f(x) = x^2 + 100x - 300000$ from $x_0 = 1000$}
@@ -302,7 +302,7 @@ Hence the lengths of the tangents from an external point to a circle are equal. 
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.18.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figs/1.2.18.png}
     \caption{Tangents $PA$ and $PB$ from the point $P$}
@@ -362,7 +362,7 @@ The C program runs the iteration and the Python program plots the A.P. and $f(D)
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.23.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/1.2.23.png}
     \caption{(left) The A.P. $x(n)$; (right) $f(D)$ with its zeros $D = \pm 4$}
@@ -391,7 +391,7 @@ The C program does the elimination and the Python program plots the lines of sig
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.27.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{figs/1.2.27.png}
     \caption{Lines of sight to the two ships}
@@ -481,7 +481,7 @@ To plot the ``less than type'' ogive, plot the points $(100, 0)$ (the lower limi
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.28.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.70\linewidth]{figs/1.2.28.png}
     \caption{Less than type ogive for daily income distribution}

@@ -31,7 +31,7 @@
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.2.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{figs/2.2.2.png}
     \caption{The line and the plane}
@@ -52,7 +52,7 @@ The following code verifies this symbolically and plots members of the family in
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.3.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.75\linewidth]{figs/2.2.3.png}
     \caption{Members of the family $y=-A\cos 3x+B\sin 3x$}
@@ -69,7 +69,7 @@ The following code verifies the derivative numerically and plots \figref{fig:inv
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.4.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.70\linewidth]{figs/2.2.4.png}
     \caption{Plot of $\cos^{-1}(\sin 2x)$; it is the line $\frac{\pi}{2}-2x$ on the shaded region}
@@ -117,7 +117,7 @@ The program simulates $10^6$ trials of each and the stem plots in \figref{fig:pm
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.6.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/2.2.6.png}
     \caption{Theoretical and simulated pmfs: (a) $p_X(r)$, (b) $p_Z(z)$}
@@ -159,7 +159,7 @@ The following code verifies the solution and plots \figref{fig:linearode_q8}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.8.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.70\linewidth]{figs/2.2.8.png}
     \caption{Solutions $y=3x^2+Cx$ for several values of $C$}
@@ -197,7 +197,7 @@ The following code verifies both parts and generates \figref{fig:collinear_q9}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.9.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figs/2.2.9.png}
     \caption{The collinear points $A$, $B$, $C$}
@@ -219,7 +219,7 @@ The simulation of $10^6$ trials is compared with the pmf as a stem plot in \figr
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.10.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/2.2.10.png}
     \caption{Theoretical and simulated $p(a,b)$}
@@ -244,7 +244,7 @@ The following code does the elimination and plots the three planes in \figref{fi
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.11.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{figs/2.2.11.png}
     \caption{The given planes and the required plane}
@@ -265,7 +265,7 @@ The C program applies the rule with $N = 4$ and $N = 1000$, and the Python progr
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.12.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/2.2.12.png}
     \caption{The trapezoids for $N = 4$}
@@ -292,7 +292,7 @@ The program takes $x = 2$, $y = 3$, builds the cubic with $xyz = 1$, and checks 
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.13.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{figs/2.2.13.png}
     \caption{The cubic $t^3 + \beta t^2 + \alpha t - 1$ with roots $x, y, z$ and $xyz = 1$}
@@ -334,7 +334,7 @@ The program does the elimination symbolically, checks that the rank is $2$ only 
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.15.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{figs/2.2.15.png}
     \caption{The last pivot $\frac{6-x}{2}$ against $x$}
@@ -374,7 +374,7 @@ The following code verifies both parts and plots \figref{fig:diff_q18}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.16.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/2.2.16.png}
     \caption{The functions $u=3\tan^{-1}x$ and $v=\sin^{-1}x$}
@@ -417,7 +417,7 @@ The following code verifies both parts and generates \figref{fig:equiv_q19}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.17.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/2.2.17.png}
     \caption{(a) Relation matrix of $R$; (b) graph of $f$, symmetric about $y=x$}
@@ -462,7 +462,7 @@ The following code verifies both solutions and plots \figref{fig:solveode_q20}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.18.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/2.2.18.png}
     \caption{(a) $y=e^{-x}$ and (b) $\cos(y/x)=\ln x$}
@@ -487,7 +487,7 @@ The following code verifies the derivative and plots \figref{fig:logdiff_q21}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.19.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/2.2.19.png}
     \caption{The function $y$ and its derivative on $(0,1)$}
@@ -507,7 +507,7 @@ The C program runs the iteration and the Python program plots $f$ and $f'$ in \f
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.20.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{figs/2.2.20.png}
     \caption{$f(x) = \sin 2x + \cos 2x$ and $f'(x)$}
@@ -570,7 +570,7 @@ To see how the cost grows with the size $n$ of the system, a second C program ti
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.21b\_time.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/2.2.21b_time.png}
     \caption{Time of Gaussian elimination against $n$ (log-log), measured by the C program}
@@ -612,7 +612,7 @@ The C program does the Newton--Raphson step and both integrals, and the Python p
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.22.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/2.2.22.png}
     \caption{(a) The region $x^2+y^2 \le 16$, $y^2 \le 6x$; (b) the triangle $ABC$}
@@ -634,7 +634,7 @@ that is, $8$ souvenirs of type A and $20$ of type B. The program also prints $Z$
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.23.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{figs/2.2.23.png}
     \caption{Feasible region and the optimum $(8,20)$}
@@ -665,7 +665,7 @@ The following code checks both parts and plots them in \figref{fig:lines_q27}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.24.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/2.2.24.png}
     \caption{(a) The parallel lines; (b) the foot $Q$ and the image $P^{\prime}$}
@@ -687,7 +687,7 @@ The program shuffles the pack $10^5$ times and compares the simulated posterior 
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.25.py}@*)
 \end{lstlisting}
-\begin{figure}[H]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figs/2.2.25.png}
     \caption{Theoretical and simulated $p_{L|A}(l)$}
