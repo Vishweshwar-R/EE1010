@@ -13,7 +13,8 @@ from CoordGeo.plotting.funcs import label_pts
 
 def area_tri(P, Q, R):
     # area = (1/2)|det[Q - P, R - P]|
-    return 0.5 * abs(LA.det(np.block([dir_vec(P, Q), dir_vec(P, R)])))
+    n = np.array([[0, 1], [-1, 0]]) @ dir_vec(P, Q)      # normal vector of PQ
+    return 0.5 * abs((n.T @ dir_vec(P, R)).item())
 
 # (a) parallelogram ABCD: A + C = B + D with B = (a, 0), C = (4, b)
 A = np.array([[-2], [1]]); D = np.array([[1], [2]])

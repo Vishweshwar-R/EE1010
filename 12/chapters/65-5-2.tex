@@ -1,17 +1,16 @@
 \begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
 
     \item If $A$ is a square matrix of order 2 and $|A| = 4$, then find the value of $|2 \cdot AA'|$, where $A'$ is the transpose of matrix $A$.
-
+\par\hfill (12, 2018)\par
 \solution From \eqref{eq:EE26BTECH11225-det} with $n=2$ and $k=2$:
 \begin{align}
     |2 \cdot AA'| &= 2^2 |AA'| \\
     &= 4|A||A'| = 4|A|^2 \\
     &= 4(4)^2 = 64
 \end{align}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
-        \item Find the angle between the line $\vec{r} = (2\hat{i} - \hat{j} + 3\hat{k}) + \lambda(3\hat{i} - \hat{j} + 2\hat{k})$ and the plane $\vec{r}\cdot(\hat{i}+\hat{j}+\hat{k}) = 3$.
+        \item Find the angle between the line $\vec{r} = \myvec{2 \\ -1 \\ 3} + \lambda\myvec{3 \\ -1 \\ 2}$ and the plane $\vec{r}\cdot\myvec{1 \\ 1 \\ 1} = 3$.
 
         \begin{center}
             \textbf{OR}
@@ -19,34 +18,27 @@
 
         \item Find the co-ordinates of the point, where the line $\dfrac{x+2}{1} = \dfrac{y-5}{3} = \dfrac{z+1}{5}$ cuts the $yz$-plane.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} The direction vector of the line and the normal of the plane are
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} The line has direction $\vec{b} = \myvec{3 \\ -1 \\ 2}$ and the plane has normal $\vec{n} = \myvec{1 \\ 1 \\ 1}$. From \eqref{eq:EE26BTECH11225-lineplane},
 \begin{align}
-    \vec{b} = \myvec{3 \\ -1 \\ 2}, \quad \vec{n} = \myvec{1 \\ 1 \\ 1}
+\sin\theta = \frac{\left|\vec{b}^{\top}\vec{n}\right|}{\norm{\vec{b}}\norm{\vec{n}}} = \frac{4}{\sqrt{14}\sqrt{3}} \implies \boxed{\theta = \sin^{-1}\frac{4}{\sqrt{42}} \approx 38.1^\circ}
 \end{align}
-From \eqref{eq:EE26BTECH11225-lineplane}:
+\textbf{(b) Solution:} The line is $\vec{x} = \myvec{-2 \\ 5 \\ -1} + \lambda\myvec{1 \\ 3 \\ 5}$. It cuts the $yz$-plane where $x = -2 + \lambda = 0$, so $\lambda = 2$ and
 \begin{align}
-    \sin\theta &= \frac{|(3)(1)+(-1)(1)+(2)(1)|}{\sqrt{3^2+(-1)^2+2^2}\sqrt{1^2+1^2+1^2}} \\
-    &= \frac{4}{\sqrt{14}\sqrt{3}} = \frac{4}{\sqrt{42}} \\
-    &\implies \theta = \sin^{-1}\left(\frac{4}{\sqrt{42}}\right) \approx 38.11^\circ
+\vec{x} = \myvec{-2 \\ 5 \\ -1} + 2\myvec{1 \\ 3 \\ 5} = \boxed{\myvec{0 \\ 11 \\ 9}}
 \end{align}
-\textbf{(b) Solution:} On the $yz$-plane $x = 0$. Let the common ratio be $\lambda$:
-\begin{align}
-    \frac{0+2}{1} = \lambda = 2 &\implies y - 5 = 3(2) \implies y = 11 \\
-    &\implies z + 1 = 5(2) \implies z = 9
-\end{align}
-Thus, the point is $(0, 11, 9)$. The following code verifies both parts and generates \figref{fig:lineplane_q2}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.2.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/2.2.2.png}
-    \caption{(a) Line and plane $x+y+z=3$; (b) line meeting the $yz$-plane at $(0,11,9)$}
+    \includegraphics[width=0.6\linewidth]{figs/2.2.2.png}
+    \caption{The line and the plane}
     \label{fig:lineplane_q2}
 \end{figure}
-
     \item Find the differential equation representing the family of curves $y = -A\cos 3x + B\sin 3x$.
-
+\par\hfill (12, 2018)\par
 \solution The family has two arbitrary constants $A$ and $B$, so by \ref{eq:EE26BTECH11225-family} we differentiate twice:
 \begin{align}
     \frac{dy}{dx} &= 3A\sin 3x + 3B\cos 3x \\
@@ -66,9 +58,8 @@ The following code verifies this symbolically and plots members of the family in
     \caption{Members of the family $y=-A\cos 3x+B\sin 3x$}
     \label{fig:odefamily_q3}
 \end{figure}
-
     \item Find the differential of the function $\cos^{-1}(\sin 2x)$ w.r.t. $x$.
-
+\par\hfill (12, 2018)\par
 \solution Since $\sin 2x = \cos\left(\frac{\pi}{2} - 2x\right)$, from \eqref{eq:EE26BTECH11225-invtrig-1}, for $\frac{\pi}{2}-2x \in [0,\pi]$, i.e. $-\frac{\pi}{4}\leq x\leq\frac{\pi}{4}$:
 \begin{align}
     y &= \cos^{-1}\left(\cos\left(\frac{\pi}{2}-2x\right)\right) = \frac{\pi}{2} - 2x \\
@@ -84,9 +75,8 @@ The following code verifies the derivative numerically and plots \figref{fig:inv
     \caption{Plot of $\cos^{-1}(\sin 2x)$; it is the line $\frac{\pi}{2}-2x$ on the shaded region}
     \label{fig:invtrig_q4}
 \end{figure}
-
     \item If an operation $*$ on the set of integers $\mathbb{Z}$ is defined by $a * b = 2a^2 + b$, then find (i) whether it is a binary or not, and (ii) if a binary, then is it commutative or not.
-
+\par\hfill (12, 2018)\par
 \solution (i) For any $a, b\in\mathbb{Z}$, $2a^2+b\in\mathbb{Z}$, so $*$ maps $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ and is a binary operation. \\[4pt]
 (ii) From \eqref{eq:EE26BTECH11225-binop}:
 \begin{align}
@@ -97,7 +87,6 @@ For $a=1$, $b=2$:
     1 * 2 = 2(1)^2 + 2 = 4, \quad 2 * 1 = 2(2)^2 + 1 = 9 \implies 1*2 \neq 2*1
 \end{align}
 Hence $*$ is a binary operation but it is not commutative.
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Four cards are drawn one by one with replacement from a well-shuffled deck of playing cards. Find the probability that at least three cards are of diamonds.
@@ -108,36 +97,37 @@ Hence $*$ is a binary operation but it is not commutative.
 
         \item The probability of two students $A$ and $B$ coming to school on time are $\frac{2}{7}$ and $\frac{4}{7}$, respectively. Assuming that the events `$A$ coming on time' and `$B$ coming on time' are independent, find the probability of only one of them coming to school on time.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} Let $X$ be the number of diamonds in $4$ draws with replacement. Then $X$ is binomial with $n=4$, $p=\frac{1}{4}$, and its PMF from \eqref{eq:EE26BTECH11225-pmf} is
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} Let $X$ be the number of diamonds in $4$ draws with replacement, each draw giving a diamond with probability $\frac{1}{4}$. The pmf of $X$ is
 \begin{align}
-    p_X(k) = \binom{4}{k}\left(\frac{1}{4}\right)^k\left(\frac{3}{4}\right)^{4-k}, \quad k = 0,1,\dots,4
+p_X(r) = \binom{4}{r}\brak{\frac{1}{4}}^r\brak{\frac{3}{4}}^{4-r}, \quad r = 0, 1, \ldots, 4
 \end{align}
+From \eqref{eq:EE26BTECH11225-pmf},
 \begin{align}
-    \Pr\brak{X\geq 3} = p_X(3) + p_X(4) = \frac{12}{256} + \frac{1}{256} = \frac{13}{256}
+\Pr\brak{X \geq 3} = p_X(3) + p_X(4) = \frac{12}{256} + \frac{1}{256} = \boxed{\frac{13}{256}}
 \end{align}
-\textbf{(b) Solution:} Let $A, B \in \{0,1\}$ indicate that each student is on time, with $p_A(1)=\frac{2}{7}$ and $p_B(1)=\frac{4}{7}$. By independence, from \eqref{eq:EE26BTECH11225-pmf-joint}, $p_{AB}(a,b) = p_A(a)p_B(b)$, so
+\textbf{(b) Solution:} Let $Z$ be the number of students on time, the indicator variables being independent with $\Pr = \frac{2}{7}$ and $\frac{4}{7}$. From \eqref{eq:EE26BTECH11225-pmf-sum}, for $z = 0, 1, 2$,
 \begin{align}
-    p_{AB}(1,0) = \frac{2}{7}\cdot\frac{3}{7} = \frac{6}{49}, \quad p_{AB}(0,1) = \frac{5}{7}\cdot\frac{4}{7} = \frac{20}{49}
+p_Z(z) = \sum_{a + b = z}\brak{\frac{2}{7}}^a\brak{\frac{5}{7}}^{1-a}\brak{\frac{4}{7}}^b\brak{\frac{3}{7}}^{1-b}
+\implies p_Z(1) = \frac{2}{7}\cdot\frac{3}{7} + \frac{5}{7}\cdot\frac{4}{7} = \boxed{\frac{26}{49}}
 \end{align}
-\begin{align}
-    \Pr\brak{\text{only one}} = p_{AB}(1,0) + p_{AB}(0,1) = \frac{26}{49}
-\end{align}
-The following code verifies both parts (exact fractions and a simulation) and plots \figref{fig:cards_q6}.
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-pmf}, \ref{eq:EE26BTECH11225-pmf-sum})}}\par
+The program simulates $10^6$ trials of each and the stem plots in \figref{fig:pmf_q6} compare the simulated and theoretical pmfs.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.6.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\linewidth]{figs/2.2.6.png}
-    \caption{Distribution of the number of diamonds in four draws}
-    \label{fig:cards_q6}
+    \includegraphics[width=0.95\linewidth]{figs/2.2.6.png}
+    \caption{Theoretical and simulated pmfs: (a) $p_X(r)$, (b) $p_Z(z)$}
+    \label{fig:pmf_q6}
 \end{figure}
-
     \item Find the value of $(x-y)$ from the matrix equation
 \begin{align*}
     2\begin{bmatrix} x & 5 \\ 7 & y-3 \end{bmatrix} + \begin{bmatrix} -3 & -4 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 7 & 6 \\ 15 & 14 \end{bmatrix}.
 \end{align*}
-
+\par\hfill (12, 2018)\par
 \solution Moving the constant matrix to the right and dividing by $2$,
 \begin{align}
     2\begin{bmatrix} x & 5 \\ 7 & y-3 \end{bmatrix} &= \begin{bmatrix} 7 & 6 \\ 15 & 14 \end{bmatrix} - \begin{bmatrix} -3 & -4 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 10 & 10 \\ 14 & 12 \end{bmatrix} \\
@@ -147,12 +137,11 @@ Comparing entries, $x = 5$ and $y - 3 = 6 \implies y = 9$. Hence
 \begin{align}
     x - y = 5 - 9 = -4
 \end{align}
-
     \item Solve the following differential equation:
 \begin{align*}
     (y + 3x^2)\frac{dx}{dy} = x
 \end{align*}
-
+\par\hfill (12, 2018)\par
 \solution Taking reciprocals, $\frac{dy}{dx} = \frac{y+3x^2}{x}$, that is,
 \begin{align}
     x y' - y = 3x^2
@@ -176,7 +165,6 @@ The following code verifies the solution and plots \figref{fig:linearode_q8}.
     \caption{Solutions $y=3x^2+Cx$ for several values of $C$}
     \label{fig:linearode_q8}
 \end{figure}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Using vectors, prove that the points $(2,-1,3)$, $(3,-5,1)$ and $(-1,11,9)$ are collinear.
@@ -187,7 +175,9 @@ The following code verifies the solution and plots \figref{fig:linearode_q8}.
 
         \item For any two vectors $\vec{a}$ and $\vec{b}$, prove that $(\vec{a}\times\vec{b})^2 = \vec{a}^2\vec{b}^2 - (\vec{a}\cdot\vec{b})^2$.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} Let $A(2,-1,3)$, $B(3,-5,1)$, $C(-1,11,9)$.
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} Let $A(2,-1,3)$, $B(3,-5,1)$, $C(-1,11,9)$.
 \begin{align}
     \vec{AB} &= \myvec{3-2 \\ -5+1 \\ 1-3} = \myvec{1 \\ -4 \\ -2} \\
     \vec{BC} &= \myvec{-1-3 \\ 11+5 \\ 9-1} = \myvec{-4 \\ 16 \\ 8} = -4\myvec{1 \\ -4 \\ -2} = -4\,\vec{AB}
@@ -213,128 +203,103 @@ The following code verifies both parts and generates \figref{fig:collinear_q9}.
     \caption{The collinear points $A$, $B$, $C$}
     \label{fig:collinear_q9}
 \end{figure}
-
-    \item
-    \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
-        \item Find: $\displaystyle\int\frac{x-1}{(x-2)(x-3)}\,dx$
-
-        \begin{center}
-            \textbf{OR}
-        \end{center}
-
-        \item Integrate: $\dfrac{e^x}{\sqrt{5-4e^x-e^{2x}}}$ with respect to $x$.
-    \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} Using partial fractions, $\frac{x-1}{(x-2)(x-3)} = \frac{A}{x-2}+\frac{B}{x-3}$:
+    \item If $A$ and $B$ are independent events with $P(A) = \frac{3}{7}$ and $P(B) = \frac{2}{5}$, then find $P(A'\cap B')$.
+\par\hfill (12, 2018)\par
+\solution
+Let $I_A$ and $I_B$ be the indicators of $A$ and $B$. Being independent, their joint pmf from \eqref{eq:EE26BTECH11225-pmf-sum} is
 \begin{align}
-    A = \frac{2-1}{2-3} = -1, \quad B = \frac{3-1}{3-2} = 2
+p(a,b) = \brak{\frac{3}{7}}^a\brak{\frac{4}{7}}^{1-a}\brak{\frac{2}{5}}^b\brak{\frac{3}{5}}^{1-b}, \quad a, b \in \{0, 1\}
 \end{align}
+and $A' \cap B'$ corresponds to $a = b = 0$:
 \begin{align}
-    \int\frac{x-1}{(x-2)(x-3)}dx &= -\int\frac{dx}{x-2} + 2\int\frac{dx}{x-3} \\
-    &= -\ln|x-2| + 2\ln|x-3| + C
+\Pr\brak{A' \cap B'} = p(0,0) = \frac{4}{7}\cdot\frac{3}{5} = \boxed{\frac{12}{35}}
 \end{align}
-\textbf{(b) Solution:} Let $t = e^x$, so $dt = e^x dx$. Since $5-4t-t^2 = 9-(t+2)^2$, from \eqref{eq:EE26BTECH11225-sininv}:
-\begin{align}
-    \int\frac{dt}{\sqrt{5-4t-t^2}} &= \int\frac{dt}{\sqrt{9-(t+2)^2}} \\
-    &= \sin^{-1}\left(\frac{t+2}{3}\right) + C = \sin^{-1}\left(\frac{e^x+2}{3}\right) + C
-\end{align}
-(The integrand is real only for $e^x<1$, i.e. $x<0$.) The following code verifies both antiderivatives by differentiation.
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-pmf-sum})}}\par
+The simulation of $10^6$ trials is compared with the pmf as a stem plot in \figref{fig:pmf_q12}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.10.py}@*)
 \end{lstlisting}
-
-    \item Find: $\displaystyle\int e^x\left(\frac{2+\sin 2x}{2\cos^2 x}\right)dx$
-
-\solution Using $\sin 2x = 2\sin x\cos x$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{figs/2.2.10.png}
+    \caption{Theoretical and simulated $p(a,b)$}
+    \label{fig:pmf_q12}
+\end{figure}
+    \item Find the equation of the plane passing through the point $(-1,3,2)$ and perpendicular to the planes $x+2y+3z=5$ and $3x+3y+z=0$.
+\par\hfill (12, 2018)\par
+\solution
+The normal $\vec{n}$ of the required plane is perpendicular to both $\vec{n}_1 = \myvec{1 \\ 2 \\ 3}$ and $\vec{n}_2 = \myvec{3 \\ 3 \\ 1}$, that is
 \begin{align}
-    \frac{2+\sin 2x}{2\cos^2 x} = \frac{1}{\cos^2 x} + \frac{2\sin x\cos x}{2\cos^2 x} = \sec^2 x + \tan x
+\myvec{1 & 2 & 3 \\ 3 & 3 & 1}\vec{n} = \vec{0}
 \end{align}
-With $f(x) = \tan x$ and $f'(x) = \sec^2 x$, from \eqref{eq:EE26BTECH11225-expint}:
+Gauss elimination \eqref{eq:EE26BTECH11225-gauss-mult}:
 \begin{align}
-    \int e^x(\tan x+\sec^2 x)\,dx = e^x\tan x + C
+\myvec{1 & 2 & 3 \\ 3 & 3 & 1} \xrightarrow{R_2 \to R_2 - 3R_1} \myvec{1 & 2 & 3 \\ 0 & -3 & -8}
 \end{align}
-The following code verifies the result by differentiation.
+Taking the free variable $n_3 = 3$ gives $n_2 = -8$ and $n_1 = 7$, so $\vec{n} = \myvec{7 \\ -8 \\ 3}$. The plane through $\vec{p} = \myvec{-1 \\ 3 \\ 2}$ is, from \eqref{eq:EE26BTECH11225-plane},
+\begin{align}
+\vec{n}^{\top}\brak{\vec{x} - \vec{p}} = 0 \implies \boxed{7x - 8y + 3z + 25 = 0}
+\end{align}
+The following code does the elimination and plots the three planes in \figref{fig:plane_q13}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.11.py}@*)
 \end{lstlisting}
-
-    \item If $A$ and $B$ are independent events with $P(A) = \frac{3}{7}$ and $P(B) = \frac{2}{5}$, then find $P(A'\cap B')$.
-
-\solution Let $A, B \in \{0,1\}$ be the indicators of the two events, with $p_A(1) = \frac{3}{7}$ and $p_B(1) = \frac{2}{5}$. By independence, from \eqref{eq:EE26BTECH11225-pmf-joint}, $p_{AB}(a,b) = p_A(a)p_B(b)$. Neither event occurs when $(A,B) = (0,0)$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figs/2.2.11.png}
+    \caption{The given planes and the required plane}
+    \label{fig:plane_q13}
+\end{figure}
+    \item Evaluate: $\displaystyle\int_1^5 \big(|x-1| + |x-2| + |x-4|\big)\,dx$
+\par\hfill (12, 2018)\par
+\solution
+Let $g(x) = |x-1| + |x-2| + |x-4|$. The corners of $g$ are at $x = 2$ and $x = 4$, so take $h = 1$ ($N = 4$, nodes $1, 2, 3, 4, 5$) where $g$ is linear between nodes and the rule is exact. The values are $g(1) = 4$, $g(2) = 3$, $g(3) = 4$, $g(4) = 5$, $g(5) = 8$. From \eqref{eq:EE26BTECH11225-trapezoid},
 \begin{align}
-    p_{AB}(0,0) = \frac{4}{7}\cdot\frac{3}{5} = \frac{12}{35}
+\int_1^5 g(x)\,dx \approx \frac{1}{2}\sbrak{g(1) + 2g(2) + 2g(3) + 2g(4) + g(5)} = \frac{1}{2}\sbrak{4 + 2(3+4+5) + 8} = \boxed{18}
 \end{align}
-Hence $P(A'\cap B') = \frac{12}{35}$.
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-trapezoid})}}\par
+The C program applies the rule with $N = 4$ and $N = 1000$, and the Python program plots the trapezoids in \figref{fig:trap_q14}.
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.12.c}@*)
+\end{lstlisting}
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.12.py}@*)
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{figs/2.2.12.png}
+    \caption{The trapezoids for $N = 4$}
+    \label{fig:trap_q14}
+\end{figure}
+    \item If $x,y,z$ are different and $\Delta = \begin{vmatrix} x & x^2 & x^3-1 \\ y & y^2 & y^3-1 \\ z & z^2 & z^3-1 \end{vmatrix} = 0$, then using properties of determinants, show that $xyz=1$.
+\par\hfill (12, 2018)\par
 
-    \item Find the equation of the plane passing through the point $(-1,3,2)$ and perpendicular to the planes $x+2y+3z=5$ and $3x+3y+z=0$.
-
-\solution The normals of the given planes are $\vec{n}_1 = \myvec{1\\2\\3}$ and $\vec{n}_2 = \myvec{3\\3\\1}$. From \eqref{eq:EE26BTECH11225-plane},
+\solution
+$\Delta = 0$ means the columns of the matrix are linearly dependent, from \eqref{eq:EE26BTECH11225-vieta}: there is $\vec{c} = \myvec{\alpha \\ \beta \\ \gamma} \neq \vec{0}$ with
 \begin{align}
-    \vec{n} = \vec{n}_1\times\vec{n}_2 = \myvec{2\cdot1-3\cdot3 \\ 3\cdot3-1\cdot1 \\ 1\cdot3-2\cdot3} = \myvec{-7 \\ 8 \\ -3}
+\myvec{x & x^2 & x^3 - 1 \\ y & y^2 & y^3 - 1 \\ z & z^2 & z^3 - 1}\myvec{\alpha \\ \beta \\ \gamma} = \vec{0}
 \end{align}
-The plane through $\vec{P}_0 = \myvec{-1\\3\\2}$ is $\vec{n}^{\top}(\vec{x}-\vec{P}_0) = 0$:
+So each of $t = x, y, z$ satisfies
 \begin{align}
-    -7(x+1) + 8(y-3) - 3(z-2) &= 0 \\
-    \implies -7x + 8y - 3z - 25 &= 0 \\
-    \implies 7x - 8y + 3z + 25 &= 0
+\gamma t^3 + \beta t^2 + \alpha t - \gamma = 0
 \end{align}
-The following code verifies $\vec{n}\perp\vec{n}_1,\vec{n}_2$ and plots \figref{fig:plane_q13}.
+If $\gamma = 0$, this is at most quadratic, so it cannot have three distinct roots unless $\alpha = \beta = 0$, which contradicts $\vec{c} \neq \vec{0}$. Hence $\gamma \neq 0$, and $x, y, z$ are the three roots of a cubic with $\delta = -\gamma$. From \eqref{eq:EE26BTECH11225-vieta},
+\begin{align}
+xyz = -\frac{-\gamma}{\gamma} = \boxed{1}
+\end{align}
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-vieta})}}\par
+The program takes $x = 2$, $y = 3$, builds the cubic with $xyz = 1$, and checks that the columns are dependent (the matrix has rank $2$). It plots the cubic with its three roots in \figref{fig:vieta_q15}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.13.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/2.2.13.png}
-    \caption{The required plane (red) with the two given planes}
-    \label{fig:plane_q13}
+    \includegraphics[width=0.6\linewidth]{figs/2.2.13.png}
+    \caption{The cubic $t^3 + \beta t^2 + \alpha t - 1$ with roots $x, y, z$ and $xyz = 1$}
+    \label{fig:vieta_q15}
 \end{figure}
-
-    \item Evaluate: $\displaystyle\int_1^5 \big(|x-1| + |x-2| + |x-4|\big)\,dx$
-
-\solution Write each term with the unit step, $|x-a| = (a-x) + 2(x-a)u(x-a)$, from \eqref{eq:EE26BTECH11225-laplace-step}. For $x \ge 0$,
-\begin{align}
-    f(x) = 7 - 3x + 2\left[(x-1)u(x-1) + (x-2)u(x-2) + (x-4)u(x-4)\right]
-\end{align}
-Its transform from \eqref{eq:EE26BTECH11225-laplace} and \eqref{eq:EE26BTECH11225-laplace-step} is
-\begin{align}
-    F(s) = \frac{7}{s} - \frac{3}{s^2} + \frac{2}{s^2}\left(e^{-s}+e^{-2s}+e^{-4s}\right)
-\end{align}
-Dividing by $s$ as in \eqref{eq:EE26BTECH11225-laplace-int} gives $G(s) = \frac{F(s)}{s}$, and inverting, the integral $g(x) = \int_0^x f$ is
-\begin{align}
-    g(x) = 7x - \frac{3x^2}{2} + (x-1)^2u(x-1) + (x-2)^2u(x-2) + (x-4)^2u(x-4)
-\end{align}
-\begin{align}
-    \int_1^5 f(x)\,dx = g(5) - g(1) = \left(35 - \frac{75}{2} + 16 + 9 + 1\right) - \left(7 - \frac{3}{2}\right) = \frac{47}{2} - \frac{11}{2} = 18
-\end{align}
-The following code verifies the Laplace result and plots \figref{fig:absint_q14}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.14.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.60\linewidth]{figs/2.2.14.png}
-    \caption{Area under $|x-1|+|x-2|+|x-4|$ from $x=1$ to $x=5$}
-    \label{fig:absint_q14}
-\end{figure}
-
-    \item If $x,y,z$ are different and $\Delta = \begin{vmatrix} x & x^2 & x^3-1 \\ y & y^2 & y^3-1 \\ z & z^2 & z^3-1 \end{vmatrix} = 0$, then using properties of determinants, show that $xyz=1$.
-
-\solution Splitting the third column:
-\begin{align}
-    \Delta &= \begin{vmatrix} x & x^2 & x^3 \\ y & y^2 & y^3 \\ z & z^2 & z^3 \end{vmatrix} - \begin{vmatrix} x & x^2 & 1 \\ y & y^2 & 1 \\ z & z^2 & 1 \end{vmatrix}
-\end{align}
-Taking $x$, $y$, $z$ common from the rows of the first determinant, and moving the last column of the second determinant to the front (two column interchanges, so the sign is unchanged):
-\begin{align}
-    \Delta &= xyz\begin{vmatrix} 1 & x & x^2 \\ 1 & y & y^2 \\ 1 & z & z^2 \end{vmatrix} - \begin{vmatrix} 1 & x & x^2 \\ 1 & y & y^2 \\ 1 & z & z^2 \end{vmatrix} \\
-    &= (xyz-1)\begin{vmatrix} 1 & x & x^2 \\ 1 & y & y^2 \\ 1 & z & z^2 \end{vmatrix} \\
-    &= (xyz-1)(y-x)(z-x)(z-y) = 0
-\end{align}
-Since $x,y,z$ are different, $(y-x)(z-x)(z-y)\neq 0$. Hence $xyz - 1 = 0$, i.e. $xyz = 1$. The following code factorises $\Delta$ symbolically.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.15.py}@*)
-\end{lstlisting}
-
     \item Prove that: $\sin^{-1}\dfrac{4}{5} + \tan^{-1}\dfrac{5}{12} + \cos^{-1}\dfrac{63}{65} = \dfrac{\pi}{2}$
-
+\par\hfill (12, 2018)\par
 \solution Write $\sin^{-1}\frac{4}{5}$ and $\cos^{-1}\frac{63}{65}$ in terms of $\tan^{-1}$ (from the right triangles with sides $3,4,5$ and $16,63,65$):
 \begin{align}
     \sin^{-1}\frac{4}{5} = \tan^{-1}\frac{4}{3}, \quad \cos^{-1}\frac{63}{65} = \tan^{-1}\frac{16}{63}
@@ -349,33 +314,32 @@ Since $\tan^{-1}\frac{16}{63} = \cot^{-1}\frac{63}{16}$, from \eqref{eq:EE26BTEC
 \end{align}
 Hence proved. The following code verifies each step numerically.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.16.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.14.py}@*)
 \end{lstlisting}
-
     \item Using vectors, find the value of $x$ such that the four points $A(x,5,-1)$, $B(3,2,1)$, $C(4,5,5)$ and $D(4,2,-2)$ are coplanar.
-
-\solution From \eqref{eq:EE26BTECH11225-coplanar}, the points are coplanar if $\det\begin{bmatrix}\vec{AB} & \vec{AC} & \vec{AD}\end{bmatrix}=0$. Here
+\par\hfill (12, 2018)\par
+\solution
+Let $\vec{u} = \vec{B}-\vec{A} = \myvec{3-x \\ -3 \\ 2}$, $\vec{v} = \vec{C}-\vec{A} = \myvec{4-x \\ 0 \\ 6}$, $\vec{w} = \vec{D}-\vec{A} = \myvec{4-x \\ -3 \\ -1}$. From \eqref{eq:EE26BTECH11225-coplanar} the points are coplanar when $\sbrak{\vec{u}\ \vec{v}\ \vec{w}}$ has rank $2$, that is, when Gauss elimination produces a zero row. Interchanging $R_1, R_2$ and eliminating,
 \begin{align}
-    \vec{AB} = \myvec{3-x \\ -3 \\ 2}, \quad \vec{AC} = \myvec{4-x \\ 0 \\ 6}, \quad \vec{AD} = \myvec{4-x \\ -3 \\ -1}
+\myvec{3-x & 4-x & 4-x \\ -3 & 0 & -3 \\ 2 & 6 & -1}
+\to \myvec{1 & 0 & 1 \\ 0 & 4-x & 1 \\ 0 & 6 & -3}
+\to \myvec{1 & 0 & 1 \\ 0 & 0 & \frac{6-x}{2} \\ 0 & 1 & -\frac{1}{2}}
 \end{align}
+A zero row occurs only when the last pivot vanishes:
 \begin{align}
-    \begin{vmatrix} 3-x & 4-x & 4-x \\ -3 & 0 & -3 \\ 2 & 6 & -1 \end{vmatrix} &= 0 \\
-    (3-x)\big[0+18\big] - (4-x)\big[3+6\big] + (4-x)\big[-18-0\big] &= 0 \\
-    18(3-x) - 9(4-x) - 18(4-x) &= 0 \\
-    54 - 18x - 27(4-x) &= 0 \\
-    9x - 54 &= 0 \implies x = 6
+\frac{6 - x}{2} = 0 \implies \boxed{x = 6}
 \end{align}
-The following code solves for $x$, checks that the determinant vanishes at $x=6$ and plots \figref{fig:coplanar_q17}.
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-coplanar}, \ref{eq:EE26BTECH11225-gauss-mult})}}\par
+The program does the elimination symbolically, checks that the rank is $2$ only at $x = 6$, and plots the pivot in \figref{fig:rank_q17}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.17.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.15.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\linewidth]{figs/2.2.17.png}
-    \caption{The four coplanar points for $x=6$}
-    \label{fig:coplanar_q17}
+    \includegraphics[width=0.6\linewidth]{figs/2.2.15.png}
+    \caption{The last pivot $\frac{6-x}{2}$ against $x$}
+    \label{fig:rank_q17}
 \end{figure}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Differentiate $\tan^{-1}\dfrac{3x-x^3}{1-3x^2}$, $|x|<\dfrac{1}{\sqrt{3}}$ w.r.t. $\tan^{-1}\dfrac{x}{\sqrt{1-x^2}}$.
@@ -386,7 +350,9 @@ The following code solves for $x$, checks that the determinant vanishes at $x=6$
 
         \item If $\sqrt{1-x^2}+\sqrt{1-y^2} = a(x-y)$, $|x|<1$, $|y|<1$, show that $\dfrac{dy}{dx} = \sqrt{\dfrac{1-y^2}{1-x^2}}$.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} Let $u = \tan^{-1}\frac{3x-x^3}{1-3x^2}$ and $v = \tan^{-1}\frac{x}{\sqrt{1-x^2}}$. Put $x=\tan\phi$; since $|x|<\frac{1}{\sqrt{3}}$, $|3\phi|<\frac{\pi}{2}$ and
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} Let $u = \tan^{-1}\frac{3x-x^3}{1-3x^2}$ and $v = \tan^{-1}\frac{x}{\sqrt{1-x^2}}$. Put $x=\tan\phi$; since $|x|<\frac{1}{\sqrt{3}}$, $|3\phi|<\frac{\pi}{2}$ and
 \begin{align}
     u = \tan^{-1}(\tan 3\phi) = 3\phi = 3\tan^{-1}x \implies \frac{du}{dx} = \frac{3}{1+x^2}
 \end{align}
@@ -406,15 +372,14 @@ Differentiating w.r.t. $x$ (the right side is a constant):
 \end{align}
 The following code verifies both parts and plots \figref{fig:diff_q18}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.18.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.16.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/2.2.18.png}
+    \includegraphics[width=0.65\linewidth]{figs/2.2.16.png}
     \caption{The functions $u=3\tan^{-1}x$ and $v=\sin^{-1}x$}
     \label{fig:diff_q18}
 \end{figure}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Prove that the relation $R$ in the set $A = \{1,2,3,4,5,6,7\}$ given by $R = \{(a,b) : |a-b| \text{ is even}\}$ is an equivalence relation.
@@ -425,7 +390,9 @@ The following code verifies both parts and plots \figref{fig:diff_q18}.
 
         \item Show that the function $f$ in $A = \mathbb{R}-\left\{\frac{2}{3}\right\}$ defined as $f(x) = \dfrac{4x+3}{6x-4}$ is one-one and onto. Hence, find $f^{-1}$.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} By \ref{eq:EE26BTECH11225-equiv} we check three properties.
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} By \ref{eq:EE26BTECH11225-equiv} we check three properties.
 \begin{align}
     \text{Reflexive: } & |a-a| = 0 \text{ is even} \implies (a,a)\in R \\
     \text{Symmetric: } & |a-b| = |b-a| \implies (a,b)\in R \Rightarrow (b,a)\in R \\
@@ -448,15 +415,14 @@ This $x$ is defined for every $y\neq\frac{2}{3}$, and $x\neq\frac{2}{3}$ (otherw
 \end{align}
 The following code verifies both parts and generates \figref{fig:equiv_q19}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.19.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.17.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/2.2.19.png}
+    \includegraphics[width=0.95\linewidth]{figs/2.2.17.png}
     \caption{(a) Relation matrix of $R$; (b) graph of $f$, symmetric about $y=x$}
     \label{fig:equiv_q19}
 \end{figure}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Find the particular solution of the differential equation $(1+e^{2x})\,dy + (1+y^2)e^x\,dx = 0$, given that $y(0)=1$.
@@ -467,7 +433,9 @@ The following code verifies both parts and generates \figref{fig:equiv_q19}.
 
         \item Find the particular solution of the differential equation $x\dfrac{dy}{dx}\sin\left(\dfrac{y}{x}\right) + x - y\sin\left(\dfrac{y}{x}\right) = 0$, given that $y(1) = \dfrac{\pi}{2}$.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} Separating the variables:
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} Separating the variables:
 \begin{align}
     \frac{dy}{1+y^2} &= -\frac{e^x\,dx}{1+e^{2x}} \\
     \tan^{-1}y &= -\tan^{-1}(e^x) + C
@@ -492,17 +460,16 @@ Using $y(1)=\frac{\pi}{2}$: $\cos\frac{\pi}{2} = 0 = \ln 1 + C' \implies C'=0$. 
 \end{align}
 The following code verifies both solutions and plots \figref{fig:solveode_q20}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.20.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.18.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/2.2.20.png}
+    \includegraphics[width=0.95\linewidth]{figs/2.2.18.png}
     \caption{(a) $y=e^{-x}$ and (b) $\cos(y/x)=\ln x$}
     \label{fig:solveode_q20}
 \end{figure}
-
     \item If $y = (\sin x)^x + \sin^{-1}\left(\sqrt{1-x^2}\right)$, then find $\dfrac{dy}{dx}$.
-
+\par\hfill (12, 2018)\par
 \solution The function is defined for $0<x<1$ (we need $\sin x>0$ and $|x|\leq1$). Let $y = u + w$ with $u = (\sin x)^x$ and $w = \sin^{-1}\sqrt{1-x^2}$. From \eqref{eq:EE26BTECH11225-logdiff}:
 \begin{align}
     \ln u = x\ln\sin x &\implies \frac{1}{u}\frac{du}{dx} = \ln\sin x + x\cot x \\
@@ -518,59 +485,34 @@ Hence
 \end{align}
 The following code verifies the derivative and plots \figref{fig:logdiff_q21}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.21.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.19.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/2.2.21.png}
+    \includegraphics[width=0.65\linewidth]{figs/2.2.19.png}
     \caption{The function $y$ and its derivative on $(0,1)$}
     \label{fig:logdiff_q21}
 \end{figure}
-
-    \item Find: $\displaystyle\int\cos 2x\cos 4x\cos 6x\,dx$
-
-\solution From \eqref{eq:EE26BTECH11225-prodsum}, the integrand is a sum of cosines:
-\begin{align}
-    f(x) = \cos 2x\cos 4x\cos 6x = \frac{1}{4}\left(1+\cos 12x+\cos 8x+\cos 4x\right)
-\end{align}
-Taking the Laplace transform with \eqref{eq:EE26BTECH11225-laplace},
-\begin{align}
-    F(s) = \frac{1}{4}\left[\frac{1}{s}+\frac{s}{s^2+144}+\frac{s}{s^2+64}+\frac{s}{s^2+16}\right]
-\end{align}
-Dividing by $s$ as in \eqref{eq:EE26BTECH11225-laplace-int} gives the transform of the integral:
-\begin{align}
-    G(s) = \frac{F(s)}{s} = \frac{1}{4}\left[\frac{1}{s^2}+\frac{1}{s^2+144}+\frac{1}{s^2+64}+\frac{1}{s^2+16}\right]
-\end{align}
-Using $\mathcal{L}^{-1}\left\{\frac{1}{s^2+\omega^2}\right\} = \frac{\sin\omega x}{\omega}$ and $\mathcal{L}^{-1}\left\{\frac{1}{s^2}\right\} = x$,
-\begin{align}
-    \int\cos 2x\cos 4x\cos 6x\,dx = \frac{1}{4}\left[x+\frac{\sin 12x}{12}+\frac{\sin 8x}{8}+\frac{\sin 4x}{4}\right] + C
-\end{align}
-The following code computes the Laplace transform and its inverse, and checks the result by differentiation.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.22.py}@*)
-\end{lstlisting}
-
     \item Find the interval in which the function $f$ given by $f(x) = \sin 2x + \cos 2x$, $0\leq x\leq\pi$ is strictly decreasing.
-
-\solution Differentiating,
+\par\hfill (12, 2018)\par
+\solution
+$f'(x) = 2\cos 2x - 2\sin 2x$. From \eqref{eq:EE26BTECH11225-mono}, $f$ is strictly decreasing where $f'(x) < 0$. The zeros of $f'$ are found by Newton--Raphson \eqref{eq:EE26BTECH11225-newton} with $f''(x) = -4\sin 2x - 4\cos 2x$: from $x_0 = 0.5$ it converges to $0.3927 = \frac{\pi}{8}$ and from $x_0 = 2$ to $1.9635 = \frac{5\pi}{8}$. Since $f'(0) = 2 > 0$, $f'(1) = -2.65 < 0$ and $f'(3) = 2.48 > 0$, the sign of $f'$ is negative only between these zeros:
 \begin{align}
-    f'(x) &= 2\cos 2x - 2\sin 2x = 2\sqrt{2}\cos\left(2x+\frac{\pi}{4}\right)
+\boxed{f \text{ is strictly decreasing on } \brak{\frac{\pi}{8}, \frac{5\pi}{8}}}
 \end{align}
-From \ref{eq:EE26BTECH11225-mono}, $f$ is strictly decreasing where $f'(x)<0$. For $0\leq x\leq\pi$, $2x+\frac{\pi}{4}\in\left[\frac{\pi}{4},\frac{9\pi}{4}\right]$, and $\cos\theta<0$ there only for $\frac{\pi}{2}<\theta<\frac{3\pi}{2}$:
-\begin{align}
-    \frac{\pi}{2} < 2x+\frac{\pi}{4} < \frac{3\pi}{2} \implies \frac{\pi}{8} < x < \frac{5\pi}{8}
-\end{align}
-Thus $f$ is strictly decreasing on $\left(\frac{\pi}{8},\frac{5\pi}{8}\right)$. The following code verifies the interval and plots \figref{fig:decreasing_q23}.
+The C program runs the iteration and the Python program plots $f$ and $f'$ in \figref{fig:decr_q23}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.23.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.20.c}@*)
+\end{lstlisting}
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.20.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\linewidth]{figs/2.2.23.png}
-    \caption{$f(x)=\sin 2x+\cos 2x$ and $f'(x)$}
-    \label{fig:decreasing_q23}
+    \includegraphics[width=0.7\linewidth]{figs/2.2.20.png}
+    \caption{$f(x) = \sin 2x + \cos 2x$ and $f'(x)$}
+    \label{fig:decr_q23}
 \end{figure}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Using elementary row transformations, find the inverse of the matrix
@@ -589,7 +531,9 @@ Thus $f$ is strictly decreasing on $\left(\frac{\pi}{8},\frac{5\pi}{8}\right)$. 
             6x+9y-20z &= 2
         \end{align*}
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} From \eqref{eq:EE26BTECH11225-rowops}, apply row operations to $[A\,|\,I]$:
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} From \eqref{eq:EE26BTECH11225-rowops}, apply row operations to $[A\,|\,I]$:
 \begin{align}
     [A|I] &= \left[\begin{array}{ccc|ccc} 3 & 0 & -1 & 1 & 0 & 0 \\ 2 & 3 & 0 & 0 & 1 & 0 \\ 0 & 4 & 1 & 0 & 0 & 1 \end{array}\right] \\
     \xrightarrow{R_1\to R_1-R_2}\; &\left[\begin{array}{ccc|ccc} 1 & -3 & -1 & 1 & -1 & 0 \\ 2 & 3 & 0 & 0 & 1 & 0 \\ 0 & 4 & 1 & 0 & 0 & 1 \end{array}\right] \\
@@ -617,26 +561,25 @@ The pivots $2$, $-12$ and $-50$ are all nonzero, so the elimination does not bre
 \par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-gauss-mult}, \ref{eq:EE26BTECH11225-gauss-back})}}\par
 Thus $x = \frac{1}{2}$, $y = \frac{1}{3}$, $z = \frac{1}{5}$. The C program carries out the elimination and back-substitution and checks the residual of the original system:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.24b.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.21b.c}@*)
 \end{lstlisting}
 To see how the cost grows with the size $n$ of the system, a second C program times Gaussian elimination on random $n \times n$ systems and writes the times to a file. Python is used only to plot them in \figref{fig:gauss_time}; the time grows as $n^3$, as in \eqref{eq:EE26BTECH11225-gauss-cost}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.24b\_time.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.21b\_time.c}@*)
 \end{lstlisting}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.24b\_time.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.21b\_time.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/2.2.24b_time.png}
+    \includegraphics[width=0.65\linewidth]{figs/2.2.21b_time.png}
     \caption{Time of Gaussian elimination against $n$ (log-log), measured by the C program}
     \label{fig:gauss_time}
 \end{figure}
 The Python program below verifies the inverse in (a) and the solution in (b).
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.24a.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.21a.py}@*)
 \end{lstlisting}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Using integration, find the area of the following region: $\{(x,y) : x^2+y^2\leq 16a^2 \text{ and } y^2\leq 6ax\}$
@@ -647,76 +590,59 @@ The Python program below verifies the inverse in (a) and the solution in (b).
 
         \item Using integration, find the area of triangle $ABC$ bounded by the lines $4x-y+5=0$, $x+y-5=0$ and $x-4y+5=0$.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} The circle $x^2+y^2=16a^2$ and the parabola $y^2=6ax$ meet where
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} Assume $a = 1$; for a general $a$ every length scales by $a$ and the area by $a^2$. The curves $x^2 + y^2 = 16$ and $y^2 = 6x$ meet where $f(x) = x^2 + 6x - 16 = 0$. Newton--Raphson \eqref{eq:EE26BTECH11225-newton} from $x_0 = 5$ gives $x = 2$, $y = \pm\sqrt{12} = \pm 3.4641$. Integrating along $y$ as in \eqref{eq:EE26BTECH11225-area-curves-y},
 \begin{align}
-    x^2+6ax-16a^2 = 0 \implies (x+8a)(x-2a) = 0 \implies x = 2a, \quad y = \pm 2\sqrt{3}\,a
+\text{Area} = 2\int_0^{2\sqrt{3}}\brak{\sqrt{16 - y^2} - \frac{y^2}{6}}dy
 \end{align}
-Writing both curves as $x$ in terms of $y$, the parabola $x = \frac{y^2}{6a}$ is the left boundary and the circle $x = \sqrt{16a^2-y^2}$ is the right boundary. The region is symmetric about the $x$-axis, so from \eqref{eq:EE26BTECH11225-area-curves-y},
+By the trapezoidal rule \eqref{eq:EE26BTECH11225-trapezoid} with $N = 10^5$ intervals this is $19.0646$, which equals $\frac{4}{3}\brak{4\pi + \sqrt{3}}$. For a general $a$,
 \begin{align}
-    \text{Area} &= 2\int_0^{2\sqrt{3}a}\left(\sqrt{16a^2-y^2}-\frac{y^2}{6a}\right)dy
+\boxed{\text{Area} = \frac{4a^2}{3}\brak{4\pi + \sqrt{3}} \text{ sq. units}}
 \end{align}
-From \eqref{eq:EE26BTECH11225-sqrtint},
+\textbf{(b) Solution:} Solving the lines pairwise by Gauss elimination gives the vertices $A(-1,1)$, $B(0,5)$ and $C(3,2)$. The sides are $AB: y = 4x + 5$, $BC: y = 5 - x$ and $AC: y = \frac{x+5}{4}$. The corners are the nodes, so the trapezoidal rule \eqref{eq:EE26BTECH11225-trapezoid} is exact on $[-1,0]$ and $[0,3]$:
 \begin{align}
-    &= 2\left[\frac{y}{2}\sqrt{16a^2-y^2}+8a^2\sin^{-1}\frac{y}{4a}-\frac{y^3}{18a}\right]_0^{2\sqrt{3}a} \\
-    &= 2\left[2\sqrt{3}a^2+\frac{8\pi a^2}{3}-\frac{4\sqrt{3}a^2}{3}\right] \\
-    &= \frac{4a^2}{3}\left(4\pi+\sqrt{3}\right)\text{ sq. units}
+\text{Area} = \frac{1}{2}\brak{0 + \frac{15}{4}}\cdot 1 + \frac{1}{2}\brak{\frac{15}{4} + 0}\cdot 3 = \frac{15}{8} + \frac{45}{8} = \boxed{\frac{15}{2} \text{ sq. units}}
 \end{align}
-\textbf{(b) Solution:} Solving the lines pairwise gives the vertices $A(-1,1)$ (lines 1 and 3), $B(0,5)$ (lines 1 and 2) and $C(3,2)$ (lines 2 and 3). Put $t = x+1$. The height of the triangle at $t$ is the upper boundary minus the lower boundary $y=\frac{x+5}{4}$: it is $\frac{15}{4}t$ for $0\le t\le 1$, and $5-\frac{5}{4}t$ for $1\le t\le 4$. With the unit step,
-\begin{align}
-    h(t) = \frac{15}{4}t - 5(t-1)u(t-1) + \frac{5}{4}(t-4)u(t-4)
-\end{align}
-From \eqref{eq:EE26BTECH11225-laplace} and \eqref{eq:EE26BTECH11225-laplace-step}, and dividing by $s$ as in \eqref{eq:EE26BTECH11225-laplace-int},
-\begin{align}
-    H(s) = \frac{1}{s^2}\left(\frac{15}{4} - 5e^{-s} + \frac{5}{4}e^{-4s}\right) \implies \frac{H(s)}{s} = \frac{1}{s^3}\left(\frac{15}{4} - 5e^{-s} + \frac{5}{4}e^{-4s}\right)
-\end{align}
-Inverting, the area up to $t$ is $\frac{15}{8}t^2 - \frac{5}{2}(t-1)^2u(t-1) + \frac{5}{8}(t-4)^2u(t-4)$, so
-\begin{align}
-    \text{Area} = \int_0^4 h(t)\,dt = \frac{15}{8}(16) - \frac{5}{2}(9) = 30 - \frac{45}{2} = \frac{15}{2}\text{ sq. units}
-\end{align}
-This agrees with \eqref{eq:EE26BTECH11225-area-tri}. The following code verifies both parts and generates \figref{fig:area_q25}.
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-trapezoid})}}\par
+The C program does the Newton--Raphson step and both integrals, and the Python program plots the regions in \figref{fig:area_q25}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.25.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.22.c}@*)
+\end{lstlisting}
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.22.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/2.2.25.png}
-    \caption{(a) Region inside the circle and the parabola ($a=1$); (b) triangle $ABC$}
+    \includegraphics[width=0.95\linewidth]{figs/2.2.22.png}
+    \caption{(a) The region $x^2+y^2 \le 16$, $y^2 \le 6x$; (b) the triangle $ABC$}
     \label{fig:area_q25}
 \end{figure}
-
     \item A company manufactures two types of novelty souvenirs made of plywood. Souvenirs of type A require 5 minutes each for cutting and 10 minutes each for assembling. Souvenirs of type B require 8 minutes each for cutting and 8 minutes each for assembling. There are 3 hours 20 minutes available for cutting and 4 hours for assembling. The profit for type A souvenirs is \rupee 100 each and for type B souvenirs, profit is \rupee 120 each. How many souvenirs of each type should the company manufacture in order to maximise the profit? Formulate the problem as a LPP and then solve it graphically.
-
-\solution Let the company make $x$ souvenirs of type A and $y$ of type B. The available times are $3\text{ h }20\text{ min} = 200$ minutes for cutting and $4\text{ h} = 240$ minutes for assembling. From \eqref{eq:EE26BTECH11225-lpp}:
+\par\hfill (12, 2018)\par
+\solution
+Let $x$ and $y$ be the numbers of souvenirs of type A and B. Cutting takes $3$ h $20$ min $= 200$ min and assembling $4$ h $= 240$ min, so
 \begin{align}
-    \max Z = 100x+120y \quad\text{s.t.}\quad 5x+8y &\leq 200 \\
-    10x+8y &\leq 240 \\
-    x,\,y &\geq 0
+\max Z = \myvec{100 & 120}\myvec{x \\ y} \quad \text{s.t.} \quad \myvec{5 & 8 \\ 10 & 8}\myvec{x \\ y} \leq \myvec{200 \\ 240}, \quad x, y \geq 0
 \end{align}
-The corner points of the feasible region are $O(0,0)$, $(24,0)$, $(8,20)$ (where $5x+8y=200$ meets $10x+8y=240$) and $(0,25)$:
-\begin{center}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Corner point} & $Z = 100x+120y$ \\ \hline
-    $(0,0)$ & $0$ \\ \hline
-    $(24,0)$ & $2400$ \\ \hline
-    $(8,20)$ & $3200$ \\ \hline
-    $(0,25)$ & $3000$ \\ \hline
-\end{tabular}
-\end{center}
-The maximum profit is \rupee 3200, obtained by making $8$ souvenirs of type A and $20$ souvenirs of type B. The following code finds the corner points, checks the result with a linear-programming solver and plots \figref{fig:lpp_q26}.
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-lpp})}}\par
+Solving it with CVXPY gives
+\begin{align}
+\myvec{x \\ y} = \myvec{8 \\ 20}, \quad Z_{\max} = \boxed{\text{\rupee}\,3200}
+\end{align}
+that is, $8$ souvenirs of type A and $20$ of type B. The program also prints $Z$ at the corner points $(0,0)$, $(24,0)$, $(8,20)$ and $(0,25)$, which are $0$, $2400$, $3200$ and $3000$, and plots the feasible region in \figref{fig:lpp_q26}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.26.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.23.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\linewidth]{figs/2.2.26.png}
-    \caption{Feasible region and the optimum at $(8,20)$}
+    \includegraphics[width=0.65\linewidth]{figs/2.2.23.png}
+    \caption{Feasible region and the optimum $(8,20)$}
     \label{fig:lpp_q26}
 \end{figure}
-
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
-        \item Find the vector equation of the line passing through $(2,1,-1)$ and parallel to the line $\vec{r} = (\hat{i}+\hat{j}) + \lambda(2\hat{i}-\hat{j}+\hat{k})$. Also, find the distance between these two lines.
+        \item Find the vector equation of the line passing through $(2,1,-1)$ and parallel to the line $\vec{r} = \myvec{1 \\ 1 \\ 0} + \lambda\myvec{2 \\ -1 \\ 1}$. Also, find the distance between these two lines.
 
         \begin{center}
             \textbf{OR}
@@ -724,81 +650,47 @@ The maximum profit is \rupee 3200, obtained by making $8$ souvenirs of type A an
 
         \item Find the coordinates of the foot $Q$ of the perpendicular drawn from the point $P(1,3,4)$ to the plane $2x-y+z+3=0$. Find the distance $PQ$ and the image of $P$ treating the plane as a mirror.
     \end{enumerate} \vspace{2pt}
-    \textbf{(a) Solution:} The required line has the same direction $\vec{b} = \myvec{2\\-1\\1}$ and passes through $\vec{a}_2 = \myvec{2\\1\\-1}$:
+    
+\par\hfill (12, 2018)\par
+\textbf{(a) Solution:} The line through $(2,1,-1)$ parallel to the given line is $\vec{x} = \myvec{2 \\ 1 \\ -1} + \mu\myvec{2 \\ -1 \\ 1}$. Let $\vec{a}_1 = \myvec{1 \\ 1 \\ 0}$, $\vec{a}_2 = \myvec{2 \\ 1 \\ -1}$, $\vec{b} = \myvec{2 \\ -1 \\ 1}$ and $\vec{w} = \vec{a}_2 - \vec{a}_1 = \myvec{1 \\ 0 \\ -1}$. From \eqref{eq:EE26BTECH11225-distance-lines}, the distance is the length of the part of $\vec{w}$ perpendicular to $\vec{b}$:
 \begin{align}
-    \vec{r} = (2\hat{i}+\hat{j}-\hat{k}) + \mu(2\hat{i}-\hat{j}+\hat{k})
+\vec{w} - \frac{\vec{b}^{\top}\vec{w}}{\vec{b}^{\top}\vec{b}}\vec{b} = \myvec{1 \\ 0 \\ -1} - \frac{1}{6}\myvec{2 \\ -1 \\ 1} = \myvec{\frac{2}{3} \\ \frac{1}{6} \\ -\frac{7}{6}}
+\implies d = \sqrt{\frac{4}{9} + \frac{1}{36} + \frac{49}{36}} = \boxed{\sqrt{\frac{11}{6}}}
 \end{align}
-With $\vec{a}_1 = \myvec{1\\1\\0}$, $\vec{a}_2-\vec{a}_1 = \myvec{1\\0\\-1}$ and
+\textbf{(b) Solution:} The plane is $\vec{n}^{\top}\vec{x} = -3$ with $\vec{n} = \myvec{2 \\ -1 \\ 1}$, and $\vec{P} = \myvec{1 \\ 3 \\ 4}$. From \eqref{eq:EE26BTECH11225-foot}, $t = \frac{-3 - \vec{n}^{\top}\vec{P}}{\norm{\vec{n}}^2} = \frac{-3 - 3}{6} = -1$, so
 \begin{align}
-    (\vec{a}_2-\vec{a}_1)\times\vec{b} = \myvec{0\cdot1-(-1)(-1) \\ (-1)(2)-1\cdot1 \\ 1\cdot(-1)-0\cdot2} = \myvec{-1 \\ -3 \\ -1}
+\vec{Q} = \vec{P} + t\vec{n} = \boxed{\myvec{-1 \\ 4 \\ 3}}, \quad PQ = |t|\norm{\vec{n}} = \boxed{\sqrt{6}}, \quad \vec{P}' = \vec{P} + 2t\vec{n} = \boxed{\myvec{-3 \\ 5 \\ 2}}
 \end{align}
-From \eqref{eq:EE26BTECH11225-distance-lines}:
-\begin{align}
-    d = \frac{\sqrt{1+9+1}}{\sqrt{4+1+1}} = \sqrt{\frac{11}{6}} \approx 1.354\text{ units}
-\end{align}
-\textbf{(b) Solution:} The normal of the plane is $\vec{n} = \myvec{2\\-1\\1}$ and $c=-3$. From \eqref{eq:EE26BTECH11225-foot}:
-\begin{align}
-    t = \frac{-3-(2-3+4)}{4+1+1} = \frac{-6}{6} = -1
-\end{align}
-\begin{align}
-    \vec{Q} &= \myvec{1\\3\\4} - \myvec{2\\-1\\1} = \myvec{-1\\4\\3} \\
-    PQ &= |t|\,\|\vec{n}\| = \sqrt{6} \\
-    \vec{P}' &= \vec{P}+2t\vec{n} = \myvec{1\\3\\4} - 2\myvec{2\\-1\\1} = \myvec{-3\\5\\2}
-\end{align}
-Thus $Q(-1,4,3)$, $PQ=\sqrt{6}$ and the image of $P$ is $P'(-3,5,2)$. The following code verifies both parts and generates \figref{fig:lines3d_q27}.
+The following code checks both parts and plots them in \figref{fig:lines_q27}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.27.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.24.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/2.2.27.png}
-    \caption{(a) The two parallel lines; (b) foot $Q$ and image $P'$ of $P$}
-    \label{fig:lines3d_q27}
+    \includegraphics[width=0.95\linewidth]{figs/2.2.24.png}
+    \caption{(a) The parallel lines; (b) the foot $Q$ and the image $P^{\prime}$}
+    \label{fig:lines_q27}
 \end{figure}
-
     \item A card from a pack of 52 playing cards is lost. From the remaining cards of the pack, two cards are drawn at random (without replacement) and both are found to be spades. Find the probability of the lost card being a spade.
-
-\solution Let $L = 1$ if the lost card is a spade and $L = 0$ otherwise, and let $Y$ be the number of spades among the two cards drawn. The joint PMF is $p_{LY}(l,2) = p_L(l)\,p_{Y|L}(2|l)$, with
+\par\hfill (12, 2018)\par
+\solution
+Let $L = 1$ if the lost card is a spade and $L = 0$ otherwise, and let $A$ be the event that both cards drawn from the remaining $51$ are spades. The prior pmf and the likelihood are
 \begin{align}
-    p_L(1) = \frac{1}{4}, \quad p_L(0) = \frac{3}{4}
+p_L(l) = \brak{\frac{1}{4}}^l\brak{\frac{3}{4}}^{1-l}, \quad p_{A|L}(l) = \frac{\binom{13-l}{2}}{\binom{51}{2}}
 \end{align}
-If a spade is lost, $12$ spades remain among $51$ cards; otherwise $13$ remain:
+By Bayes' theorem \eqref{eq:EE26BTECH11225-pmf}, the posterior pmf is $p_{L|A}(l) \propto p_L(l)\,p_{A|L}(l)$, so
 \begin{align}
-    p_{LY}(1,2) = \frac{1}{4}\cdot\frac{12}{51}\cdot\frac{11}{50}, \quad p_{LY}(0,2) = \frac{3}{4}\cdot\frac{13}{51}\cdot\frac{12}{50}
+p_{L|A}(1) = \frac{\frac{1}{4}\binom{12}{2}}{\frac{1}{4}\binom{12}{2} + \frac{3}{4}\binom{13}{2}} = \frac{66}{66 + 234} = \boxed{\frac{11}{50}}
 \end{align}
-Normalizing over $l$ using \eqref{eq:EE26BTECH11225-pmf}, $p_{L|Y}(1|2) = \dfrac{p_{LY}(1,2)}{p_{LY}(1,2)+p_{LY}(0,2)}$:
-\begin{align}
-    \Pr\brak{L=1 \mid Y=2} = \frac{132}{132+468} = \frac{11}{50}
-\end{align}
-The following code verifies the result with exact fractions and a simulation.
+\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-pmf})}}\par
+The program shuffles the pack $10^5$ times and compares the simulated posterior with the theoretical one in \figref{fig:pmf_q28}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.28.py}@*)
-\end{lstlisting}
-
-    \item Prove that the radius of the right circular cylinder of greatest curved surface area which can be inscribed in a given cone is half of that of the cone.
-
-\solution Let the cone have base radius $R$ and height $H$, and let the inscribed cylinder have radius $r$ and height $h$. By similar triangles in the cross-section, from \eqref{eq:EE26BTECH11225-inscribed},
-\begin{align}
-    \frac{h}{H} = \frac{R-r}{R} \implies h = \frac{H(R-r)}{R}
-\end{align}
-The curved surface area is
-\begin{align}
-    S = 2\pi rh = \frac{2\pi H}{R}\left(Rr - r^2\right)
-\end{align}
-Differentiating,
-\begin{align}
-    \frac{dS}{dr} &= \frac{2\pi H}{R}(R-2r) = 0 \implies r = \frac{R}{2} \\
-    \frac{d^2S}{dr^2} &= -\frac{4\pi H}{R} < 0
-\end{align}
-So $S$ is maximum at $r=\frac{R}{2}$, i.e. the radius of the cylinder is half the radius of the cone (and its height is $\frac{H}{2}$). Hence proved. The following code verifies the maximum and plots \figref{fig:cylinder_q29}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.29.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.25.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/2.2.29.png}
-    \caption{(a) Curved surface area against $r$; (b) the cylinder with $r=R/2$ inside the cone}
-    \label{fig:cylinder_q29}
+    \includegraphics[width=0.55\linewidth]{figs/2.2.25.png}
+    \caption{Theoretical and simulated $p_{L|A}(l)$}
+    \label{fig:pmf_q28}
 \end{figure}
-
 \end{enumerate}

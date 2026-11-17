@@ -1,31 +1,31 @@
 import numpy as np
+import numpy.linalg as LA
 import matplotlib.pyplot as plt
+
 #If using termux
 import subprocess
 import shlex
 #end if
-# Q13: plane through (-1,3,2) perpendicular to x+2y+3z=5 and 3x+3y+z=0
-from mpl_toolkits.mplot3d import Axes3D  # noqa
-col = lambda *v: np.array(v, dtype=float).reshape(-1, 1)
-n1, n2, P0 = col(1, 2, 3), col(3, 3, 1), col(-1, 3, 2)
-n = np.cross(n1.T, n2.T).T                      # normal of required plane
-d = (n.T @ P0).item()
-print("normal =", n.T, f" -> {n[0,0]:.0f}x + {n[1,0]:.0f}y + {n[2,0]:.0f}z = {d:.0f}  i.e.  7x - 8y + 3z + 25 = 0")
-print("n.n1 =", (n.T @ n1).item(), " n.n2 =", (n.T @ n2).item())
-g = np.linspace(-6, 6, 12)
-X, Y = np.meshgrid(g, g)
-fig = plt.figure(figsize=(6, 5))
-ax = fig.add_subplot(111, projection="3d")
-ax.plot_surface(X, Y, (5 - X - 2 * Y) / 3, alpha=0.25, color="tab:blue")
-ax.plot_surface(X, Y, -3 * X - 3 * Y, alpha=0.25, color="tab:green")
-ax.plot_surface(X, Y, (d - n[0, 0] * X - n[1, 0] * Y) / n[2, 0], alpha=0.35, color="tab:red")
-ax.scatter(*P0.flatten(), color="k", s=40)
-ax.set_zlim(-15, 15)
-ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z")
-ax.set_title("Red plane is perpendicular to both blue and green")
-plt.tight_layout()
+
+# assume x = 2, y = 3; the cubic t^3 + beta t^2 + alpha t - 1 with roots x, y, z has x y z = 1
+x, y = 2.0, 3.0
+z = 1 / (x * y)
+alpha = x * y + y * z + z * x
+beta = -(x + y + z)
+M = np.array([[t, t**2, t**3 - 1] for t in (x, y, z)])       # the matrix whose columns are dependent
+c = np.array([alpha, beta, 1.0])
+print("M c =", np.round(M @ c, 12), " rank(M) =", LA.matrix_rank(M), " xyz =", x * y * z)
+assert np.allclose(M @ c, 0) and LA.matrix_rank(M) == 2 and np.isclose(x * y * z, 1)
+
+t = np.linspace(-0.5, 3.5, 400)
+plt.figure(figsize=(5.5, 4))
+plt.plot(t, t**3 + beta * t**2 + alpha * t - 1, 'b-')
+plt.plot([x, y, z], [0, 0, 0], 'ro')
+plt.axhline(0, color='k', lw=0.5)
+plt.ylim(-5, 8); plt.xlabel('$t$'); plt.grid(alpha=0.3)
+
 #If using termux
-plt.savefig('figs/2.2.13.png', dpi=150)
+plt.savefig('figs/2.2.13.png', dpi=200, bbox_inches='tight')
 subprocess.run(shlex.split("termux-open figs/2.2.13.png"))
 #else
 #plt.show()

@@ -1,5 +1,4 @@
 import numpy as np
-import numpy.linalg as LA
 import matplotlib.pyplot as plt
 #If using termux
 import subprocess
@@ -7,25 +6,30 @@ import shlex
 #end if
 
 # Import custom CoordGeo modules
-from CoordGeo.line.funcs import dir_vec
-# Q17: A(x,5,-1), B(3,2,1), C(4,5,5), D(4,2,-2) coplanar
+from CoordGeo.line.funcs import line_gen_num
+# Q19: (a) R = {(a,b): |a-b| even} on {1..7} is an equivalence relation; (b) f(x) = (4x+3)/(6x-4)
 import sympy as sp
-from mpl_toolkits.mplot3d import Axes3D  # noqa
-x = sp.symbols("x")
-A = sp.Matrix([x, 5, -1]); B = sp.Matrix([3, 2, 1]); C = sp.Matrix([4, 5, 5]); D = sp.Matrix([4, 2, -2])
-stp = sp.Matrix.hstack(B - A, C - A, D - A).det()
-print("[AB AC AD] =", sp.expand(stp), "-> x =", sp.solve(stp, x))
-col = lambda *v: np.array(v, dtype=float).reshape(-1, 1)
-Av, Bv, Cv, Dv = col(6, 5, -1), col(3, 2, 1), col(4, 5, 5), col(4, 2, -2)
-print("det[AB AC AD] at x=6:", round(LA.det(np.block([dir_vec(Av, Bv), dir_vec(Av, Cv), dir_vec(Av, Dv)])), 9))
-print("det[AB AC AD] at x=2:", round(LA.det(np.block([dir_vec(col(2, 5, -1), Bv), dir_vec(col(2, 5, -1), Cv), dir_vec(col(2, 5, -1), Dv)])), 9), "(not zero)")
-n = np.cross(dir_vec(Bv, Cv).T, dir_vec(Bv, Dv).T).flatten()
-g = np.linspace(2, 7, 8); X, Y = np.meshgrid(g, g)
-fig = plt.figure(figsize=(5.5, 4.5)); ax = fig.add_subplot(111, projection="3d")
-ax.plot_surface(X, Y, Bv[2, 0] - (n[0]*(X - Bv[0, 0]) + n[1]*(Y - Bv[1, 0])) / n[2], alpha=0.25, color="tab:green")
-for name, p in zip("ABCD", [Av, Bv, Cv, Dv]):
-    ax.scatter(*p.flatten(), color="r", s=40); ax.text(*p.flatten(), f" {name}", fontsize=10)
-ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z"); ax.set_title("Coplanar for x = 6")
+S = range(1, 8)
+R = {(a, b) for a in S for b in S if abs(a - b) % 2 == 0}
+refl = all((a, a) in R for a in S)
+symm = all((b, a) in R for (a, b) in R)
+trans = all((a, c) in R for (a, b) in R for (b2, c) in R if b == b2)
+print("reflexive:", refl, " symmetric:", symm, " transitive:", trans)
+x, y = sp.symbols("x y")
+f = (4*x + 3) / (6*x - 4)
+print("f(f(x)) =", sp.simplify(f.subs(x, f)), "  => f is its own inverse")
+print("solve y = f(x) for x:", sp.solve(sp.Eq(y, f), x))
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.8))
+M = np.array([[1 if (a, b) in R else 0 for b in S] for a in S])
+ax[0].imshow(M, cmap="Blues"); ax[0].set_xticks(range(7)); ax[0].set_xticklabels(S)
+ax[0].set_yticks(range(7)); ax[0].set_yticklabels(S); ax[0].set_title("(a) relation matrix of R")
+xs1 = np.linspace(-3, 2/3 - 0.02, 300); xs2 = np.linspace(2/3 + 0.02, 4, 300)
+fx = lambda t: (4*t + 3) / (6*t - 4)
+ax[1].plot(xs1, fx(xs1), "b"); ax[1].plot(xs2, fx(xs2), "b")
+D = line_gen_num(np.array([[-3.], [-3.]]), np.array([[4.], [4.]]), 20)
+ax[1].plot(D[0, :], D[1, :], "r--", label="y = x")
+ax[1].set_ylim(-3, 4); ax[1].set_xlim(-3, 4); ax[1].grid(alpha=0.3); ax[1].legend()
+ax[1].set_title("(b) graph of f is symmetric about y = x")
 plt.tight_layout()
 #If using termux
 plt.savefig('figs/2.2.17.png', dpi=150)

@@ -5,24 +5,17 @@ import subprocess
 import shlex
 #end if
 
-# Q20: (a) (1+e^2x)dy + (1+y^2)e^x dx = 0, y(0)=1 -> y = e^-x
-#      (b) x y' sin(y/x) + x - y sin(y/x) = 0, y(1) = pi/2 -> cos(y/x) = ln x
-import sympy as sp
-x = sp.symbols("x")
-y1 = sp.exp(-x)
-print("(a) residual:", sp.simplify((1 + sp.exp(2*x)) * sp.diff(y1, x) + (1 + y1**2) * sp.exp(x)), " y(0) =", y1.subs(x, 0))
-xs = np.linspace(0.4, 2.6, 400)
-y2 = xs * np.arccos(np.log(xs))
-h = 1e-6
-t = np.array([0.5, 1.0, 1.5, 2.0])
-Y = lambda s: s * np.arccos(np.log(s))
-dy = (Y(t + h) - Y(t - h)) / (2*h)
-res = t * dy * np.sin(Y(t)/t) + t - Y(t) * np.sin(Y(t)/t)
-print("(b) residual:", np.round(res, 6), " y(1) =", Y(1.0), " pi/2 =", np.pi/2)
-fig, ax = plt.subplots(1, 2, figsize=(9, 3.5))
-xa = np.linspace(-2, 2, 200)
-ax[0].plot(xa, np.exp(-xa), "b"); ax[0].plot(0, 1, "ro"); ax[0].set_title(r"(a) $y=e^{-x}$"); ax[0].grid(alpha=0.3)
-ax[1].plot(xs, y2, "b"); ax[1].plot(1, np.pi/2, "ro"); ax[1].set_title(r"(b) $\cos(y/x)=\ln x$"); ax[1].grid(alpha=0.3)
+# Q23: f(x) = sin 2x + cos 2x on [0, pi] is strictly decreasing on (pi/8, 5pi/8)
+x = np.linspace(0, np.pi, 1000)
+f = np.sin(2*x) + np.cos(2*x); df = 2*np.cos(2*x) - 2*np.sin(2*x)
+dec = x[df < 0]
+print("f' < 0 on [", dec.min(), ",", dec.max(), "]   pi/8 =", np.pi/8, " 5pi/8 =", 5*np.pi/8)
+plt.figure(figsize=(6.5, 3.8))
+plt.plot(x, f, "b", label="f(x)"); plt.plot(x, df, "g--", label="f'(x)")
+plt.axvspan(np.pi/8, 5*np.pi/8, color="red", alpha=0.12, label="strictly decreasing")
+plt.axhline(0, color="k", lw=0.6)
+plt.xticks([0, np.pi/8, np.pi/2, 5*np.pi/8, np.pi], ["0", r"$\pi/8$", r"$\pi/2$", r"$5\pi/8$", r"$\pi$"])
+plt.grid(alpha=0.3); plt.legend(fontsize=8)
 plt.tight_layout()
 #If using termux
 plt.savefig('figs/2.2.20.png', dpi=150)

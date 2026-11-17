@@ -5,25 +5,24 @@ import subprocess
 import shlex
 #end if
 
-# Q18: (a) d/dv with u = tan^-1((3x-x^3)/(1-3x^2)), v = tan^-1(x/sqrt(1-x^2));  (b) implicit derivative
+# Q20: (a) (1+e^2x)dy + (1+y^2)e^x dx = 0, y(0)=1 -> y = e^-x
+#      (b) x y' sin(y/x) + x - y sin(y/x) = 0, y(1) = pi/2 -> cos(y/x) = ln x
 import sympy as sp
 x = sp.symbols("x")
-u = sp.atan((3*x - x**3) / (1 - 3*x**2)); v = sp.atan(x / sp.sqrt(1 - x**2))
-ratio = sp.diff(u, x) / sp.diff(v, x)
-claim = 3 * sp.sqrt(1 - x**2) / (1 + x**2)
-for t in [-0.5, -0.2, 0.0, 0.3, 0.5]:
-    print("x =", t, ":", float(ratio.subs(x, t)), float(claim.subs(x, t)))
-# (b): sqrt(1-x^2) + sqrt(1-y^2) = a(x-y) with a = 2  ->  y = sin(asin x - 2 acot 2)
-c = 2 * np.arctan(1 / 2)
-y = lambda t: np.sin(np.arcsin(t) - c)
-t0, h = 0.3, 1e-6
-print("residual of relation:", np.sqrt(1-t0**2) + np.sqrt(1-y(t0)**2) - 2*(t0 - y(t0)))
-print("numerical dy/dx:", (y(t0+h) - y(t0-h)) / (2*h), " formula:", np.sqrt(1-y(t0)**2) / np.sqrt(1-t0**2))
-xs = np.linspace(-0.57, 0.57, 300)
-plt.figure(figsize=(6, 3.5))
-plt.plot(xs, 3*np.arctan(xs), label=r"$u=\tan^{-1}\frac{3x-x^3}{1-3x^2}=3\tan^{-1}x$")
-plt.plot(xs, np.arcsin(xs), "--", label=r"$v=\tan^{-1}\frac{x}{\sqrt{1-x^2}}=\sin^{-1}x$")
-plt.xlabel("x"); plt.grid(alpha=0.3); plt.legend(fontsize=8)
+y1 = sp.exp(-x)
+print("(a) residual:", sp.simplify((1 + sp.exp(2*x)) * sp.diff(y1, x) + (1 + y1**2) * sp.exp(x)), " y(0) =", y1.subs(x, 0))
+xs = np.linspace(0.4, 2.6, 400)
+y2 = xs * np.arccos(np.log(xs))
+h = 1e-6
+t = np.array([0.5, 1.0, 1.5, 2.0])
+Y = lambda s: s * np.arccos(np.log(s))
+dy = (Y(t + h) - Y(t - h)) / (2*h)
+res = t * dy * np.sin(Y(t)/t) + t - Y(t) * np.sin(Y(t)/t)
+print("(b) residual:", np.round(res, 6), " y(1) =", Y(1.0), " pi/2 =", np.pi/2)
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.5))
+xa = np.linspace(-2, 2, 200)
+ax[0].plot(xa, np.exp(-xa), "b"); ax[0].plot(0, 1, "ro"); ax[0].set_title(r"(a) $y=e^{-x}$"); ax[0].grid(alpha=0.3)
+ax[1].plot(xs, y2, "b"); ax[1].plot(1, np.pi/2, "ro"); ax[1].set_title(r"(b) $\cos(y/x)=\ln x$"); ax[1].grid(alpha=0.3)
 plt.tight_layout()
 #If using termux
 plt.savefig('figs/2.2.18.png', dpi=150)
