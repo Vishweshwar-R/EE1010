@@ -163,23 +163,6 @@ The program simulates $10^6$ draws and compares the simulated $p_R(r)$ with the 
     \caption{Theoretical and simulated $p_R(r)$}
     \label{fig:pmf_q12}
 \end{figure}
-\item Find HCF and LCM of 404 and 96 and verify that $\text{HCF} \times \text{LCM} = \text{Product of the two given numbers}$.
-\par\hfill (10, 2018)\par
-\solution
-The primes involved are $2$, $3$ and $101$. Writing $404 = 2^2 \cdot 3^0 \cdot 101^1$ and $96 = 2^5 \cdot 3^1 \cdot 101^0$, the exponent vectors are
-\begin{align}
-\vec{e} = \myvec{2 \\ 0 \\ 1}, \quad \vec{f} = \myvec{5 \\ 1 \\ 0}
-\end{align}
-From \eqref{eq:EE26BTECH11225-hcf-lcm}, taking the element-wise minimum and maximum,
-\begin{align}
-\min\brak{\vec{e},\vec{f}} &= \myvec{2 \\ 0 \\ 0} \implies \text{HCF} = 2^2 = \boxed{4} \\
-\max\brak{\vec{e},\vec{f}} &= \myvec{5 \\ 1 \\ 1} \implies \text{LCM} = 2^5 \cdot 3 \cdot 101 = \boxed{9696}
-\end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-hcf-lcm})}}\par
-Verification: $\text{HCF} \times \text{LCM} = 4 \times 9696 = 38784 = 404 \times 96$. The following code does the same with the exponent vectors.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.13.py}@*)
-\end{lstlisting}
     \item Find all zeroes of the polynomial $(2x^4 - 9x^3 + 5x^2 + 3x - 1)$ if two of its zeroes are $(2+\sqrt{3})$ and $(2-\sqrt{3})$.
 \par\hfill (10, 2018)\par
 \solution
@@ -285,28 +268,6 @@ The iterates settle at $500$ and $-600$. Speed cannot be negative, so the usual 
     \includegraphics[width=0.65\linewidth]{figs/1.2.16.png}
     \caption{Newton--Raphson steps for $f(x) = x^2 + 100x - 300000$ from $x_0 = 1000$}
     \label{fig:newton_q16}
-\end{figure}
-    \item Prove that the lengths of tangents drawn from an external point to a circle are equal.
-\par\hfill (10, 2018)\par
-\solution
-No data is given, so assume the circle with centre $\vec{O} = \myvec{0 \\ 0}$ and radius $r = 3$, and the external point $\vec{P} = \myvec{5 \\ 3}$, for which $\norm{\vec{P}-\vec{O}} = \sqrt{34}$. From \eqref{eq:EE26BTECH11225-tangent}, the angle $\varphi$ between $OP$ and $OA$ satisfies $\cos\varphi = \frac{r}{\norm{\vec{P}-\vec{O}}}$. Newton--Raphson \eqref{eq:EE26BTECH11225-newton} on $\cos\varphi - \frac{3}{\sqrt{34}} = 0$ gives $\varphi = 1.0304$ rad, and the points of contact are
-\begin{align}
-\vec{A} = \vec{O} + r\,\vec{R}\brak{\varphi}\frac{\vec{P}-\vec{O}}{\norm{\vec{P}-\vec{O}}}, \quad
-\vec{B} = \vec{O} + r\,\vec{R}\brak{-\varphi}\frac{\vec{P}-\vec{O}}{\norm{\vec{P}-\vec{O}}}
-\end{align}
-The program gives $PA = PB = 5 = \sqrt{34 - 9}$. In general, $\brak{\vec{A}-\vec{O}}^{\top}\brak{\vec{P}-\vec{A}} = 0$, so by \eqref{eq:EE26BTECH11225-pythagoras},
-\begin{align}
-PA^2 = OP^2 - r^2 = PB^2 \implies \boxed{PA = PB}
-\end{align}
-Hence the lengths of the tangents from an external point to a circle are equal. The following code checks this and plots the figure in \figref{fig:tangent_q18}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.18.py}@*)
-\end{lstlisting}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.55\linewidth]{figs/1.2.18.png}
-    \caption{Tangents $PA$ and $PB$ from the point $P$}
-    \label{fig:tangent_q18}
 \end{figure}
     \item 
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
