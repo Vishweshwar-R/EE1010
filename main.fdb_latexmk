@@ -1,11 +1,11 @@
 # Fdb version 4
-["makeindex main.idx"] 1794958370.31096 "main.idx" "main.ind" "main" 1794960638.29047 0
-  "main.idx" 1794960635.97998 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex main.idx"] 1794958370.31096 "main.idx" "main.ind" "main" 1794966220.64523 0
+  "main.idx" 1794966218.52596 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "main.ilg"
   "main.ind"
   (rewritten before read)
-["pdflatex"] 1794960635.37367 "main.tex" "main.pdf" "main" 1794960638.29057 0
+["pdflatex"] 1794966217.93184 "main.tex" "main.pdf" "main" 1794966220.64533 2
   "/etc/texmf/web2c/texmf.cnf" 1792342716.02184 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -327,16 +327,13 @@
   "10/figs/1.2.8.tex" 1794737724 586 a2a2ec18f1043e0066b952bd67d2ae80 ""
   "10/figs/logo.jpg" 1794737724 388419 a483c3a17528240171032fd7d8b72b5b ""
   "10/formulae/formulae.tex" 1794794652 5723 52206b2627acdea1d2deb37601e1eb12 ""
-  "12/chapters/65-5-2.tex" 1794957904 40251 9a799c49b3b25ec611d99d1cc425cb40 ""
+  "12/chapters/65-5-2.tex" 1794966214.91396 33091 0b3342b918436d6db2c5c5c58e46d665 ""
   "12/figs/2.2.10.png" 1794829124 48119 fb7c4656fd347f3d415ff31402b1b0a8 ""
   "12/figs/2.2.11.png" 1794957879 187994 8a372ddd344847c9f96eeba96bae4933 ""
   "12/figs/2.2.12.png" 1794829126 38998 d54c311c06ad7d7a69106620c2ad1b6f ""
   "12/figs/2.2.13.png" 1794899074 33990 ba003970c4fcaf0fc07671a7f598f049 ""
   "12/figs/2.2.15.png" 1794829128 45900 1620d341a5e6739e753c394c2ed289a7 ""
-  "12/figs/2.2.16.png" 1794829130 41496 657c991c5d80ade29874dfada8095b06 ""
   "12/figs/2.2.17.png" 1794829132 51648 db3df19ba5e3a01476def2eac5e3b4a3 ""
-  "12/figs/2.2.18.png" 1794829134 50197 69458f6f1473bdeeff692484b7a3219f ""
-  "12/figs/2.2.19.png" 1794829134 28996 f079d5f0862c5534d20e00117426818a ""
   "12/figs/2.2.2.png" 1794957878 222552 ee82cd8d7e5e4b84e2c7f7c7e9cdc220 ""
   "12/figs/2.2.20.png" 1794829136 50882 c1666d7084f554eb7f187a5b007421fd ""
   "12/figs/2.2.21b_time.png" 1794829138 56700 b9d8bd27a130675524cdcf29cb105aff ""
@@ -352,11 +349,11 @@
   "12/formulae/formulae.tex" 1794794666 6832 9fda1d0ad0451a2e08117eaacde014ed ""
   "gvv-book.sty" 1794737722 2363 72dd097fc960842e38a2d2c1f2d93726 ""
   "gvv.sty" 1794737722 4434 bde4aa22cab0cf1e9425c3111a94b6d2 ""
-  "main.aux" 1794960638.17098 15084 d4a91b2f305bcee7f68ef80ca0f97e9a "pdflatex"
+  "main.aux" 1794966220.52096 14216 0c39280657be8ce5416e0ef6903794ec "pdflatex"
   "main.ind" 1794958370.37899 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
-  "main.out" 1794960638.17198 494 96cb13061dff6d012eae4c62d027a707 "pdflatex"
+  "main.out" 1794966220.52196 494 96cb13061dff6d012eae4c62d027a707 "pdflatex"
   "main.tex" 1794957904 2863 96ce0492f7c5c8a184f4786642a07911 ""
-  "main.toc" 1794960638.17198 415 d14d94561eab7c6bd6d51ba7b4457ed3 "pdflatex"
+  "main.toc" 1794966220.52196 415 d14d94561eab7c6bd6d51ba7b4457ed3 "pdflatex"
   (generated)
   "main.aux"
   "main.idx"

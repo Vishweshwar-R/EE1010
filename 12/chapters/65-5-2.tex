@@ -123,20 +123,6 @@ The program simulates $10^6$ trials of each and the stem plots in \figref{fig:pm
     \caption{Theoretical and simulated pmfs: (a) $p_X(r)$, (b) $p_Z(z)$}
     \label{fig:pmf_q6}
 \end{figure}
-    \item Find the value of $(x-y)$ from the matrix equation
-\begin{align*}
-    2\begin{bmatrix} x & 5 \\ 7 & y-3 \end{bmatrix} + \begin{bmatrix} -3 & -4 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 7 & 6 \\ 15 & 14 \end{bmatrix}.
-\end{align*}
-\par\hfill (12, 2018)\par
-\solution Moving the constant matrix to the right and dividing by $2$,
-\begin{align}
-    2\begin{bmatrix} x & 5 \\ 7 & y-3 \end{bmatrix} &= \begin{bmatrix} 7 & 6 \\ 15 & 14 \end{bmatrix} - \begin{bmatrix} -3 & -4 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 10 & 10 \\ 14 & 12 \end{bmatrix} \\
-    \begin{bmatrix} x & 5 \\ 7 & y-3 \end{bmatrix} &= \begin{bmatrix} 5 & 5 \\ 7 & 6 \end{bmatrix}
-\end{align}
-Comparing entries, $x = 5$ and $y - 3 = 6 \implies y = 9$. Hence
-\begin{align}
-    x - y = 5 - 9 = -4
-\end{align}
     \item Solve the following differential equation:
 \begin{align*}
     (y + 3x^2)\frac{dx}{dy} = x
@@ -298,24 +284,6 @@ The program takes $x = 2$, $y = 3$, builds the cubic with $xyz = 1$, and checks 
     \caption{The cubic $t^3 + \beta t^2 + \alpha t - 1$ with roots $x, y, z$ and $xyz = 1$}
     \label{fig:vieta_q15}
 \end{figure}
-    \item Prove that: $\sin^{-1}\dfrac{4}{5} + \tan^{-1}\dfrac{5}{12} + \cos^{-1}\dfrac{63}{65} = \dfrac{\pi}{2}$
-\par\hfill (12, 2018)\par
-\solution Write $\sin^{-1}\frac{4}{5}$ and $\cos^{-1}\frac{63}{65}$ in terms of $\tan^{-1}$ (from the right triangles with sides $3,4,5$ and $16,63,65$):
-\begin{align}
-    \sin^{-1}\frac{4}{5} = \tan^{-1}\frac{4}{3}, \quad \cos^{-1}\frac{63}{65} = \tan^{-1}\frac{16}{63}
-\end{align}
-From \eqref{eq:EE26BTECH11225-invtrig-2} (here $ab = \frac{4}{3}\cdot\frac{5}{12} = \frac{5}{9} < 1$):
-\begin{align}
-    \tan^{-1}\frac{4}{3}+\tan^{-1}\frac{5}{12} &= \tan^{-1}\frac{\frac{4}{3}+\frac{5}{12}}{1-\frac{20}{36}} = \tan^{-1}\frac{63}{16}
-\end{align}
-Since $\tan^{-1}\frac{16}{63} = \cot^{-1}\frac{63}{16}$, from \eqref{eq:EE26BTECH11225-invtrig-3}:
-\begin{align}
-    \text{LHS} = \tan^{-1}\frac{63}{16}+\cot^{-1}\frac{63}{16} = \frac{\pi}{2} = \text{RHS}
-\end{align}
-Hence proved. The following code verifies each step numerically.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.14.py}@*)
-\end{lstlisting}
     \item Using vectors, find the value of $x$ such that the four points $A(x,5,-1)$, $B(3,2,1)$, $C(4,5,5)$ and $D(4,2,-2)$ are coplanar.
 \par\hfill (12, 2018)\par
 \solution
@@ -339,46 +307,6 @@ The program does the elimination symbolically, checks that the rank is $2$ only 
     \includegraphics[width=0.6\linewidth]{figs/2.2.15.png}
     \caption{The last pivot $\frac{6-x}{2}$ against $x$}
     \label{fig:rank_q17}
-\end{figure}
-    \item
-    \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
-        \item Differentiate $\tan^{-1}\dfrac{3x-x^3}{1-3x^2}$, $|x|<\dfrac{1}{\sqrt{3}}$ w.r.t. $\tan^{-1}\dfrac{x}{\sqrt{1-x^2}}$.
-
-        \begin{center}
-            \textbf{OR}
-        \end{center}
-
-        \item If $\sqrt{1-x^2}+\sqrt{1-y^2} = a(x-y)$, $|x|<1$, $|y|<1$, show that $\dfrac{dy}{dx} = \sqrt{\dfrac{1-y^2}{1-x^2}}$.
-    \end{enumerate} \vspace{2pt}
-    
-\par\hfill (12, 2018)\par
-\textbf{(a) Solution:} Let $u = \tan^{-1}\frac{3x-x^3}{1-3x^2}$ and $v = \tan^{-1}\frac{x}{\sqrt{1-x^2}}$. Put $x=\tan\phi$; since $|x|<\frac{1}{\sqrt{3}}$, $|3\phi|<\frac{\pi}{2}$ and
-\begin{align}
-    u = \tan^{-1}(\tan 3\phi) = 3\phi = 3\tan^{-1}x \implies \frac{du}{dx} = \frac{3}{1+x^2}
-\end{align}
-From \eqref{eq:EE26BTECH11225-invtrig-4}, $v = \sin^{-1}x$, so $\frac{dv}{dx} = \frac{1}{\sqrt{1-x^2}}$. Hence
-\begin{align}
-    \frac{du}{dv} = \frac{du/dx}{dv/dx} = \frac{3\sqrt{1-x^2}}{1+x^2}
-\end{align}
-\textbf{(b) Solution:} Put $x=\sin\alpha$, $y=\sin\beta$ with $\alpha,\beta\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$:
-\begin{align}
-    \cos\alpha + \cos\beta &= a(\sin\alpha - \sin\beta) \\
-    2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2} &= 2a\cos\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2} \\
-    \implies \cot\frac{\alpha-\beta}{2} = a &\implies \sin^{-1}x - \sin^{-1}y = 2\cot^{-1}a
-\end{align}
-Differentiating w.r.t. $x$ (the right side is a constant):
-\begin{align}
-    \frac{1}{\sqrt{1-x^2}} - \frac{1}{\sqrt{1-y^2}}\frac{dy}{dx} = 0 \implies \frac{dy}{dx} = \sqrt{\frac{1-y^2}{1-x^2}}
-\end{align}
-The following code verifies both parts and plots \figref{fig:diff_q18}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.16.py}@*)
-\end{lstlisting}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.65\linewidth]{figs/2.2.16.png}
-    \caption{The functions $u=3\tan^{-1}x$ and $v=\sin^{-1}x$}
-    \label{fig:diff_q18}
 \end{figure}
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
@@ -425,74 +353,6 @@ The following code verifies both parts and generates \figref{fig:equiv_q19}.
 \end{figure}
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
-        \item Find the particular solution of the differential equation $(1+e^{2x})\,dy + (1+y^2)e^x\,dx = 0$, given that $y(0)=1$.
-
-        \begin{center}
-            \textbf{OR}
-        \end{center}
-
-        \item Find the particular solution of the differential equation $x\dfrac{dy}{dx}\sin\left(\dfrac{y}{x}\right) + x - y\sin\left(\dfrac{y}{x}\right) = 0$, given that $y(1) = \dfrac{\pi}{2}$.
-    \end{enumerate} \vspace{2pt}
-    
-\par\hfill (12, 2018)\par
-\textbf{(a) Solution:} Separating the variables:
-\begin{align}
-    \frac{dy}{1+y^2} &= -\frac{e^x\,dx}{1+e^{2x}} \\
-    \tan^{-1}y &= -\tan^{-1}(e^x) + C
-\end{align}
-Using $y(0)=1$: $\frac{\pi}{4} = -\frac{\pi}{4}+C \implies C = \frac{\pi}{2}$. Then from \eqref{eq:EE26BTECH11225-invtrig-3},
-\begin{align}
-    \tan^{-1}y = \frac{\pi}{2}-\tan^{-1}(e^x) = \cot^{-1}(e^x) = \tan^{-1}(e^{-x}) \implies y = e^{-x}
-\end{align}
-\textbf{(b) Solution:} Dividing by $x\sin\left(\frac{y}{x}\right)$:
-\begin{align}
-    \frac{dy}{dx} = \frac{y}{x} - \frac{1}{\sin(y/x)}
-\end{align}
-This is homogeneous. From \eqref{eq:EE26BTECH11225-homog}, put $y=vx$:
-\begin{align}
-    v + x\frac{dv}{dx} &= v - \frac{1}{\sin v} \\
-    \sin v\,dv &= -\frac{dx}{x} \\
-    -\cos v &= -\ln|x| + C \implies \cos\left(\frac{y}{x}\right) = \ln|x| + C'
-\end{align}
-Using $y(1)=\frac{\pi}{2}$: $\cos\frac{\pi}{2} = 0 = \ln 1 + C' \implies C'=0$. Hence
-\begin{align}
-    \cos\left(\frac{y}{x}\right) = \ln|x|
-\end{align}
-The following code verifies both solutions and plots \figref{fig:solveode_q20}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.18.py}@*)
-\end{lstlisting}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.95\linewidth]{figs/2.2.18.png}
-    \caption{(a) $y=e^{-x}$ and (b) $\cos(y/x)=\ln x$}
-    \label{fig:solveode_q20}
-\end{figure}
-    \item If $y = (\sin x)^x + \sin^{-1}\left(\sqrt{1-x^2}\right)$, then find $\dfrac{dy}{dx}$.
-\par\hfill (12, 2018)\par
-\solution The function is defined for $0<x<1$ (we need $\sin x>0$ and $|x|\leq1$). Let $y = u + w$ with $u = (\sin x)^x$ and $w = \sin^{-1}\sqrt{1-x^2}$. From \eqref{eq:EE26BTECH11225-logdiff}:
-\begin{align}
-    \ln u = x\ln\sin x &\implies \frac{1}{u}\frac{du}{dx} = \ln\sin x + x\cot x \\
-    &\implies \frac{du}{dx} = (\sin x)^x\left(x\cot x + \ln\sin x\right)
-\end{align}
-For $0<x<1$ put $x=\cos\phi$, $\phi\in\left(0,\frac{\pi}{2}\right)$; then $\sqrt{1-x^2}=\sin\phi$ and $w = \phi = \cos^{-1}x$:
-\begin{align}
-    \frac{dw}{dx} = -\frac{1}{\sqrt{1-x^2}}
-\end{align}
-Hence
-\begin{align}
-    \frac{dy}{dx} = (\sin x)^x\left(x\cot x+\ln\sin x\right) - \frac{1}{\sqrt{1-x^2}}
-\end{align}
-The following code verifies the derivative and plots \figref{fig:logdiff_q21}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.19.py}@*)
-\end{lstlisting}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.65\linewidth]{figs/2.2.19.png}
-    \caption{The function $y$ and its derivative on $(0,1)$}
-    \label{fig:logdiff_q21}
-\end{figure}
     \item Find the interval in which the function $f$ given by $f(x) = \sin 2x + \cos 2x$, $0\leq x\leq\pi$ is strictly decreasing.
 \par\hfill (12, 2018)\par
 \solution
