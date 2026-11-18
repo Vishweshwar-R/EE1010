@@ -171,38 +171,6 @@ The stem plot in \figref{fig:pmf_q5} compares the simulated $p_S(s)$ with the th
     \caption{Theoretical and simulated $p_S(s)$}
     \label{fig:pmf_q5}
 \end{figure}
-    \item An integer is chosen at random between 1 and 100. Find the probability that it is: \\[2pt]
-(i) divisible by 8. \\[2pt]
-(ii) not divisible by 8.
-\par\hfill (10, 2018)\par
-\solution
-Taking ``between $1$ and $100$'' to exclude both $1$ and $100$, the chosen integer $X$ is uniform on $\{2, 3, \ldots, 99\}$, which has $99 - 2 + 1 = 98$ elements:
-\begin{align*}
-p_X(k) = \frac{1}{98}, \quad k = 2, 3, \ldots, 99
-\end{align*}
-Let $R = X \bmod 8$. From \eqref{eq:EE26BTECH11225-pmf} its pmf is
-\begin{align}
-p_R(r) = \sum_{\substack{k = 2 \\ k \equiv r \,(\mathrm{mod}\, 8)}}^{99} p_X(k) = \frac{\#\{k : k \equiv r \,(\mathrm{mod}\, 8)\}}{98}, \quad r = 0, 1, \ldots, 7
-\end{align}
-\textbf{(i)} $8$ divides $X$ exactly when $R = 0$. The multiples of $8$ in the range are $8 \times 1, 8 \times 2, \ldots, 8 \times 12 = 96$ (the next one, $104$, is too large), which are $12$ numbers. So
-\begin{align}
-\Pr\brak{8 \mid X} = p_R(0) = \frac{12}{98} = \boxed{\frac{6}{49}}
-\end{align}
-\textbf{(ii)} Since $\sum_r p_R(r) = 1$ from \eqref{eq:EE26BTECH11225-pmf}, the probability of the complement is
-\begin{align}
-\Pr\brak{8 \nmid X} = 1 - p_R(0) = 1 - \frac{6}{49} = \boxed{\frac{43}{49}}
-\end{align}
-\figref{fig:pmf_q6} compares the simulated $p_R(r)$ with the theoretical one.
-\codedesc{1.2.6.py}{Draws $10^6$ integers uniformly from $\{2, \ldots, 99\}$ and compares the simulated pmf of $R = X \bmod 8$ with the exact one.}
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.6.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figs/1.2.6.png}
-    \caption{Theoretical and simulated $p_R(r)$}
-    \label{fig:pmf_q6}
-\end{figure}
     \item Find all zeroes of the polynomial $(2x^4 - 9x^3 + 5x^2 + 3x - 1)$ if two of its zeroes are $(2+\sqrt{3})$ and $(2-\sqrt{3})$.
 \par\hfill (10, 2018)\par
 \solution
