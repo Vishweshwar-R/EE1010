@@ -7,44 +7,35 @@ import subprocess
 import shlex
 #end if
 
-# Import custom CoordGeo modules
 
-from CoordGeo.line.funcs import line_norm, line_isect
-from CoordGeo.conics.funcs import circ_gen, parab_gen
-from CoordGeo.plotting.funcs import label_pts
+from math import comb
 
-# (a) a = 1: the region x^2 + y^2 <= 16, y^2 <= 6x, integrated along y with the trapezoidal rule
-y = np.linspace(-2 * np.sqrt(3), 2 * np.sqrt(3), 100001)
-ha = np.sqrt(16 - y**2) - parab_gen(y, 6)
-area_a = np.trapezoid(ha, y)
-print("(a) trapezoidal area =", round(area_a, 6), " exact =", round(4 / 3 * (4 * np.pi + np.sqrt(3)), 6))
-assert abs(area_a - 4 / 3 * (4 * np.pi + np.sqrt(3))) < 1e-4
+rng = np.random.default_rng(5)
+N = 10**6                                         # number of trials
+# L = 1 if the lost card is a spade.  prior pmf: p_L(1) = 1/4, p_L(0) = 3/4
+prior = np.array([3 / 4, 1 / 4])
+like = np.array([comb(13, 2), comb(12, 2)]) / comb(51, 2)       # P(both drawn are spades | L = l)
+post_theory = prior * like / np.sum(prior * like)               # p_{L|A}(l)
 
-# (b) vertices as intersections of the three lines n^T x = c
-col = lambda *v: np.array(v, dtype=float).reshape(-1, 1)
-n1, c1 = col(4, -1), -5; n2, c2 = col(1, 1), 5; n3, c3 = col(1, -4), -5
-A = line_isect(n1, c1, n3, c3); B = line_isect(n1, c1, n2, c2); C = line_isect(n2, c2, n3, c3)
-L1 = lambda t: 4 * t + 5; L2 = lambda t: 5 - t; L3 = lambda t: (t + 5) / 4
-x1 = np.array([-1.0, 0.0]); x2 = np.array([0.0, 3.0])             # the corners are the nodes
-area_b = np.trapezoid(L1(x1) - L3(x1), x1) + np.trapezoid(L2(x2) - L3(x2), x2)
-print("(b) trapezoidal area =", area_b, " vertices:", A.ravel(), B.ravel(), C.ravel())
-assert np.isclose(area_b, 7.5)
+# simulation: shuffle the pack, the first card is lost, the next two are drawn
+deck = np.array([1] * 13 + [0] * 39)
+count = np.zeros(2); total = 0
+for _ in range(N // 10):
+    d = rng.permutation(deck)
+    if d[1] == 1 and d[2] == 1:
+        count[d[0]] += 1; total += 1
+post_sim = count / total
+print("p(L=1 | both spades): theory", round(post_theory[1], 5), " simulation", round(post_sim[1], 5), " 11/50 =", 11 / 50)
+assert np.isclose(post_theory[1], 11 / 50) and abs(post_sim[1] - 11 / 50) < 0.01
 
-fig, ax = plt.subplots(1, 2, figsize=(9, 4))
-plt.sca(ax[0])
-yy = np.linspace(-4, 4, 400)
-Cc = circ_gen(col(0, 0), 4)
-plt.fill_betweenx(y, parab_gen(y, 6), np.sqrt(16 - y**2), alpha=0.3, color='orange')
-plt.plot(Cc[0, :], Cc[1, :], 'b-', label='$x^2+y^2=16$'); plt.plot(parab_gen(yy, 6), yy, 'g-', label='$y^2=6x$')
-plt.legend(fontsize=8); plt.grid(alpha=0.3); plt.axis('equal'); plt.title('(a)')
-plt.sca(ax[1])
-for (n, c, lab) in [(n1, c1, '$4x-y+5=0$'), (n2, c2, '$x+y-5=0$'), (n3, c3, '$x-4y+5=0$')]:
-    L = line_norm(n, c, -14, 14); plt.plot(L[0, :], L[1, :], label=lab)
-T = np.block([A, B, C]); plt.fill(T[0, :], T[1, :], alpha=0.3, color='orange'); plt.scatter(T[0, :], T[1, :], color='k')
-label_pts(T, ['$A$', '$B$', '$C$']); plt.xlim(-3, 5); plt.ylim(-0.5, 7); plt.legend(fontsize=8); plt.grid(alpha=0.3); plt.title('(b)')
+l = np.arange(2)
+plt.figure(figsize=(5, 3.8))
+plt.stem(l - 0.07, post_theory, linefmt='b-', markerfmt='bo', basefmt='k-', label='theory')
+plt.stem(l + 0.07, post_sim, linefmt='r--', markerfmt='rx', basefmt='k-', label='simulation')
+plt.xticks(l, ['not a spade', 'a spade']); plt.ylabel('$p_{L|A}(l)$'); plt.legend(); plt.grid(alpha=0.3)
 
 #If using termux
-plt.savefig('figs/2.2.15.png', dpi=200, bbox_inches='tight')
-subprocess.run(shlex.split("termux-open figs/2.2.15.png"))
+plt.savefig('figs/2.2.18.png', dpi=200, bbox_inches='tight')
+subprocess.run(shlex.split("termux-open figs/2.2.18.png"))
 #else
 #plt.show()

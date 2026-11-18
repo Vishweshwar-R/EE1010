@@ -7,24 +7,25 @@ import subprocess
 import shlex
 #end if
 
+# assume x = 2, y = 3; the cubic t^3 + beta t^2 + alpha t - 1 with roots x, y, z has x y z = 1
+x, y = 2.0, 3.0
+z = 1 / (x * y)
+alpha = x * y + y * z + z * x
+beta = -(x + y + z)
+M = np.array([[t, t**2, t**3 - 1] for t in (x, y, z)])       # the matrix whose columns are dependent
+c = np.array([alpha, beta, 1.0])
+print("M c =", np.round(M @ c, 12), " rank(M) =", LA.matrix_rank(M), " xyz =", x * y * z)
+assert np.allclose(M @ c, 0) and LA.matrix_rank(M) == 2 and np.isclose(x * y * z, 1)
 
-g = lambda x: np.abs(x - 1) + np.abs(x - 2) + np.abs(x - 4)
-x4 = np.arange(1, 6)                              # nodes 1, 2, 3, 4, 5 (h = 1)
-T4 = np.trapezoid(g(x4), x4)
-x = np.linspace(1, 5, 1001); T1000 = np.trapezoid(g(x), x)
-print("trapezoidal rule: N = 4 ->", T4, "   N = 1000 ->", round(T1000, 6))
-assert T4 == 18 and abs(T1000 - 18) < 1e-9
-
-xx = np.linspace(1, 5, 400)
-plt.figure(figsize=(5.5, 3.6))
-plt.plot(xx, g(xx), 'b-')
-for a, b in zip(x4[:-1], x4[1:]):                 # the four trapezoids
-    plt.fill([a, a, b, b], [0, g(a), g(b), 0], alpha=0.2, color='orange', edgecolor='k')
-plt.plot(x4, g(x4), 'ro')
-plt.xlabel('$x$'); plt.ylabel('$g(x)$'); plt.grid(alpha=0.3)
+t = np.linspace(-0.5, 3.5, 400)
+plt.figure(figsize=(5.5, 4))
+plt.plot(t, t**3 + beta * t**2 + alpha * t - 1, 'b-')
+plt.plot([x, y, z], [0, 0, 0], 'ro')
+plt.axhline(0, color='k', lw=0.5)
+plt.ylim(-5, 8); plt.xlabel('$t$'); plt.grid(alpha=0.3)
 
 #If using termux
-plt.savefig('figs/2.2.9.png', dpi=200, bbox_inches='tight')
-subprocess.run(shlex.split("termux-open figs/2.2.9.png"))
+plt.savefig('figs/2.2.10.png', dpi=200, bbox_inches='tight')
+subprocess.run(shlex.split("termux-open figs/2.2.10.png"))
 #else
 #plt.show()

@@ -1,37 +1,36 @@
 import numpy as np
+import numpy.linalg as LA
 import matplotlib.pyplot as plt
 #If using termux
 import subprocess
 import shlex
 #end if
 
-# Q5: (y + 3x^2) dx/dy = x  <=>  dy/dx - y/x = 3x
-import sympy as sp
-x = sp.symbols("x", positive=True)
-y = sp.Function("y")
-sol = sp.dsolve(sp.Eq(y(x).diff(x) - y(x) / x, 3 * x), y(x))
-print(sol)
-C = 1.5
-yy = lambda x, c: 3 * x**2 + c * x
-res = sp.simplify(sp.diff(3 * x**2 + sp.Symbol("C") * x, x) - (3 * x**2 + sp.Symbol("C") * x) / x - 3 * x)
-print("residual:", res)
-
-# Laplace check: x y' - y = 3x^2 with y = 3x^2 + Cx  ->  Y(s) = 6/s^3 + C/s^2
-import sympy as sp
-s_, x_, C_ = sp.symbols("s x C", positive=True)
-Y = 6/s_**3 + C_/s_**2
-lhs = -s_*sp.diff(Y, s_) - Y - Y            # L{x y'} - L{y}, using L{x f} = -F'
-print("Laplace: lhs - 6/s^3 =", sp.simplify(lhs - 6/s_**3))
-print("inverse transform  y =", sp.inverse_laplace_transform(Y, s_, x_))
-xs = np.linspace(0.05, 2, 200)
-plt.figure(figsize=(6, 3.8))
-for c in [-3, -1.5, 0, 1.5, 3]:
-    plt.plot(xs, yy(xs, c), label=f"C={c}")
-plt.ylim(-3, 15); plt.xlabel("x"); plt.ylabel("y"); plt.grid(alpha=0.3); plt.legend(fontsize=7)
-plt.title(r"Solutions $y=3x^2+Cx$")
+# Import custom CoordGeo modules
+from CoordGeo.line.funcs import dir_vec, line_gen_num
+# Q6: collinearity of (2,-1,3), (3,-5,1), (-1,11,9); Lagrange identity
+from mpl_toolkits.mplot3d import Axes3D  # noqa
+col = lambda *v: np.array(v, dtype=float).reshape(-1, 1)
+A, B, C = col(2, -1, 3), col(3, -5, 1), col(-1, 11, 9)
+AB, BC = dir_vec(A, B), dir_vec(B, C)
+print("AB =", AB.T, " BC =", BC.T, " BC/AB =", (BC / AB).T)
+print("rank[AB BC] =", LA.matrix_rank(np.block([AB, BC])), "(1 => collinear)")
+a, b = col(1, 2, 3), col(-2, 0, 5)
+axb = np.cross(a.flatten(), b.flatten())
+lhs = float(axb @ axb)
+rhs = (a.T @ a).item() * (b.T @ b).item() - (a.T @ b).item() ** 2
+print("Lagrange identity:", lhs, rhs)
+fig = plt.figure(figsize=(5, 4))
+ax = fig.add_subplot(111, projection="3d")
+ax.plot(*line_gen_num(A, B, 20), "b-"); ax.plot(*line_gen_num(B, C, 20), "b-")
+for name, p in zip("ABC", (A, B, C)):
+    ax.scatter(*p.flatten(), color="r", s=40)
+    ax.text(*p.flatten(), f" {name}{tuple(int(v) for v in p.flatten())}", fontsize=8)
+ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z")
+ax.view_init(elev=28, azim=35)   # side-on view: the line is not foreshortened and A, B, C stay apart
 plt.tight_layout()
 #If using termux
-plt.savefig('figs/2.2.5.png', dpi=150)
-subprocess.run(shlex.split("termux-open figs/2.2.5.png"))
+plt.savefig('figs/2.2.6.png', dpi=150)
+subprocess.run(shlex.split("termux-open figs/2.2.6.png"))
 #else
 #plt.show()

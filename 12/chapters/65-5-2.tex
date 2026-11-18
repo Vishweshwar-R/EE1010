@@ -119,48 +119,6 @@ The stem plots in \figref{fig:pmf_q4} compare the simulated and theoretical pmfs
     \caption{Theoretical and simulated pmfs: (a) $p_X(r)$, (b) $p_Z(z)$}
     \label{fig:pmf_q4}
 \end{figure}
-    \item Solve the following differential equation:
-\begin{align*}
-    (y + 3x^2)\frac{dx}{dy} = x
-\end{align*}
-\par\hfill (12, 2018)\par
-\solution Taking reciprocals, $\frac{dy}{dx} = \frac{y+3x^2}{x}$. Multiplying by $x$,
-\begin{align}
-    x y' - y = 3x^2
-\end{align}
-The equation is singular at $x=0$, so we look for solutions with $y(0)=0$ and let $y'(0)=C$. Let $Y(s) = \mathcal{L}\{y\}$. From \eqref{eq:EE26BTECH11225-laplace-deriv},
-\begin{align*}
-\mathcal{L}\{y'\} = sY - y(0) = sY, \qquad
-\mathcal{L}\{xy'\} = -\frac{d}{ds}\brak{sY} = -sY' - Y
-\end{align*}
-and from \eqref{eq:EE26BTECH11225-laplace} with $n = 2$, $\mathcal{L}\{3x^2\} = 3 \cdot \frac{2!}{s^3} = \frac{6}{s^3}$. Taking the Laplace transform of both sides,
-\begin{align*}
-    -sY' - Y - Y &= \frac{6}{s^3} \\
-    sY' + 2Y &= -\frac{6}{s^3}
-\end{align*}
-Multiplying by $s$, the left side becomes an exact derivative:
-\begin{align*}
-s^2Y' + 2sY = \brak{s^2Y}' = -\frac{6}{s^2}
-\end{align*}
-Integrating with respect to $s$, $s^2Y = \frac{6}{s} + C$, so
-\begin{align*}
-    Y(s) = \frac{6}{s^3} + \frac{C}{s^2}
-\end{align*}
-Using \eqref{eq:EE26BTECH11225-laplace} backwards, $\frac{6}{s^3} = 3 \cdot \frac{2!}{s^3}$ is the transform of $3x^2$ and $\frac{C}{s^2} = C \cdot \frac{1!}{s^2}$ is the transform of $Cx$. Hence the general solution is
-\begin{align}
-\boxed{y = 3x^2 + Cx}
-\end{align}
-Check: $xy' - y = x(6x + C) - 3x^2 - Cx = 3x^2$. Some solutions are plotted in \figref{fig:linearode_q5}.
-\codedesc{2.2.5.py}{Solves the equation with SymPy's \texttt{dsolve}, checks the residual and the Laplace-domain step, and plots $y = 3x^2 + Cx$ for several $C$.}
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.5.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\linewidth]{figs/2.2.5.png}
-    \caption{Solutions $y=3x^2+Cx$ for several values of $C$}
-    \label{fig:linearode_q5}
-\end{figure}
     \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item Using vectors, prove that the points $(2,-1,3)$, $(3,-5,1)$ and $(-1,11,9)$ are collinear.
@@ -319,90 +277,6 @@ An example cubic with its three roots is plotted in \figref{fig:vieta_q10}.
     \includegraphics[width=0.75\linewidth]{figs/2.2.10.png}
     \caption{The cubic $t^3 + \beta t^2 + \alpha t - 1$ with roots $x, y, z$ and $xyz = 1$}
     \label{fig:vieta_q10}
-\end{figure}
-    \item Using vectors, find the value of $x$ such that the four points $A(x,5,-1)$, $B(3,2,1)$, $C(4,5,5)$ and $D(4,2,-2)$ are coplanar.
-\par\hfill (12, 2018)\par
-\solution
-The vectors $\vec{u} = \vec{B}-\vec{A}$, $\vec{v} = \vec{C}-\vec{A}$ and $\vec{w} = \vec{D}-\vec{A}$ are
-\begin{align*}
-\vec{u} = \myvec{3-x \\ -3 \\ 2}, \quad \vec{v} = \myvec{4-x \\ 0 \\ 6}, \quad \vec{w} = \myvec{4-x \\ -3 \\ -1}
-\end{align*}
-From \eqref{eq:EE26BTECH11225-coplanar} the points are coplanar when
-\begin{align}
-\text{rank}\myvec{3-x & 4-x & 4-x \\ -3 & 0 & -3 \\ 2 & 6 & -1} \leq 2
-\end{align}
-that is, when Gauss elimination \eqref{eq:EE26BTECH11225-gauss-mult} produces a zero row. The first pivot $3 - x$ depends on $x$, so first interchange $R_1 \leftrightarrow R_2$ and scale the new first row by $-\frac{1}{3}$:
-\begin{align*}
-\myvec{1 & 0 & 1 \\ 3-x & 4-x & 4-x \\ 2 & 6 & -1}
-\xrightarrow[R_3 \to R_3 - 2R_1]{R_2 \to R_2 - (3-x)R_1}
-\myvec{1 & 0 & 1 \\ 0 & 4-x & 1 \\ 0 & 6 & -3}
-\end{align*}
-To avoid dividing by $4 - x$, scale $R_3$ by $\frac{1}{6}$ and use it as the pivot row:
-\begin{align*}
-\xrightarrow{R_3 \to \frac{1}{6}R_3}
-\myvec{1 & 0 & 1 \\ 0 & 4-x & 1 \\ 0 & 1 & -\frac{1}{2}}
-\xrightarrow{R_2 \to R_2 - (4-x)R_3}
-\myvec{1 & 0 & 1 \\ 0 & 0 & 1 + \frac{4-x}{2} \\ 0 & 1 & -\frac{1}{2}}
-\end{align*}
-where $1 + \frac{4-x}{2} = \frac{6-x}{2}$. The first and third rows are always independent, so a zero row occurs only when this last pivot vanishes:
-\begin{align}
-\frac{6 - x}{2} = 0 \implies \boxed{x = 6}
-\end{align}
-The last pivot is plotted against $x$ in \figref{fig:rank_q11}.
-\codedesc{2.2.11.py}{Performs the row operations symbolically with SymPy, prints the last pivot, solves it for $x$ and plots the pivot against $x$.}
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.11.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figs/2.2.11.png}
-    \caption{The last pivot $\frac{6-x}{2}$ against $x$}
-    \label{fig:rank_q11}
-\end{figure}
-    \item
-    \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
-        \item Prove that the relation $R$ in the set $A = \{1,2,3,4,5,6,7\}$ given by $R = \{(a,b) : |a-b| \text{ is even}\}$ is an equivalence relation.
-
-        \begin{center}
-            \textbf{OR}
-        \end{center}
-
-        \item Show that the function $f$ in $A = \mathbb{R}-\left\{\frac{2}{3}\right\}$ defined as $f(x) = \dfrac{4x+3}{6x-4}$ is one-one and onto. Hence, find $f^{-1}$.
-    \end{enumerate} \vspace{2pt}
-
-\par\hfill (12, 2018)\par
-\textbf{(a) Solution:} From \eqref{eq:EE26BTECH11225-equiv} we check the three properties for all $a, b, c \in A$.
-\begin{align*}
-    \text{Reflexive: } & |a-a| = 0 \text{ is even} \implies (a,a)\in R \\
-    \text{Symmetric: } & |b-a| = |a-b| \text{ is even} \implies (a,b)\in R \Rightarrow (b,a)\in R \\
-    \text{Transitive: } & |a-b|,\,|b-c| \text{ even} \implies a-c = (a-b)+(b-c) \text{ is even}
-\end{align*}
-In the transitive step, the sum of two even numbers is even, so $(a,c) \in R$. All three hold, so $R$ is an equivalence relation. (Its classes are the odd numbers $\{1,3,5,7\}$ and the even numbers $\{2,4,6\}$.) \\[8pt]
-\textbf{(b) Solution:} \emph{One-one:} Let $f(x_1) = f(x_2)$ and cross-multiply:
-\begin{align*}
-    (4x_1+3)(6x_2-4) &= (4x_2+3)(6x_1-4) \\
-    24x_1x_2 - 16x_1 + 18x_2 - 12 &= 24x_1x_2 - 16x_2 + 18x_1 - 12 \\
-    34x_2 &= 34x_1
-\end{align*}
-so $x_1 = x_2$ and $f$ is one-one. \\
-\emph{Onto:} Let $y = \frac{4x+3}{6x-4}$ with $y \neq \frac{2}{3}$. Solving for $x$:
-\begin{align*}
-    6xy - 4y = 4x + 3 \implies x(6y - 4) = 4y + 3 \implies x = \frac{4y+3}{6y-4}
-\end{align*}
-This $x$ is defined for every $y\neq\frac{2}{3}$, and $x\neq\frac{2}{3}$ (otherwise $12y+9=12y-8$, which is impossible). So every $y\in A$ has a pre-image and $f$ is onto. Hence
-\begin{align}
-    f^{-1}(y) = \frac{4y+3}{6y-4}, \quad \text{i.e. } \boxed{f^{-1} = f}
-\end{align}
-Both parts are plotted in \figref{fig:equiv_q12}.
-\codedesc{2.2.12.py}{Checks reflexivity, symmetry and transitivity of $R$ over all pairs, checks $f(f(x)) = x$ with SymPy, and plots the relation matrix and $f$.}
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.12.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figs/2.2.12.png}
-    \caption{(a) Relation matrix of $R$; (b) graph of $f$, symmetric about $y=x$}
-    \label{fig:equiv_q12}
 \end{figure}
     \item Find the interval in which the function $f$ given by $f(x) = \sin 2x + \cos 2x$, $0\leq x\leq\pi$ is strictly decreasing.
 \par\hfill (12, 2018)\par

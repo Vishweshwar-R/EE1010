@@ -1,31 +1,24 @@
 import numpy as np
-import numpy.linalg as LA
 import matplotlib.pyplot as plt
-
 #If using termux
 import subprocess
 import shlex
 #end if
 
-# assume x = 2, y = 3; the cubic t^3 + beta t^2 + alpha t - 1 with roots x, y, z has x y z = 1
-x, y = 2.0, 3.0
-z = 1 / (x * y)
-alpha = x * y + y * z + z * x
-beta = -(x + y + z)
-M = np.array([[t, t**2, t**3 - 1] for t in (x, y, z)])       # the matrix whose columns are dependent
-c = np.array([alpha, beta, 1.0])
-print("M c =", np.round(M @ c, 12), " rank(M) =", LA.matrix_rank(M), " xyz =", x * y * z)
-assert np.allclose(M @ c, 0) and LA.matrix_rank(M) == 2 and np.isclose(x * y * z, 1)
-
-t = np.linspace(-0.5, 3.5, 400)
-plt.figure(figsize=(5.5, 4))
-plt.plot(t, t**3 + beta * t**2 + alpha * t - 1, 'b-')
-plt.plot([x, y, z], [0, 0, 0], 'ro')
-plt.axhline(0, color='k', lw=0.5)
-plt.ylim(-5, 8); plt.xlabel('$t$'); plt.grid(alpha=0.3)
-
+# Q13: f(x) = sin 2x + cos 2x on [0, pi] is strictly decreasing on (pi/8, 5pi/8)
+x = np.linspace(0, np.pi, 1000)
+f = np.sin(2*x) + np.cos(2*x); df = 2*np.cos(2*x) - 2*np.sin(2*x)
+dec = x[df < 0]
+print("f' < 0 on [", dec.min(), ",", dec.max(), "]   pi/8 =", np.pi/8, " 5pi/8 =", 5*np.pi/8)
+plt.figure(figsize=(6.5, 3.8))
+plt.plot(x, f, "b", label="f(x)"); plt.plot(x, df, "g--", label="f'(x)")
+plt.axvspan(np.pi/8, 5*np.pi/8, color="red", alpha=0.12, label="strictly decreasing")
+plt.axhline(0, color="k", lw=0.6)
+plt.xticks([0, np.pi/8, np.pi/2, 5*np.pi/8, np.pi], ["0", r"$\pi/8$", r"$\pi/2$", r"$5\pi/8$", r"$\pi$"])
+plt.grid(alpha=0.3); plt.legend(fontsize=8)
+plt.tight_layout()
 #If using termux
-plt.savefig('figs/2.2.10.png', dpi=200, bbox_inches='tight')
-subprocess.run(shlex.split("termux-open figs/2.2.10.png"))
+plt.savefig('figs/2.2.13.png', dpi=150)
+subprocess.run(shlex.split("termux-open figs/2.2.13.png"))
 #else
 #plt.show()
