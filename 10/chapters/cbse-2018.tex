@@ -219,18 +219,9 @@ $p(x)$ is plotted with its zeros in \figref{fig:poly_q7}.
     \label{fig:poly_q7}
 \end{figure}
    \item
-    \begin{enumerate}[label=(\alph*), leftmargin=*, labelsep=0.5em]
-        \item If $A(-2,1)$, $B(a,0)$, $C(4,b)$ and $D(1,2)$ are the vertices of a parallelogram $ABCD$, find the values of $a$ and $b$. Hence find the lengths of its sides.
-
-        \begin{center}
-            \textbf{OR}
-        \end{center}
-
-        \item If $A(-5,7)$, $B(-4,-5)$, $C(-1,-6)$ and $D(4,5)$ are the vertices of a quadrilateral, find the area of the quadrilateral $ABCD$.
-    \end{enumerate} \vspace{2pt}
-
+	If $A(-2,1)$, $B(a,0)$, $C(4,b)$ and $D(1,2)$ are the vertices of a parallelogram $ABCD$, find the values of $a$ and $b$. Hence find the lengths of its sides.
 \par\hfill (10, 2018)\par
-\textbf{(a) Solution:} The diagonals $AC$ and $BD$ of a parallelogram bisect each other, so they have the same midpoint. From \eqref{eq:EE26BTECH11225-midpoint},
+\textbf{(Solution:} The diagonals $AC$ and $BD$ of a parallelogram bisect each other, so they have the same midpoint. From \eqref{eq:EE26BTECH11225-midpoint},
 \begin{align}
 \frac{\vec{A} + \vec{C}}{2} = \frac{\vec{B} + \vec{D}}{2} \implies \vec{A} + \vec{C} = \vec{B} + \vec{D}
 \end{align}
@@ -248,34 +239,6 @@ Opposite sides of a parallelogram are equal, so $CD = AB$ and $DA = BC$. Hence
 \begin{align}
 \boxed{a = 1, \ b = 1, \quad AB = BC = CD = DA = \sqrt{10}}
 \end{align}
-\textbf{(b) Solution:} Split $ABCD$ along the diagonal $AC$ as in \eqref{eq:EE26BTECH11225-area-quad}. The vectors needed are
-\begin{align*}
-\vec{B}-\vec{A} = \myvec{1 \\ -12}, \quad \vec{C}-\vec{A} = \myvec{4 \\ -13}, \quad \vec{D}-\vec{A} = \myvec{9 \\ -2}
-\end{align*}
-Multiplying by $\vec{\Omega} = \myvec{0 & 1 \\ -1 & 0}$ gives the normals
-\begin{align*}
-\vec{n}_1 = \vec{\Omega}\brak{\vec{B}-\vec{A}} = \myvec{-12 \\ -1}, \quad \vec{n}_2 = \vec{\Omega}\brak{\vec{D}-\vec{A}} = \myvec{-2 \\ -9}
-\end{align*}
-From \eqref{eq:EE26BTECH11225-area-triangle},
-\begin{align*}
-\text{ar}\brak{\Delta ABC} &= \frac{1}{2}\left|\vec{n}_1^{\top}\brak{\vec{C}-\vec{A}}\right| = \frac{1}{2}\left|(-12)(4) + (-1)(-13)\right| = \frac{1}{2}\left|-35\right| = \frac{35}{2} \\
-\text{ar}\brak{\Delta ADC} &= \frac{1}{2}\left|\vec{n}_2^{\top}\brak{\vec{C}-\vec{A}}\right| = \frac{1}{2}\left|(-2)(4) + (-9)(-13)\right| = \frac{1}{2}\left|109\right| = \frac{109}{2}
-\end{align*}
-Adding the two triangles,
-\begin{align}
-\text{ar}\brak{ABCD} = \frac{35}{2} + \frac{109}{2} = \frac{144}{2} = \boxed{72 \text{ sq. units}}
-\end{align}
-Both parts are plotted in \figref{fig:quad_q8}.
-\codedesc{1.2.8.py}{Finds $a$ and $b$ from $\vec{A} + \vec{C} = \vec{B} + \vec{D}$ and the side lengths, computes the two triangle areas with the normal vector $\vec{\Omega}\brak{\vec{B} - \vec{A}}$, and plots both quadrilaterals.}
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.8.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figs/1.2.8.png}
-    \caption{(a) Parallelogram $ABCD$ and (b) quadrilateral $ABCD$}
-    \label{fig:quad_q8}
-\end{figure}
     \item A plane left 30 minutes late than its scheduled time and in order to reach the destination 1500 km away in time, it had to increase its speed by 100 km/h from the usual speed. Find its usual speed.
 \par\hfill (10, 2018)\par
 \solution
