@@ -693,10 +693,6 @@ INPUT ./10/figs/1.2.12.png
 INPUT ./10/figs/1.2.12.png
 INPUT ./10/figs/1.2.12.png
 INPUT ./10/figs/1.2.12.png
-INPUT ./10/figs/1.2.13.png
-INPUT ./10/figs/1.2.13.png
-INPUT ./10/figs/1.2.13.png
-INPUT ./10/figs/1.2.13.png
 INPUT ./12/formulae/formulae.tex
 INPUT ./12/formulae/formulae.tex
 INPUT 12/formulae/formulae.tex
@@ -762,7 +758,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
