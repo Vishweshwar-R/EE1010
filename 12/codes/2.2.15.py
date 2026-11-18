@@ -7,33 +7,41 @@ import subprocess
 import shlex
 #end if
 
+# Import custom CoordGeo modules
 
-import sympy as sp
-from mpl_toolkits.mplot3d import Axes3D  # noqa
+from CoordGeo.line.funcs import line_norm, line_isect
+from CoordGeo.conics.funcs import circ_gen, parab_gen
+from CoordGeo.plotting.funcs import label_pts
 
-x = sp.symbols('x')
-A = sp.Matrix([x, 5, -1]); B = sp.Matrix([3, 2, 1]); C = sp.Matrix([4, 5, 5]); D = sp.Matrix([4, 2, -2])
-M = sp.Matrix.hstack(B - A, C - A, D - A)         # columns AB, AC, AD
-M = sp.Matrix([list(M.row(1)), list(M.row(0)), list(M.row(2))])       # R1 <-> R2
-M[0, :] = M[0, :] / M[0, 0]                       # R1 <- R1/(-3)
-M[1, :] = sp.expand(M[1, :] - M[1, 0] * M[0, :])  # R2 <- R2 - (3-x) R1
-M[2, :] = M[2, :] - M[2, 0] * M[0, :]             # R3 <- R3 - 2 R1
-M[2, :] = M[2, :] / M[2, 1]                       # R3 <- R3/6
-M[1, :] = sp.expand(M[1, :] - M[1, 1] * M[2, :])  # R2 <- R2 - (4-x) R3
-print("last pivot =", sp.simplify(M[1, 2]), " -> zero row iff x =", sp.solve(M[1, 2], x))
-assert sp.solve(M[1, 2], x) == [6]
+# (a) a = 1: the region x^2 + y^2 <= 16, y^2 <= 6x, integrated along y with the trapezoidal rule
+y = np.linspace(-2 * np.sqrt(3), 2 * np.sqrt(3), 100001)
+ha = np.sqrt(16 - y**2) - parab_gen(y, 6)
+area_a = np.trapezoid(ha, y)
+print("(a) trapezoidal area =", round(area_a, 6), " exact =", round(4 / 3 * (4 * np.pi + np.sqrt(3)), 6))
+assert abs(area_a - 4 / 3 * (4 * np.pi + np.sqrt(3))) < 1e-4
 
-# numerical check: the rank of [AB AC AD] drops to 2 only at x = 6
+# (b) vertices as intersections of the three lines n^T x = c
 col = lambda *v: np.array(v, dtype=float).reshape(-1, 1)
-for xv in (2.0, 6.0, 9.0):
-    Av = col(xv, 5, -1); Bv, Cv, Dv = col(3, 2, 1), col(4, 5, 5), col(4, 2, -2)
-    print(f"x = {xv}: rank =", LA.matrix_rank(np.block([Bv - Av, Cv - Av, Dv - Av])))
-assert LA.matrix_rank(np.block([col(3, 2, 1) - col(6, 5, -1), col(4, 5, 5) - col(6, 5, -1), col(4, 2, -2) - col(6, 5, -1)])) == 2
+n1, c1 = col(4, -1), -5; n2, c2 = col(1, 1), 5; n3, c3 = col(1, -4), -5
+A = line_isect(n1, c1, n3, c3); B = line_isect(n1, c1, n2, c2); C = line_isect(n2, c2, n3, c3)
+L1 = lambda t: 4 * t + 5; L2 = lambda t: 5 - t; L3 = lambda t: (t + 5) / 4
+x1 = np.array([-1.0, 0.0]); x2 = np.array([0.0, 3.0])             # the corners are the nodes
+area_b = np.trapezoid(L1(x1) - L3(x1), x1) + np.trapezoid(L2(x2) - L3(x2), x2)
+print("(b) trapezoidal area =", area_b, " vertices:", A.ravel(), B.ravel(), C.ravel())
+assert np.isclose(area_b, 7.5)
 
-xs = np.linspace(2, 10, 100)
-plt.figure(figsize=(5, 3.6))
-plt.plot(xs, (6 - xs) / 2, 'b-'); plt.plot(6, 0, 'ro'); plt.axhline(0, color='k', lw=0.5)
-plt.annotate('$x=6$', (6.2, 0.3)); plt.xlabel('$x$'); plt.ylabel('last pivot $(6-x)/2$'); plt.grid(alpha=0.3)
+fig, ax = plt.subplots(1, 2, figsize=(9, 4))
+plt.sca(ax[0])
+yy = np.linspace(-4, 4, 400)
+Cc = circ_gen(col(0, 0), 4)
+plt.fill_betweenx(y, parab_gen(y, 6), np.sqrt(16 - y**2), alpha=0.3, color='orange')
+plt.plot(Cc[0, :], Cc[1, :], 'b-', label='$x^2+y^2=16$'); plt.plot(parab_gen(yy, 6), yy, 'g-', label='$y^2=6x$')
+plt.legend(fontsize=8); plt.grid(alpha=0.3); plt.axis('equal'); plt.title('(a)')
+plt.sca(ax[1])
+for (n, c, lab) in [(n1, c1, '$4x-y+5=0$'), (n2, c2, '$x+y-5=0$'), (n3, c3, '$x-4y+5=0$')]:
+    L = line_norm(n, c, -14, 14); plt.plot(L[0, :], L[1, :], label=lab)
+T = np.block([A, B, C]); plt.fill(T[0, :], T[1, :], alpha=0.3, color='orange'); plt.scatter(T[0, :], T[1, :], color='k')
+label_pts(T, ['$A$', '$B$', '$C$']); plt.xlim(-3, 5); plt.ylim(-0.5, 7); plt.legend(fontsize=8); plt.grid(alpha=0.3); plt.title('(b)')
 
 #If using termux
 plt.savefig('figs/2.2.15.png', dpi=200, bbox_inches='tight')

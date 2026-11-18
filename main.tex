@@ -9,6 +9,9 @@
 \usepackage{gvv}
 \usetikzlibrary{patterns}
 \lstset{aboveskip=12pt}
+% one-line description shown just above each code box
+\usepackage{needspace}
+\newcommand{\codedesc}[2]{\par\Needspace{6\baselineskip}\smallskip{\raggedright\noindent\small\textbf{\texttt{#1}}: #2\par}\nopagebreak}
 \usepackage[center]{caption}
 \raggedbottom
 
@@ -25,7 +28,7 @@
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}
 \setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
 % no figure taller than about a third of the page (keeps its aspect ratio)
-\setkeys{Gin}{keepaspectratio,height=0.34\textheight}
+\setkeys{Gin}{keepaspectratio,height=0.42\textheight}
 \setlength{\multicolsep}{0pt}
 
 \hypersetup{
@@ -83,6 +86,10 @@ In this edition, some incorrect solutions were removed.  All figures redrawn. Mo
 \numberwithin{equation}{enumi}
 \numberwithin{figure}{enumi}
 \renewcommand{\thetable}{\theenumi}
+% unique hyperlink targets: equation/figure numbers restart in every question,
+% so include the subsection in the internal anchor names
+\renewcommand{\theHequation}{\thesubsection.\arabic{enumi}.\arabic{equation}}
+\renewcommand{\theHfigure}{\thesubsection.\arabic{enumi}.\arabic{figure}}
 
 \section{10}
 \subsection{Formulae}

@@ -1,31 +1,41 @@
 import numpy as np
+import numpy.linalg as LA
 import matplotlib.pyplot as plt
+
 #If using termux
 import subprocess
 import shlex
 #end if
 
-# Q20: (a) (1+e^2x)dy + (1+y^2)e^x dx = 0, y(0)=1 -> y = e^-x
-#      (b) x y' sin(y/x) + x - y sin(y/x) = 0, y(1) = pi/2 -> cos(y/x) = ln x
-import sympy as sp
-x = sp.symbols("x")
-y1 = sp.exp(-x)
-print("(a) residual:", sp.simplify((1 + sp.exp(2*x)) * sp.diff(y1, x) + (1 + y1**2) * sp.exp(x)), " y(0) =", y1.subs(x, 0))
-xs = np.linspace(0.4, 2.6, 400)
-y2 = xs * np.arccos(np.log(xs))
-h = 1e-6
-t = np.array([0.5, 1.0, 1.5, 2.0])
-Y = lambda s: s * np.arccos(np.log(s))
-dy = (Y(t + h) - Y(t - h)) / (2*h)
-res = t * dy * np.sin(Y(t)/t) + t - Y(t) * np.sin(Y(t)/t)
-print("(b) residual:", np.round(res, 6), " y(1) =", Y(1.0), " pi/2 =", np.pi/2)
-fig, ax = plt.subplots(1, 2, figsize=(9, 3.5))
-xa = np.linspace(-2, 2, 200)
-ax[0].plot(xa, np.exp(-xa), "b"); ax[0].plot(0, 1, "ro"); ax[0].set_title(r"(a) $y=e^{-x}$"); ax[0].grid(alpha=0.3)
-ax[1].plot(xs, y2, "b"); ax[1].plot(1, np.pi/2, "ro"); ax[1].set_title(r"(b) $\cos(y/x)=\ln x$"); ax[1].grid(alpha=0.3)
-plt.tight_layout()
+
+from math import comb
+
+rng = np.random.default_rng(5)
+N = 10**6                                         # number of trials
+# L = 1 if the lost card is a spade.  prior pmf: p_L(1) = 1/4, p_L(0) = 3/4
+prior = np.array([3 / 4, 1 / 4])
+like = np.array([comb(13, 2), comb(12, 2)]) / comb(51, 2)       # P(both drawn are spades | L = l)
+post_theory = prior * like / np.sum(prior * like)               # p_{L|A}(l)
+
+# simulation: shuffle the pack, the first card is lost, the next two are drawn
+deck = np.array([1] * 13 + [0] * 39)
+count = np.zeros(2); total = 0
+for _ in range(N // 10):
+    d = rng.permutation(deck)
+    if d[1] == 1 and d[2] == 1:
+        count[d[0]] += 1; total += 1
+post_sim = count / total
+print("p(L=1 | both spades): theory", round(post_theory[1], 5), " simulation", round(post_sim[1], 5), " 11/50 =", 11 / 50)
+assert np.isclose(post_theory[1], 11 / 50) and abs(post_sim[1] - 11 / 50) < 0.01
+
+l = np.arange(2)
+plt.figure(figsize=(5, 3.8))
+plt.stem(l - 0.07, post_theory, linefmt='b-', markerfmt='bo', basefmt='k-', label='theory')
+plt.stem(l + 0.07, post_sim, linefmt='r--', markerfmt='rx', basefmt='k-', label='simulation')
+plt.xticks(l, ['not a spade', 'a spade']); plt.ylabel('$p_{L|A}(l)$'); plt.legend(); plt.grid(alpha=0.3)
+
 #If using termux
-plt.savefig('figs/2.2.18.png', dpi=150)
+plt.savefig('figs/2.2.18.png', dpi=200, bbox_inches='tight')
 subprocess.run(shlex.split("termux-open figs/2.2.18.png"))
 #else
 #plt.show()

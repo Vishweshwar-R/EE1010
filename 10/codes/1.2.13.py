@@ -1,11 +1,40 @@
 import numpy as np
-from sympy import factorint
+import numpy.linalg as LA
+import matplotlib.pyplot as plt
 
-p, q = 404, 96
-primes = [2, 3, 101]
-e = np.array([factorint(p).get(r, 0) for r in primes])      # exponent vector of 404
-f = np.array([factorint(q).get(r, 0) for r in primes])      # exponent vector of 96
-hcf = int(np.prod([r**k for r, k in zip(primes, np.minimum(e, f))]))
-lcm = int(np.prod([r**k for r, k in zip(primes, np.maximum(e, f))]))
-print("e =", e, " f =", f, " HCF =", hcf, " LCM =", lcm)
-assert hcf == 4 and lcm == 9696 and hcf * lcm == p * q
+#If using termux
+import subprocess
+import shlex
+#end if
+
+# Import custom CoordGeo modules
+from CoordGeo.line.funcs import line_gen
+from CoordGeo.plotting.funcs import label_pts
+
+# (a) mean = 18  ->  18(40 + f) = 704 + 20f
+f = (18 * 40 - 704) / (20 - 18)
+print("(a) f =", f)
+assert f == 8
+
+# (b) less than type ogive
+upper = np.array([100, 120, 140, 160, 180, 200])
+freq = np.array([0, 12, 14, 8, 6, 10])
+cf = np.cumsum(freq)
+print("(b) cumulative frequencies =", cf)
+assert list(cf) == [0, 12, 26, 34, 40, 50]
+
+pts = np.block([[upper], [cf]]).astype(float)     # points as columns
+plt.figure(figsize=(5.5, 4))
+for k in range(pts.shape[1] - 1):
+    x = line_gen(pts[:, [k]], pts[:, [k + 1]])
+    plt.plot(x[0, :], x[1, :], 'b-')
+plt.scatter(pts[0, :], pts[1, :], color='r')
+label_pts(pts, [f'$({int(p[0])},{int(p[1])})$' for p in pts.T])
+plt.xlabel('Daily income (in Rs.)'); plt.ylabel('Cumulative frequency')
+plt.grid(alpha=0.3)
+
+#If using termux
+plt.savefig('figs/1.2.13.png', dpi=200, bbox_inches='tight')
+subprocess.run(shlex.split("termux-open figs/1.2.13.png"))
+#else
+#plt.show()

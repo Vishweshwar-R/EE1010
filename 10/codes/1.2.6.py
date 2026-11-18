@@ -7,32 +7,22 @@ import subprocess
 import shlex
 #end if
 
-# Import custom CoordGeo modules
+rng = np.random.default_rng(2)
+N = 10**6                                        # number of trials
+X = rng.integers(2, 100, N)                      # uniform on {2, ..., 99}
 
-from CoordGeo.line.funcs import line_gen
-from CoordGeo.plotting.funcs import label_pts
+k = np.arange(2, 100)
+r = np.arange(8)
+p_theory = np.array([np.sum(k % 8 == i) for i in r]) / 98     # pmf of R = X mod 8
+p_sim = np.array([np.mean(X % 8 == i) for i in r])
+print("P(8 | X): theory", round(12 / 98, 4), " simulation", round(p_sim[0], 4))
+print("P(8 does not divide X): theory", round(43 / 49, 4), " simulation", round(1 - p_sim[0], 4))
+assert np.allclose(p_theory, p_sim, atol=3e-3) and p_theory[0] == 12 / 98
 
-# no coordinates are given, so assume P(0,0), Q(6,0), R(2,5)
-P = np.array([[0], [0]]); Q = np.array([[6], [0]]); R = np.array([[2], [5]])
-k = 1 / 3                                       # AB/PQ
-A, B, C = k * P, k * Q, k * R                   # ABC is similar to PQR with ratio k
-Omega = np.array([[0, 1], [-1, 0]])
-
-def ar(U, V, W):
-    n = Omega @ (V - U)                         # normal vector of UV
-    return 0.5 * abs((n.T @ (W - U))[0, 0])
-
-print("ar(PQR) =", ar(P, Q, R), " ar(ABC) =", round(ar(A, B, C), 6), " ratio =", round(ar(A, B, C) / ar(P, Q, R), 6))
-assert np.isclose(ar(A, B, C) / ar(P, Q, R), 1 / 9)
-
-plt.figure(figsize=(5, 4))
-for V, col in [([P, Q, R], 'b-'), ([A, B, C], 'r-')]:
-    for U, W in zip(V, V[1:] + V[:1]):
-        x = line_gen(U, W); plt.plot(x[0, :], x[1, :], col)
-pts = np.block([P, Q, R, A, B, C])
-plt.scatter(pts[0, :], pts[1, :], color='k', s=10)
-label_pts(pts, ['$P$', '$Q$', '$R$', '$A$', '$B$', '$C$'])
-plt.grid(alpha=0.3); plt.axis('equal')
+plt.figure(figsize=(5.5, 4))
+plt.stem(r - 0.1, p_theory, linefmt='b-', markerfmt='bo', basefmt='k-', label='theory $p_R(r)$')
+plt.stem(r + 0.1, p_sim, linefmt='r--', markerfmt='rx', basefmt='k-', label='simulation ($N=10^6$)')
+plt.xlabel('r = X mod 8'); plt.ylabel('$p_R(r)$'); plt.legend(); plt.grid(alpha=0.3)
 
 #If using termux
 plt.savefig('figs/1.2.6.png', dpi=200, bbox_inches='tight')

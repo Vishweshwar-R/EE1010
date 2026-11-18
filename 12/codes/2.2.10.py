@@ -7,24 +7,22 @@ import subprocess
 import shlex
 #end if
 
+# assume x = 2, y = 3; the cubic t^3 + beta t^2 + alpha t - 1 with roots x, y, z has x y z = 1
+x, y = 2.0, 3.0
+z = 1 / (x * y)
+alpha = x * y + y * z + z * x
+beta = -(x + y + z)
+M = np.array([[t, t**2, t**3 - 1] for t in (x, y, z)])       # the matrix whose columns are dependent
+c = np.array([alpha, beta, 1.0])
+print("M c =", np.round(M @ c, 12), " rank(M) =", LA.matrix_rank(M), " xyz =", x * y * z)
+assert np.allclose(M @ c, 0) and LA.matrix_rank(M) == 2 and np.isclose(x * y * z, 1)
 
-rng = np.random.default_rng(4)
-N = 10**6                                         # number of trials
-pA, pB = 3 / 7, 2 / 5
-# joint pmf of the indicators (I_A, I_B):  p(a, b) = pA^a (1-pA)^(1-a) pB^b (1-pB)^(1-b)
-cases = [(0, 0), (0, 1), (1, 0), (1, 1)]
-p_theory = np.array([pA**a * (1 - pA)**(1 - a) * pB**b * (1 - pB)**(1 - b) for a, b in cases])
-IA = rng.random(N) < pA; IB = rng.random(N) < pB
-p_sim = np.array([np.mean((IA == a) & (IB == b)) for a, b in cases])
-print("P(A' and B'): theory", round(p_theory[0], 5), " simulation", round(p_sim[0], 5), " 12/35 =", round(12 / 35, 5))
-assert np.allclose(p_theory, p_sim, atol=3e-3) and np.isclose(p_theory[0], 12 / 35)
-
-i = np.arange(4)
+t = np.linspace(-0.5, 3.5, 400)
 plt.figure(figsize=(5.5, 4))
-plt.stem(i - 0.07, p_theory, linefmt='b-', markerfmt='bo', basefmt='k-', label='theory')
-plt.stem(i + 0.07, p_sim, linefmt='r--', markerfmt='rx', basefmt='k-', label='simulation ($N=10^6$)')
-plt.xticks(i, ['(0,0)', '(0,1)', '(1,0)', '(1,1)'])
-plt.xlabel('$(I_A, I_B)$'); plt.ylabel('$p(a,b)$'); plt.legend(); plt.grid(alpha=0.3)
+plt.plot(t, t**3 + beta * t**2 + alpha * t - 1, 'b-')
+plt.plot([x, y, z], [0, 0, 0], 'ro')
+plt.axhline(0, color='k', lw=0.5)
+plt.ylim(-5, 8); plt.xlabel('$t$'); plt.grid(alpha=0.3)
 
 #If using termux
 plt.savefig('figs/2.2.10.png', dpi=200, bbox_inches='tight')

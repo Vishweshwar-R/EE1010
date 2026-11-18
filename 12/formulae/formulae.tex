@@ -86,9 +86,9 @@ d &= \norm{\vec{w} - \frac{\vec{b}^{\top}\vec{w}}{\vec{b}^{\top}\vec{b}}\vec{b}}
 \item \textbf{Probability mass function.} The pmf of a discrete random variable $X$ and the joint pmf of independent $X, Y$ are
 \begin{align}
 p_X(k) &= \Pr\brak{X = k}, \quad \sum_k p_X(k) = 1, \quad \Pr\brak{X \in E} = \sum_{k \in E}p_X(k)
-\label{eq:EE26BTECH11225-pmf} \\
+\label{eq:12-pmf} \\
 p_{XY}(i,j) &= p_X(i)\,p_Y(j)
-\label{eq:EE26BTECH11225-pmf-sum}
+\label{eq:12-pmf-sum}
 \end{align}
 \item \textbf{Laplace transform,} with $F(s) = \mathcal{L}\{f\}(s)$, and of derivatives:
 \begin{align}
@@ -102,6 +102,12 @@ F(s) &= \int_0^\infty f(x)e^{-sx}\,dx, \quad \mathcal{L}\{x^n\} = \frac{n!}{s^{n
 \max\ \vec{c}^{\top}\vec{x} \quad \text{s.t.} \quad \vec{A}\vec{x} \leq \vec{b}, \ \vec{x} \geq \vec{0}
 \label{eq:EE26BTECH11225-lpp}
 \end{align}
+If the dual values $\bm{\lambda} \geq \vec{0}$ returned by the solver satisfy $\vec{A}^{\top}\bm{\lambda} = \vec{c}$, then every feasible $\vec{x}$ obeys
+\begin{align}
+\vec{c}^{\top}\vec{x} = \bm{\lambda}^{\top}\vec{A}\vec{x} \leq \bm{\lambda}^{\top}\vec{b}
+\label{eq:EE26BTECH11225-lpp-dual}
+\end{align}
+so an $\vec{x}^*$ with $\vec{c}^{\top}\vec{x}^* = \vec{b}^{\top}\bm{\lambda}$ is optimal.
 \item \textbf{Gauss elimination.} To solve $\vec{A}\vec{x} = \vec{b}$ with $\vec{A}$ of order $n$, reduce $\sbrak{\vec{A} \,|\, \vec{b}}$ to upper triangular form $\sbrak{\vec{U} \,|\, \vec{c}}$ and back-substitute. The running time grows as $n^3$:
 \begin{align}
 R_i \to R_i - m_{ik}R_k, \quad m_{ik} &= \frac{a_{ik}}{a_{kk}}, \quad i > k
@@ -120,6 +126,6 @@ It is exact when $g$ is linear between the nodes.
 \item \textbf{Newton--Raphson method.} A root of $f(x) = 0$ is found from a starting value $x_0$ by
 \begin{align}
 x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}, \quad f'(x_n) \neq 0
-\label{eq:EE26BTECH11225-newton}
+\label{eq:12-newton}
 \end{align}
 \end{enumerate}

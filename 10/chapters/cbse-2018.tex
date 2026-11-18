@@ -1,21 +1,29 @@
 \begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
     \item If $x = 3$ is one root of the quadratic equation $x^2 - 2kx - 6 = 0$, then find the value of $k$.
 \par\hfill (10, 2018)\par
-\solution Since $x = 3$ is a root of the given quadratic equation, from \eqref{eq:EE26BTECH11225-root}, substituting $x = 3$ into $x^2 - 2kx - 6 = 0$:
+\solution Here $a = 1$, $b = -2k$, $c = -6$ and $\alpha = 3$. Since $x = 3$ is a root, it must satisfy the equation, so from \eqref{eq:EE26BTECH11225-root},
 \begin{align}
-    (3)^2 - 2k(3) - 6 &= 0 \\
-    &\implies 9 - 6k - 6 = 0 \\
-    &\implies 3 - 6k = 0 \\
-    &\implies 6k = 3 
+\myvec{3^2 & 3 & 1}\myvec{1 \\ -2k \\ -6} = (3)^2 - 2k(3) - 6 = 0
 \end{align}
-Thus, the value of $k$ is $\frac{1}{2}$.
-The following code solves for $k$, checks that $x=3$ is a root and plots \figref{fig:root_q1}.
+Simplifying step by step,
+\begin{align*}
+9 - 6k - 6 &= 0 \\
+3 - 6k &= 0 \\
+6k &= 3
+\end{align*}
+Hence
+\begin{align}
+\boxed{k = \frac{1}{2}}
+\end{align}
+As a check, with $k = \frac{1}{2}$ the equation is $x^2 - x - 6 = (x-3)(x+2) = 0$, which indeed has $x = 3$ as a root (the other root is $-2$).
+The code is below and the plot is in \figref{fig:root_q1}.
+\codedesc{1.2.1.py}{Solves $9 - 6k - 6 = 0$ for $k$ with SymPy, checks that $x = 3$ is a root for $k = \frac{1}{2}$, and plots the parabola (with two other values of $k$ that miss the point $(3, 0)$).}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.1.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/1.2.1.png}
+    \includegraphics[width=0.8\linewidth]{figs/1.2.1.png}
     \caption{The parabola $x^2-2kx-6$ for $k=\frac{1}{2}$ crosses the $x$-axis at $x=3$}
     \label{fig:root_q1}
 \end{figure}
@@ -26,142 +34,174 @@ The A.P. is the sequence $x(n)$ with first term $a$ and common difference $d = -
 \begin{align}
 x(n) = \brak{a + (n-1)d}\,u(n-1) = \brak{a - 4(n-1)}\,u(n-1)
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-ap-step})}}\par
-Since $u(6) = 1$, the seventh term is $x(7) = a - 24$. Equating it to the given value,
+The seventh term is obtained by putting $n = 7$. Since $7 - 1 = 6 \geq 0$, the unit step gives $u(6) = 1$, so
+\begin{align*}
+x(7) = \brak{a - 4(7-1)}u(6) = a - 4 \times 6 = a - 24
+\end{align*}
+The seventh term is given to be $4$. Equating,
+\begin{align*}
+a - 24 = 4 \implies a = 4 + 24
+\end{align*}
+so the first term is
 \begin{align}
-a - 24 = 4 \implies a = 28
+\boxed{a = 28}
 \end{align}
-The first term is therefore $\boxed{28}$. The C program prints the sequence, which the unit step switches on at $n = 1$, and the Python program plots it in \figref{fig:ap_q4}.
+Check: $28, 24, 20, 16, 12, 8, 4$ — the seventh term is $4$. The unit step switches the sequence on at $n = 1$, as \figref{fig:ap_q2} shows.
+\codedesc{1.2.2.c}{Defines the unit step $u(n)$ and the A.P. $x(n) = (a + (n-1)d)\,u(n-1)$, prints $x(n)$ for $n = -1, \ldots, 9$ and checks that $x(7) = 4$.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.4.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.2.c}@*)
 \end{lstlisting}
+\codedesc{1.2.2.py}{Builds the same sequence with NumPy's \texttt{heaviside} function and draws it as a stem plot.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.4.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.2.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/1.2.4.png}
+    \includegraphics[width=0.8\linewidth]{figs/1.2.2.png}
     \caption{The A.P. as the sequence $x(n) = (a + (n-1)d)\,u(n-1)$}
-    \label{fig:ap_q4}
+    \label{fig:ap_q2}
 \end{figure}
-    \item In \figref{fig:rectangle_q8}, $ABCD$ is a rectangle. Find the values of $x$ and $y$.
-    \begin{figure}[!htbp]
+    \item In \figref{fig:rectangle_q3}, $ABCD$ is a rectangle. Find the values of $x$ and $y$.
+\begin{figure}[H]
 \centering
-\input{10/figs/1.2.8.tex}
+\input{10/figs/1.2.3.tex}
 \caption{Rectangle $ABCD$}
-\label{fig:rectangle_q8}
-\end{figure} 
+\label{fig:rectangle_q3}
+\end{figure}
 \par\hfill (10, 2018)\par
 \solution
 Opposite sides of a rectangle are equal, so $x + y = 30$ and $x - y = 14$, that is
 \begin{align}
 \myvec{1 & 1 \\ 1 & -1}\myvec{x \\ y} = \myvec{30 \\ 14}
 \end{align}
-Gauss elimination on the augmented matrix:
-\begin{align}
+Applying Gauss elimination \eqref{eq:EE26BTECH11225-gauss} to the augmented matrix, the multiplier is $m_{21} = \frac{a_{21}}{a_{11}} = 1$, so
+\begin{align*}
 \left[\begin{array}{cc|c} 1 & 1 & 30 \\ 1 & -1 & 14 \end{array}\right]
 \xrightarrow{R_2 \to R_2 - R_1}
 \left[\begin{array}{cc|c} 1 & 1 & 30 \\ 0 & -2 & -16 \end{array}\right]
-\end{align}
-Back-substitution gives $y = 8$ and $x = 30 - 8 = 22$:
+\end{align*}
+Back-substitution starts from the last row:
+\begin{align*}
+-2y = -16 &\implies y = 8 \\
+x + y = 30 &\implies x = 30 - 8 = 22
+\end{align*}
+Hence
 \begin{align}
 \boxed{x = 22, \quad y = 8}
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-gauss})}}\par
-The C program carries out the elimination and the Python program plots the two lines meeting at $\brak{22, 8}$ in \figref{fig:gauss_q8}.
+Check: $x + y = 30$ and $x - y = 14$. The two lines meet at $\brak{22, 8}$ in \figref{fig:gauss_q3}.
+\codedesc{1.2.3.c}{Applies $R_2 \to R_2 - R_1$ to the $2 \times 3$ augmented matrix, prints the result, back-substitutes and prints $x$ and $y$.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.8.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.3.c}@*)
 \end{lstlisting}
+\codedesc{1.2.3.py}{Repeats the elimination with NumPy, checks it against \texttt{numpy.linalg.solve} and plots the two lines with CoordGeo.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.8.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.3.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\linewidth]{figs/1.2.8.png}
+    \includegraphics[width=0.75\linewidth]{figs/1.2.3.png}
     \caption{The lines $x+y=30$ and $x-y=14$}
-    \label{fig:gauss_q8}
+    \label{fig:gauss_q3}
 \end{figure}
     \item Find the ratio in which $P(4, m)$ divides the line segment joining the points $A(2, 3)$ and $B(6, -3)$. Hence find $m$.
 \par\hfill (10, 2018)\par
 \solution
-The $x$-coordinate of $P$ is $4 = \frac{2+6}{2}$, the mean of the $x$-coordinates of $A\brak{2,3}$ and $B\brak{6,-3}$. So $P$ is the midpoint of $AB$, and from \eqref{eq:EE26BTECH11225-midpoint},
+Let $P$ divide $AB$ in the ratio $k : 1$. From \eqref{eq:EE26BTECH11225-section},
 \begin{align}
-\vec{P} = \frac{\vec{A} + \vec{B}}{2} = \frac{1}{2}\myvec{8 \\ 0} = \myvec{4 \\ 0}
+\vec{P} = \frac{k\vec{B} + \vec{A}}{k + 1} \implies \myvec{4 \\ m} = \frac{1}{k+1}\myvec{6k + 2 \\ -3k + 3}
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-midpoint})}}\par
-Hence $m = 0$, and $P$ divides $AB$ in the ratio $\boxed{1 : 1}$. The following code verifies the result and plots it in \figref{fig:section_q10}.
+Equating the first components,
+\begin{align*}
+\frac{6k + 2}{k + 1} = 4 \implies 6k + 2 = 4k + 4 \implies 2k = 2 \implies k = 1
+\end{align*}
+So the ratio is $1 : 1$, that is, $P$ is the midpoint of $AB$, which agrees with \eqref{eq:EE26BTECH11225-midpoint}:
+\begin{align*}
+\vec{P} = \frac{\vec{A} + \vec{B}}{2} = \frac{1}{2}\myvec{2 + 6 \\ 3 - 3} = \myvec{4 \\ 0}
+\end{align*}
+Equating the second components gives $m = 0$. Hence
+\begin{align}
+\boxed{AP : PB = 1 : 1, \quad m = 0}
+\end{align}
+The code is below and the plot is in \figref{fig:section_q4}.
+\codedesc{1.2.4.py}{Finds $P$ as the point where $AB$ meets the line $x = 4$, computes $k$ and $m$ from the section formula, checks $\vec{P} = \frac{k\vec{B} + \vec{A}}{k+1}$ and plots $A$, $B$, $P$.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.10.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.4.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\linewidth]{figs/1.2.10.png}
+    \includegraphics[width=0.7\linewidth]{figs/1.2.4.png}
     \caption{$P$, the midpoint of $AB$}
-    \label{fig:section_q10}
+    \label{fig:section_q4}
 \end{figure}
     \item Two different dice are tossed together. Find the probability: \\[2pt]
 (i) of getting a doublet. \\[2pt]
 (ii) of getting a sum 10, of the numbers on the two dice.
 \par\hfill (10, 2018)\par
 \solution
-Let $X$ and $Y$ be the numbers on the two dice. Each has the pmf
-\begin{align}
+Let $X$ and $Y$ be the numbers on the two dice. Each die is fair, so each has the pmf
+\begin{align*}
 p_X(k) = p_Y(k) = \frac{1}{6}, \quad k = 1, 2, \ldots, 6
-\end{align}
-From \eqref{eq:EE26BTECH11225-pmf-sum}, the pmf of the sum $S = X + Y$ is the convolution
+\end{align*}
+The dice are independent, so from \eqref{eq:EE26BTECH11225-pmf-sum} the joint pmf is $p_{XY}(j,k) = \frac{1}{6}\cdot\frac{1}{6} = \frac{1}{36}$, and the pmf of the sum $S = X + Y$ is the convolution
 \begin{align}
 p_S(s) = \sum_{k} p_X(k)p_Y(s-k) = \frac{6 - |s-7|}{36}, \quad s = 2, 3, \ldots, 12
+\label{eq:10-q5-ps}
 \end{align}
-\textbf{(i)} A doublet means $X = Y$, and $p_{XY}(k,k) = p_X(k)p_Y(k) = \frac{1}{36}$, so from \eqref{eq:EE26BTECH11225-pmf},
+\textbf{(i)} A doublet means $X = Y$, that is the outcomes $(1,1), (2,2), \ldots, (6,6)$. From \eqref{eq:EE26BTECH11225-pmf}, adding their probabilities,
 \begin{align}
-\Pr\brak{X = Y} = \sum_{k=1}^{6} p_{XY}(k,k) = \frac{6}{36} = \boxed{\frac{1}{6}}
+\Pr\brak{X = Y} = \sum_{k=1}^{6} p_{XY}(k,k) = 6 \times \frac{1}{36} = \boxed{\frac{1}{6}}
 \end{align}
-\textbf{(ii)} A sum of $10$ has the probability
+\textbf{(ii)} For $s = 10$, the convolution sum has non-zero terms only when both $k$ and $10 - k$ lie in $\{1, \ldots, 6\}$, that is $k = 4, 5, 6$ (the outcomes $(4,6), (5,5), (6,4)$):
+\begin{align*}
+p_S(10) = p_X(4)p_Y(6) + p_X(5)p_Y(5) + p_X(6)p_Y(4) = \frac{3}{36}
+\end{align*}
+which agrees with \eqref{eq:10-q5-ps}, $\frac{6 - |10 - 7|}{36} = \frac{3}{36}$. Hence
 \begin{align}
-p_S(10) = \frac{6 - 3}{36} = \boxed{\frac{1}{12}}
+\Pr\brak{S = 10} = \boxed{\frac{1}{12}}
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-pmf-sum}, \ref{eq:EE26BTECH11225-pmf})}}\par
-The program simulates $10^6$ throws of the two dice. The stem plot in \figref{fig:pmf_q11} compares the simulated $p_S(s)$ with the theoretical one.
+The stem plot in \figref{fig:pmf_q5} compares the simulated $p_S(s)$ with the theoretical one.
+\codedesc{1.2.5.py}{Simulates $10^6$ throws of two dice, estimates the probabilities of a doublet and of a sum of $10$, and compares the simulated pmf of $S$ with the convolution formula.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.11.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.5.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/1.2.11.png}
+    \includegraphics[width=0.9\linewidth]{figs/1.2.5.png}
     \caption{Theoretical and simulated $p_S(s)$}
-    \label{fig:pmf_q11}
+    \label{fig:pmf_q5}
 \end{figure}
     \item An integer is chosen at random between 1 and 100. Find the probability that it is: \\[2pt]
 (i) divisible by 8. \\[2pt]
 (ii) not divisible by 8.
 \par\hfill (10, 2018)\par
 \solution
-Taking ``between $1$ and $100$'' to exclude both $1$ and $100$, the chosen integer $X$ is uniform on $\{2, 3, \ldots, 99\}$:
-\begin{align}
+Taking ``between $1$ and $100$'' to exclude both $1$ and $100$, the chosen integer $X$ is uniform on $\{2, 3, \ldots, 99\}$, which has $99 - 2 + 1 = 98$ elements:
+\begin{align*}
 p_X(k) = \frac{1}{98}, \quad k = 2, 3, \ldots, 99
-\end{align}
+\end{align*}
 Let $R = X \bmod 8$. From \eqref{eq:EE26BTECH11225-pmf} its pmf is
 \begin{align}
 p_R(r) = \sum_{\substack{k = 2 \\ k \equiv r \,(\mathrm{mod}\, 8)}}^{99} p_X(k) = \frac{\#\{k : k \equiv r \,(\mathrm{mod}\, 8)\}}{98}, \quad r = 0, 1, \ldots, 7
 \end{align}
-\textbf{(i)} $8$ divides $X$ exactly when $R = 0$. The multiples of $8$ are $8, 16, \ldots, 96$, which are $12$ numbers:
+\textbf{(i)} $8$ divides $X$ exactly when $R = 0$. The multiples of $8$ in the range are $8 \times 1, 8 \times 2, \ldots, 8 \times 12 = 96$ (the next one, $104$, is too large), which are $12$ numbers. So
 \begin{align}
 \Pr\brak{8 \mid X} = p_R(0) = \frac{12}{98} = \boxed{\frac{6}{49}}
 \end{align}
-\textbf{(ii)} Since $\sum_r p_R(r) = 1$,
+\textbf{(ii)} Since $\sum_r p_R(r) = 1$ from \eqref{eq:EE26BTECH11225-pmf}, the probability of the complement is
 \begin{align}
-\Pr\brak{8 \nmid X} = 1 - p_R(0) = \boxed{\frac{43}{49}}
+\Pr\brak{8 \nmid X} = 1 - p_R(0) = 1 - \frac{6}{49} = \boxed{\frac{43}{49}}
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-pmf})}}\par
-The program simulates $10^6$ draws and compares the simulated $p_R(r)$ with the theoretical one in \figref{fig:pmf_q12}.
+\figref{fig:pmf_q6} compares the simulated $p_R(r)$ with the theoretical one.
+\codedesc{1.2.6.py}{Draws $10^6$ integers uniformly from $\{2, \ldots, 99\}$ and compares the simulated pmf of $R = X \bmod 8$ with the exact one.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.12.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.6.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/1.2.12.png}
+    \includegraphics[width=0.8\linewidth]{figs/1.2.6.png}
     \caption{Theoretical and simulated $p_R(r)$}
-    \label{fig:pmf_q12}
+    \label{fig:pmf_q6}
 \end{figure}
     \item Find all zeroes of the polynomial $(2x^4 - 9x^3 + 5x^2 + 3x - 1)$ if two of its zeroes are $(2+\sqrt{3})$ and $(2-\sqrt{3})$.
 \par\hfill (10, 2018)\par
@@ -170,79 +210,124 @@ Let $p(x) = 2x^4 - 9x^3 + 5x^2 + 3x - 1$, so $p'(x) = 8x^3 - 27x^2 + 10x + 3$. A
 \begin{align}
 x_{n+1} = x_n - \frac{2x_n^4 - 9x_n^3 + 5x_n^2 + 3x_n - 1}{8x_n^3 - 27x_n^2 + 10x_n + 3}
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-newton})}}\par
-Starting from $x_0 = 5, \ 0, \ 1.2$ and $-1$, the C program converges to
-\begin{align}
-x = 3.7320508, \quad 0.2679492, \quad 1, \quad -0.5
-\end{align}
-The first two are $2 + \sqrt{3}$ and $2 - \sqrt{3}$ (as $\sqrt{3} = 1.7320508$), the zeros given in the question. Hence all the zeros are
+Starting from four different values, the C program gives
+\[
+\begin{array}{c|r|r|r|r}
+n & x_0 = 5 & x_0 = 0 & x_0 = 1.2 & x_0 = -1 \\\hline
+0 & 5.000000 & 0.000000 & 1.200000 & -1.000000 \\
+1 & 4.301587 & 0.333333 & 1.040414 & -0.714286 \\
+2 & 3.903954 & 0.265306 & 1.002414 & -0.560273 \\
+3 & 3.753887 & 0.267947 & 1.000010 & -0.506718 \\
+4 & 3.732465 & 0.267949 & 1.000000 & -0.500097 \\
+5 & 3.732051 & 0.267949 & 1.000000 & -0.500000
+\end{array}
+\]
+The first two limits are $2 + \sqrt{3}$ and $2 - \sqrt{3}$ (as $\sqrt{3} = 1.7320508$), the zeros given in the question. This can be confirmed by division. The given zeros are the roots of
+\begin{align*}
+\brak{x - 2 - \sqrt{3}}\brak{x - 2 + \sqrt{3}} = (x-2)^2 - 3 = x^2 - 4x + 1
+\end{align*}
+and dividing $p(x)$ by it leaves no remainder:
+\begin{align*}
+2x^4 - 9x^3 + 5x^2 + 3x - 1 &= \brak{x^2 - 4x + 1}\brak{2x^2 - x - 1} \\
+&= \brak{x^2 - 4x + 1}(2x + 1)(x - 1)
+\end{align*}
+so the other two zeros are $1$ and $-\frac{1}{2}$, as found by the iteration. Hence all the zeros are
 \begin{align}
 \boxed{2 + \sqrt{3}, \quad 2 - \sqrt{3}, \quad 1, \quad -\frac{1}{2}}
 \end{align}
-The Python program plots $p(x)$ with its zeros in \figref{fig:poly_q14}.
+$p(x)$ is plotted with its zeros in \figref{fig:poly_q7}.
+\codedesc{1.2.7.c}{Runs Newton--Raphson on $p(x)$ from $x_0 = 5, 0, 1.2, -1$ and prints the four zeros.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.14.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.7.c}@*)
 \end{lstlisting}
+\codedesc{1.2.7.py}{Computes the zeros with NumPy, checks them against $2 \pm \sqrt{3}, 1, -\frac{1}{2}$ and plots $p(x)$ with its zeros marked.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.14.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.7.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/1.2.14.png}
+    \includegraphics[width=0.8\linewidth]{figs/1.2.7.png}
     \caption{Plot of $p(x) = 2x^4 - 9x^3 + 5x^2 + 3x - 1$ with its zeros}
-    \label{fig:poly_q14}
+    \label{fig:poly_q7}
 \end{figure}
-   \item 
+   \item
     \begin{enumerate}[label=(\alph*), leftmargin=*, labelsep=0.5em]
         \item If $A(-2,1)$, $B(a,0)$, $C(4,b)$ and $D(1,2)$ are the vertices of a parallelogram $ABCD$, find the values of $a$ and $b$. Hence find the lengths of its sides.
-        
+
         \begin{center}
             \textbf{OR}
         \end{center}
-        
+
         \item If $A(-5,7)$, $B(-4,-5)$, $C(-1,-6)$ and $D(4,5)$ are the vertices of a quadrilateral, find the area of the quadrilateral $ABCD$.
     \end{enumerate} \vspace{2pt}
-    
+
 \par\hfill (10, 2018)\par
-\textbf{(a) Solution:} The diagonals of a parallelogram bisect each other, so from \eqref{eq:EE26BTECH11225-midpoint}, $\vec{A} + \vec{C} = \vec{B} + \vec{D}$. With $\vec{B} = \myvec{a \\ 0}$ and $\vec{C} = \myvec{4 \\ b}$,
+\textbf{(a) Solution:} The diagonals $AC$ and $BD$ of a parallelogram bisect each other, so they have the same midpoint. From \eqref{eq:EE26BTECH11225-midpoint},
 \begin{align}
-\myvec{-2 \\ 1} + \myvec{4 \\ b} = \myvec{a \\ 0} + \myvec{1 \\ 2} \implies a = 1, \quad b = 1
+\frac{\vec{A} + \vec{C}}{2} = \frac{\vec{B} + \vec{D}}{2} \implies \vec{A} + \vec{C} = \vec{B} + \vec{D}
 \end{align}
-From \eqref{eq:EE26BTECH11225-distance}, the sides are
+With $\vec{B} = \myvec{a \\ 0}$ and $\vec{C} = \myvec{4 \\ b}$,
+\begin{align*}
+\myvec{-2 + 4 \\ 1 + b} = \myvec{a + 1 \\ 0 + 2} \implies
+\begin{cases} a + 1 = 2 \implies a = 1 \\ 1 + b = 2 \implies b = 1 \end{cases}
+\end{align*}
+So $\vec{B} = \myvec{1 \\ 0}$ and $\vec{C} = \myvec{4 \\ 1}$. From \eqref{eq:EE26BTECH11225-distance}, the adjacent sides are
+\begin{align*}
+AB &= \norm{\vec{B}-\vec{A}} = \norm{\myvec{3 \\ -1}} = \sqrt{3^2 + (-1)^2} = \sqrt{10} \\
+BC &= \norm{\vec{C}-\vec{B}} = \norm{\myvec{3 \\ 1}} = \sqrt{3^2 + 1^2} = \sqrt{10}
+\end{align*}
+Opposite sides of a parallelogram are equal, so $CD = AB$ and $DA = BC$. Hence
 \begin{align}
-\norm{\vec{B}-\vec{A}} = \norm{\myvec{3 \\ -1}} = \sqrt{10}, \quad \norm{\vec{C}-\vec{B}} = \norm{\myvec{3 \\ 1}} = \sqrt{10}
+\boxed{a = 1, \ b = 1, \quad AB = BC = CD = DA = \sqrt{10}}
 \end{align}
-Opposite sides are equal, so all four sides are $\boxed{\sqrt{10}}$ and $\boxed{a = 1, \ b = 1}$. \\[8pt]
-\textbf{(b) Solution:} Split $ABCD$ along $AC$ as in \eqref{eq:EE26BTECH11225-area-quad}. With $\vec{n}_1 = \vec{\Omega}\brak{\vec{B}-\vec{A}} = \myvec{-12 \\ -1}$ and $\vec{n}_2 = \vec{\Omega}\brak{\vec{D}-\vec{A}} = \myvec{-2 \\ -9}$, from \eqref{eq:EE26BTECH11225-area-triangle},
+\textbf{(b) Solution:} Split $ABCD$ along the diagonal $AC$ as in \eqref{eq:EE26BTECH11225-area-quad}. The vectors needed are
+\begin{align*}
+\vec{B}-\vec{A} = \myvec{1 \\ -12}, \quad \vec{C}-\vec{A} = \myvec{4 \\ -13}, \quad \vec{D}-\vec{A} = \myvec{9 \\ -2}
+\end{align*}
+Multiplying by $\vec{\Omega} = \myvec{0 & 1 \\ -1 & 0}$ gives the normals
+\begin{align*}
+\vec{n}_1 = \vec{\Omega}\brak{\vec{B}-\vec{A}} = \myvec{-12 \\ -1}, \quad \vec{n}_2 = \vec{\Omega}\brak{\vec{D}-\vec{A}} = \myvec{-2 \\ -9}
+\end{align*}
+From \eqref{eq:EE26BTECH11225-area-triangle},
+\begin{align*}
+\text{ar}\brak{\Delta ABC} &= \frac{1}{2}\left|\vec{n}_1^{\top}\brak{\vec{C}-\vec{A}}\right| = \frac{1}{2}\left|(-12)(4) + (-1)(-13)\right| = \frac{1}{2}\left|-35\right| = \frac{35}{2} \\
+\text{ar}\brak{\Delta ADC} &= \frac{1}{2}\left|\vec{n}_2^{\top}\brak{\vec{C}-\vec{A}}\right| = \frac{1}{2}\left|(-2)(4) + (-9)(-13)\right| = \frac{1}{2}\left|109\right| = \frac{109}{2}
+\end{align*}
+Adding the two triangles,
 \begin{align}
-\text{ar}\brak{\Delta ABC} &= \frac{1}{2}\left|\vec{n}_1^{\top}\brak{\vec{C}-\vec{A}}\right| = \frac{1}{2}\left|\myvec{-12 & -1}\myvec{4 \\ -13}\right| = \frac{35}{2} \\
-\text{ar}\brak{\Delta ADC} &= \frac{1}{2}\left|\vec{n}_2^{\top}\brak{\vec{C}-\vec{A}}\right| = \frac{1}{2}\left|\myvec{-2 & -9}\myvec{4 \\ -13}\right| = \frac{109}{2}
+\text{ar}\brak{ABCD} = \frac{35}{2} + \frac{109}{2} = \frac{144}{2} = \boxed{72 \text{ sq. units}}
 \end{align}
-\begin{align}
-\text{ar}\brak{ABCD} = \frac{35}{2} + \frac{109}{2} = \boxed{72 \text{ sq. units}}
-\end{align}
-The following code verifies both parts and plots them in \figref{fig:quad_q15}.
+Both parts are plotted in \figref{fig:quad_q8}.
+\codedesc{1.2.8.py}{Finds $a$ and $b$ from $\vec{A} + \vec{C} = \vec{B} + \vec{D}$ and the side lengths, computes the two triangle areas with the normal vector $\vec{\Omega}\brak{\vec{B} - \vec{A}}$, and plots both quadrilaterals.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.15.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.8.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/1.2.15.png}
+    \includegraphics[width=\linewidth]{figs/1.2.8.png}
     \caption{(a) Parallelogram $ABCD$ and (b) quadrilateral $ABCD$}
-    \label{fig:quad_q15}
+    \label{fig:quad_q8}
 \end{figure}
     \item A plane left 30 minutes late than its scheduled time and in order to reach the destination 1500 km away in time, it had to increase its speed by 100 km/h from the usual speed. Find its usual speed.
 \par\hfill (10, 2018)\par
 \solution
-Let the usual speed be $x$ km/h. The delay of $\frac{1}{2}$ hour on $1500$ km gives
+Let the usual speed be $x$ km/h. At the usual speed the trip takes $\frac{1500}{x}$ hours, and at the increased speed $\frac{1500}{x+100}$ hours. The faster trip saves the $\frac{1}{2}$ hour delay, so
 \begin{align}
-\frac{1500}{x} - \frac{1500}{x+100} = \frac{1}{2} \implies f(x) = x^2 + 100x - 300000 = 0
+\frac{1500}{x} - \frac{1500}{x+100} = \frac{1}{2}
 \end{align}
-The speed is the positive root of $f$. With $f'(x) = 2x + 100$, the Newton--Raphson iteration is
+Multiplying both sides by $2x(x+100)$,
+\begin{align*}
+3000(x + 100) - 3000x &= x(x + 100) \\
+300000 &= x^2 + 100x
+\end{align*}
+so the speed is the positive root of
 \begin{align}
+f(x) = x^2 + 100x - 300000 = 0
+\end{align}
+With $f'(x) = 2x + 100$, the Newton--Raphson iteration \eqref{eq:EE26BTECH11225-newton} is
+\begin{align*}
 x_{n+1} = x_n - \frac{x_n^2 + 100x_n - 300000}{2x_n + 100}
-\end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-newton})}}\par
+\end{align*}
 Starting from $x_0 = 1000$ and from $x_0 = -1000$, the C program gives
 \[
 \begin{array}{c|r|r}
@@ -256,23 +341,29 @@ n & x_n\;(x_0=1000) & x_n\;(x_0=-1000)\\\hline
 6 & 500.000000 & -600.000000
 \end{array}
 \]
-The iterates settle at $500$ and $-600$. Speed cannot be negative, so the usual speed is $\boxed{500\text{ km/h}}$. This agrees with $f(x) = (x-500)(x+600)$. The C program prints the iterates and checks both roots, and the Python program draws the first three Newton steps as tangent lines using CoordGeo in \figref{fig:newton_q16}.
+The iterates settle at $500$ and $-600$, which agrees with $f(x) = (x-500)(x+600)$. Speed cannot be negative, so
+\begin{align}
+\boxed{\text{usual speed} = 500\text{ km/h}}
+\end{align}
+Check: $\frac{1500}{500} - \frac{1500}{600} = 3 - 2.5 = 0.5$ hour. The first three Newton steps are drawn as tangent lines in \figref{fig:newton_q9}.
+\codedesc{1.2.9.c}{Runs Newton--Raphson on $f(x) = x^2 + 100x - 300000$ from $x_0 = \pm 1000$ and prints the table of iterates.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.16.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.9.c}@*)
 \end{lstlisting}
+\codedesc{1.2.9.py}{Repeats the iteration from $x_0 = 1000$ and draws the first three steps as tangent lines with CoordGeo.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.16.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.9.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{figs/1.2.16.png}
+    \includegraphics[width=0.8\linewidth]{figs/1.2.9.png}
     \caption{Newton--Raphson steps for $f(x) = x^2 + 100x - 300000$ from $x_0 = 1000$}
-    \label{fig:newton_q16}
+    \label{fig:newton_q9}
 \end{figure}
-    \item 
+    \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
         \item A motor boat whose speed is $18\text{ km/h}$ in still water takes $1\text{ hour}$ more to go $24\text{ km}$ upstream than to return downstream to the same spot. Find the speed of the stream.
-        
+
         \vspace{0.5em}
         \begin{center}
             \textbf{OR}
@@ -281,87 +372,165 @@ The iterates settle at $500$ and $-600$. Speed cannot be negative, so the usual 
 
         \item A train travels at a certain average speed for a distance of $63\text{ km}$ and then travels at a distance of $72\text{ km}$ at an average speed of $6\text{ km/h}$ more than its original speed. If it takes $3\text{ hours}$ to complete total journey, what is the original average speed?
     \end{enumerate}	\vspace{2pt}
-    
+
 \par\hfill (10, 2018)\par
-\textbf{(a) Solution:} Let the speed of the stream be $x$ km/h. The boat takes $1$ hour more upstream than downstream, so
+\textbf{(a) Solution:} Let the speed of the stream be $x$ km/h. Upstream the boat moves at $18 - x$ km/h and downstream at $18 + x$ km/h. The upstream trip takes $1$ hour more, so
 \begin{align}
-\frac{24}{18 - x} - \frac{24}{18 + x} = 1 \implies f(x) = x^2 + 48x - 324 = 0
+\frac{24}{18 - x} - \frac{24}{18 + x} = 1
 \end{align}
-Newton--Raphson \eqref{eq:EE26BTECH11225-newton} with $f'(x) = 2x + 48$ converges from $x_0 = 20$ to $6$ and from $x_0 = -100$ to $-54$. A speed cannot be negative, so the speed of the stream is $\boxed{6 \text{ km/h}}$. \\[8pt]
-\textbf{(b) Solution:} Let the original speed be $x$ km/h. The total time is $3$ hours, so
+Multiplying by $(18 - x)(18 + x) = 324 - x^2$,
+\begin{align*}
+24(18 + x) - 24(18 - x) &= 324 - x^2 \\
+48x &= 324 - x^2
+\end{align*}
+which gives
 \begin{align}
-\frac{63}{x} + \frac{72}{x + 6} = 3 \implies f(x) = x^2 - 39x - 126 = 0
+f(x) = x^2 + 48x - 324 = 0, \quad f'(x) = 2x + 48
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-newton})}}\par
-With $f'(x) = 2x - 39$, Newton--Raphson converges from $x_0 = 60$ to $42$ and from $x_0 = -10$ to $-3$. The speed is positive, so the original speed is $\boxed{42 \text{ km/h}}$. The C program prints both pairs of roots and the Python program verifies both parts.
+The Newton--Raphson iteration \eqref{eq:EE26BTECH11225-newton}, $x_{n+1} = x_n - \frac{x_n^2 + 48x_n - 324}{2x_n + 48}$, gives
+\[
+\begin{array}{c|r|r}
+n & x_n\;(x_0=20) & x_n\;(x_0=-100)\\\hline
+0 & 20.000000 & -100.000000 \\
+1 & 8.227273 & -67.921053 \\
+2 & 6.076965 & -56.206182 \\
+3 & 6.000098 & -54.075564 \\
+4 & 6.000000 & -54.000095 \\
+5 & 6.000000 & -54.000000
+\end{array}
+\]
+so the roots are $6$ and $-54$, that is $f(x) = (x - 6)(x + 54)$. A speed cannot be negative, so
+\begin{align}
+\boxed{\text{speed of the stream} = 6 \text{ km/h}}
+\end{align}
+Check: $\frac{24}{12} - \frac{24}{24} = 2 - 1 = 1$ hour. \\[8pt]
+\textbf{(b) Solution:} Let the original speed be $x$ km/h. The two parts of the journey take $\frac{63}{x}$ and $\frac{72}{x+6}$ hours, and the total is $3$ hours, so
+\begin{align}
+\frac{63}{x} + \frac{72}{x + 6} = 3
+\end{align}
+Multiplying by $x(x + 6)$,
+\begin{align*}
+63(x + 6) + 72x &= 3x(x + 6) \\
+135x + 378 &= 3x^2 + 18x \\
+3x^2 - 117x - 378 &= 0
+\end{align*}
+and dividing by $3$,
+\begin{align}
+f(x) = x^2 - 39x - 126 = 0, \quad f'(x) = 2x - 39
+\end{align}
+The Newton--Raphson iteration $x_{n+1} = x_n - \frac{x_n^2 - 39x_n - 126}{2x_n - 39}$ gives
+\[
+\begin{array}{c|r|r}
+n & x_n\;(x_0=60) & x_n\;(x_0=-10)\\\hline
+0 & 60.000000 & -10.000000 \\
+1 & 46.000000 & -3.830508 \\
+2 & 42.301887 & -3.014782 \\
+3 & 42.001998 & -3.000005 \\
+4 & 42.000000 & -3.000000
+\end{array}
+\]
+so the roots are $42$ and $-3$, that is $f(x) = (x - 42)(x + 3)$. The speed is positive, so
+\begin{align}
+\boxed{\text{original speed} = 42 \text{ km/h}}
+\end{align}
+Check: $\frac{63}{42} + \frac{72}{48} = 1.5 + 1.5 = 3$ hours.
+\codedesc{1.2.10.c}{Runs Newton--Raphson on both quadratics (boat and train) from two starting points each and prints all four roots.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.22.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.10.c}@*)
 \end{lstlisting}
+\codedesc{1.2.10.py}{Finds the roots with NumPy and checks that the positive roots satisfy the original time equations.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.22.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.10.py}@*)
 \end{lstlisting}
     \item The sum of four consecutive numbers in an AP is 32 and the ratio of the product of the first and the last term to the product of two middle terms is $7 : 15$. Find the numbers.
 \par\hfill (10, 2018)\par
 \solution
-Let the four terms be the A.P. $x(n) = \brak{x_0 + (n-1)D}u(n-1)$ for $n = 1, \ldots, 4$, from \eqref{eq:EE26BTECH11225-ap-step}. Their sum is the convolution value $S(4) = (x * u)(4)$ of \eqref{eq:EE26BTECH11225-ap-conv},
+Let the four terms be the A.P. $x(n) = \brak{x_0 + (n-1)D}u(n-1)$ for $n = 1, \ldots, 4$, from \eqref{eq:EE26BTECH11225-ap-step}. Their sum is the convolution value $S(4) = (x * u)(4)$ of \eqref{eq:EE26BTECH11225-ap-conv}:
+\begin{align*}
+S(4) = \sum_{k=1}^{4}x(k) = x_0 + (x_0 + D) + (x_0 + 2D) + (x_0 + 3D) = 4x_0 + 6D
+\end{align*}
+Since the sum is $32$,
 \begin{align}
-S(4) = 4x_0 + 6D = 32 \implies x_0 = 8 - \frac{3}{2}D
+4x_0 + 6D = 32 \implies x_0 = 8 - \frac{3}{2}D
 \end{align}
-So the terms are $8 - \frac{3}{2}D, \ 8 - \frac{1}{2}D, \ 8 + \frac{1}{2}D, \ 8 + \frac{3}{2}D$. The condition $\frac{x(1)x(4)}{x(2)x(3)} = \frac{7}{15}$ becomes
+So the terms are $8 - \frac{3}{2}D, \ 8 - \frac{1}{2}D, \ 8 + \frac{1}{2}D, \ 8 + \frac{3}{2}D$. The products needed are
+\begin{align*}
+x(1)x(4) &= \brak{8 - \tfrac{3}{2}D}\brak{8 + \tfrac{3}{2}D} = 64 - \tfrac{9}{4}D^2 \\
+x(2)x(3) &= \brak{8 - \tfrac{1}{2}D}\brak{8 + \tfrac{1}{2}D} = 64 - \tfrac{1}{4}D^2
+\end{align*}
+The condition $\frac{x(1)x(4)}{x(2)x(3)} = \frac{7}{15}$ means $15\,x(1)x(4) = 7\,x(2)x(3)$:
+\begin{align*}
+15\brak{64 - \tfrac{9}{4}D^2} - 7\brak{64 - \tfrac{1}{4}D^2} = 960 - \tfrac{135}{4}D^2 - 448 + \tfrac{7}{4}D^2
+\end{align*}
+so $D$ is a root of
 \begin{align}
-f(D) = 15\,x(1)x(4) - 7\,x(2)x(3) = 512 - 32D^2 = 0
+f(D) = 512 - 32D^2 = 0, \quad f'(D) = -64D
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-ap-step}, \ref{eq:EE26BTECH11225-ap-conv}, \ref{eq:EE26BTECH11225-newton})}}\par
-Newton--Raphson with $f'(D) = -64D$ converges from $D_0 = 3$ to $D = 4$ (and from $D_0 = -3$ to $D = -4$, which gives the same numbers in reverse order). Then $x_0 = 8 - 6 = 2$ and the numbers are
+The Newton--Raphson iteration \eqref{eq:EE26BTECH11225-newton}, $D_{n+1} = D_n - \frac{512 - 32D_n^2}{-64D_n}$, from $D_0 = 3$ gives
+\begin{align*}
+D_1 = 4.166667, \quad D_2 = 4.003333, \quad D_3 = 4.000001, \quad D_4 = 4.000000
+\end{align*}
+so $D = 4$ (from $D_0 = -3$ it converges to $D = -4$, which gives the same numbers in reverse order). Then $x_0 = 8 - \frac{3}{2}(4) = 2$ and the numbers are
 \begin{align}
 \boxed{2, \quad 6, \quad 10, \quad 14}
 \end{align}
-The C program runs the iteration and the Python program plots the A.P. and $f(D)$ in \figref{fig:ap_q24}.
+Check: $2 + 6 + 10 + 14 = 32$ and $\frac{2 \times 14}{6 \times 10} = \frac{28}{60} = \frac{7}{15}$. The A.P. and $f(D)$ are plotted in \figref{fig:ap_q11}.
+\codedesc{1.2.11.c}{Runs Newton--Raphson on $f(D) = 15\,x(1)x(4) - 7\,x(2)x(3)$ from $D_0 = \pm 3$ and prints the four numbers.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.23.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.11.c}@*)
 \end{lstlisting}
+\codedesc{1.2.11.py}{Builds the A.P. with the unit step, checks $S(4) = 32$ with \texttt{numpy.convolve} and the ratio $7 : 15$, and plots the sequence and $f(D)$.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.23.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.11.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{figs/1.2.23.png}
+    \includegraphics[width=\linewidth]{figs/1.2.11.png}
     \caption{(left) The A.P. $x(n)$; (right) $f(D)$ with its zeros $D = \pm 4$}
-    \label{fig:ap_q24}
+    \label{fig:ap_q11}
 \end{figure}
     \item As observed from the top of a 100 m high lighthouse from sea level, the angles of depression of two ships are $30^\circ$ and $45^\circ$. If one ship is exactly behind the other on the same side of the lighthouse, find the distance between the two ships. [Use $\sqrt{3} = 1.732$]
 \par\hfill (10, 2018)\par
 \solution
-Take the foot of the lighthouse as the origin, so its top is $\vec{A} = \myvec{0 \\ 100}$. A ship at ground distance $x$ is seen along the line $\vec{A} + \lambda\myvec{\cos\theta \\ -\sin\theta}$ meeting the ground $y = 0$, where $\theta$ is the angle of depression:
+Take the foot of the lighthouse as the origin, so its top is $\vec{A} = \myvec{0 \\ 100}$. A ship at ground distance $x$ is seen along the line $\vec{A} + \lambda\myvec{\cos\theta \\ -\sin\theta}$, where $\theta$ is the angle of depression. This line meets the ground $y = 0$ at $\myvec{x \\ 0}$, so
+\begin{align*}
+100 - \lambda\sin\theta = 0, \quad \lambda\cos\theta = x
+\end{align*}
+that is,
 \begin{align}
 \myvec{\sin\theta & 0 \\ \cos\theta & -1}\myvec{\lambda \\ x} = \myvec{100 \\ 0}
 \end{align}
-Gauss elimination ($R_2 \to R_2 - \cot\theta\,R_1$) gives
+Gauss elimination \eqref{eq:EE26BTECH11225-gauss} with the multiplier $m_{21} = \frac{\cos\theta}{\sin\theta} = \cot\theta$ gives
+\begin{align*}
+\myvec{\sin\theta & 0 \\ 0 & -1}\myvec{\lambda \\ x} = \myvec{100 \\ -100\cot\theta}
+\end{align*}
+and back-substitution from the last row gives
 \begin{align}
-\myvec{\sin\theta & 0 \\ 0 & -1}\myvec{\lambda \\ x} = \myvec{100 \\ -100\cot\theta} \implies x = 100\cot\theta
+x = 100\cot\theta
 \end{align}
-\par\noindent\hfill\mbox{\textit{(\ref{eq:EE26BTECH11225-gauss})}}\par
-For $\theta = 45^\circ$, $x_1 = 100$ m, and for $\theta = 30^\circ$, $x_2 = 100\sqrt{3} = 173.2$ m. The distance between the ships is
+For the nearer ship, $\theta = 45^\circ$ and $\cot 45^\circ = 1$, so $x_1 = 100$ m. For the farther ship, $\theta = 30^\circ$ and $\cot 30^\circ = \sqrt{3}$, so $x_2 = 100\sqrt{3} = 100 \times 1.732 = 173.2$ m. The distance between the ships is
 \begin{align}
 x_2 - x_1 = 173.2 - 100 = \boxed{73.2 \text{ m}}
 \end{align}
-The C program does the elimination and the Python program plots the lines of sight in \figref{fig:lighthouse_q29}.
+The lines of sight are plotted in \figref{fig:lighthouse_q12}.
+\codedesc{1.2.12.c}{Solves the $2 \times 2$ system for each angle by Gauss elimination and prints both ground distances and their difference.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.27.c}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.12.c}@*)
 \end{lstlisting}
+\codedesc{1.2.12.py}{Solves the same systems with NumPy and plots the lighthouse and the two lines of sight.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.27.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.12.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{figs/1.2.27.png}
+    \includegraphics[width=0.85\linewidth]{figs/1.2.12.png}
     \caption{Lines of sight to the two ships}
-    \label{fig:lighthouse_q29}
+    \label{fig:lighthouse_q12}
 \end{figure}
-    \item 
+    \item
     \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
     		\item The mean of the following distribution is $18$. Find the frequency $f$ of the class $19\text{--}21$.
-    
+
     \begin{center}
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
         \hline
@@ -369,7 +538,7 @@ The C program does the elimination and the Python program plots the lines of sig
         \textbf{Frequency} & 3 & 6 & 9 & 13 & $f$ & 5 & 4 \\ \hline
     \end{tabular}
     \end{center}
-        
+
         \vspace{0.5em}
         \begin{center}
             \textbf{OR}
@@ -379,18 +548,19 @@ The C program does the elimination and the Python program plots the lines of sig
         \item The following distribution gives the daily income of $50$ workers of a factory:
 
 \begin{center}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|}
     \hline
     \textbf{Daily Income (in Rs.)} & 100--120 & 120--140 & 140--160 & 160--180 & 180--200 \\ \hline
     \textbf{Number of workers} & 12 & 14 & 8 & 6 & 10 \\ \hline
-\end{tabular}
+\end{tabular}}
 \end{center}
 
 Convert the distribution above to a less than type cumulative frequency distribution and draw its ogive.
     \end{enumerate}	\vspace{2pt}
-    
+
 \par\hfill (10, 2018)\par
-\noindent\textbf{(a) Solution:} Constructing the frequency table to calculate the mean:
+\noindent\textbf{(a) Solution:} The class mark of each class is the average of its limits, for example $\frac{11 + 13}{2} = 12$. Constructing the frequency table:
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
@@ -410,18 +580,23 @@ Convert the distribution above to a less than type cumulative frequency distribu
 \end{tabular}
 \end{center}
 
-Given Mean ($\bar{x}$) $= 18$. From \eqref{eq:EE26BTECH11225-mean}, the mean is:
+From \eqref{eq:EE26BTECH11225-mean}, the mean is $\bar{x} = \frac{\vec{f}^{\top}\vec{x}}{\vec{f}^{\top}\vec{1}} = \frac{\sum f_i x_i}{\sum f_i}$. With $\bar{x} = 18$,
 \begin{align}
-    \bar{x} &= \frac{\sum f_i x_i}{\sum f_i} \\
-    18 &= \frac{704 + 20f}{40 + f} \\
-    18(40 + f) &= 704 + 20f \\
-    720 + 18f &= 704 + 20f \\
-    720 - 704 &= 20f - 18f \\
-    16 &= 2f \\
-    &\implies f = \frac{16}{2} = 8
+18 = \frac{704 + 20f}{40 + f}
 \end{align}
-Thus, the missing frequency $f$ is $8$. \\[8pt]
-\noindent\textbf{(b) Solution:} Converting the given data into a ``less than type'' cumulative frequency distribution:
+Cross-multiplying and collecting the terms in $f$,
+\begin{align*}
+18(40 + f) &= 704 + 20f \\
+720 + 18f &= 704 + 20f \\
+720 - 704 &= 20f - 18f \\
+16 &= 2f
+\end{align*}
+Hence the missing frequency is
+\begin{align}
+\boxed{f = 8}
+\end{align}
+Check: $\frac{704 + 160}{48} = \frac{864}{48} = 18$. \\[8pt]
+\noindent\textbf{(b) Solution:} The ``less than'' cumulative frequency of a class is the number of workers earning less than its upper limit, obtained by adding each frequency to the running total:
 
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -437,15 +612,16 @@ Thus, the missing frequency $f$ is $8$. \\[8pt]
 \end{tabular}
 \end{center}
 
-To plot the ``less than type'' ogive, plot the points $(100, 0)$ (the lower limit of the first class, where the cumulative frequency is $0$), $(120, 12)$, $(140, 26)$, $(160, 34)$, $(180, 40)$, and $(200, 50)$ on a graph with upper limits on the $x$-axis and cumulative frequencies on the $y$-axis, and join them with a smooth freehand curve. The following code verifies part (a) and plots the ogive in \figref{fig:ogive_q30}.
+The last cumulative frequency equals the total number of workers, $50$, as it should. To plot the ``less than type'' ogive, plot the points $(100, 0)$ (the lower limit of the first class, where the cumulative frequency is $0$), $(120, 12)$, $(140, 26)$, $(160, 34)$, $(180, 40)$, and $(200, 50)$ on a graph with upper limits on the $x$-axis and cumulative frequencies on the $y$-axis, and join them with a smooth freehand curve. The ogive is plotted in \figref{fig:ogive_q13}.
 
+\codedesc{1.2.13.py}{Solves $18(40 + f) = 704 + 20f$ for $f$, computes the cumulative frequencies and plots the ogive.}
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.28.py}@*)
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/1.2.13.py}@*)
 \end{lstlisting}
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\linewidth]{figs/1.2.28.png}
+    \includegraphics[width=0.85\linewidth]{figs/1.2.13.png}
     \caption{Less than type ogive for daily income distribution}
-    \label{fig:ogive_q30}
+    \label{fig:ogive_q13}
 \end{figure}
 \end{enumerate}

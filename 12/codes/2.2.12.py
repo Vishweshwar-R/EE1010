@@ -1,30 +1,38 @@
 import numpy as np
-import numpy.linalg as LA
 import matplotlib.pyplot as plt
-
 #If using termux
 import subprocess
 import shlex
 #end if
 
-
-g = lambda x: np.abs(x - 1) + np.abs(x - 2) + np.abs(x - 4)
-x4 = np.arange(1, 6)                              # nodes 1, 2, 3, 4, 5 (h = 1)
-T4 = np.trapezoid(g(x4), x4)
-x = np.linspace(1, 5, 1001); T1000 = np.trapezoid(g(x), x)
-print("trapezoidal rule: N = 4 ->", T4, "   N = 1000 ->", round(T1000, 6))
-assert T4 == 18 and abs(T1000 - 18) < 1e-9
-
-xx = np.linspace(1, 5, 400)
-plt.figure(figsize=(5.5, 3.6))
-plt.plot(xx, g(xx), 'b-')
-for a, b in zip(x4[:-1], x4[1:]):                 # the four trapezoids
-    plt.fill([a, a, b, b], [0, g(a), g(b), 0], alpha=0.2, color='orange', edgecolor='k')
-plt.plot(x4, g(x4), 'ro')
-plt.xlabel('$x$'); plt.ylabel('$g(x)$'); plt.grid(alpha=0.3)
-
+# Import custom CoordGeo modules
+from CoordGeo.line.funcs import line_gen_num
+# Q12: (a) R = {(a,b): |a-b| even} on {1..7} is an equivalence relation; (b) f(x) = (4x+3)/(6x-4)
+import sympy as sp
+S = range(1, 8)
+R = {(a, b) for a in S for b in S if abs(a - b) % 2 == 0}
+refl = all((a, a) in R for a in S)
+symm = all((b, a) in R for (a, b) in R)
+trans = all((a, c) in R for (a, b) in R for (b2, c) in R if b == b2)
+print("reflexive:", refl, " symmetric:", symm, " transitive:", trans)
+x, y = sp.symbols("x y")
+f = (4*x + 3) / (6*x - 4)
+print("f(f(x)) =", sp.simplify(f.subs(x, f)), "  => f is its own inverse")
+print("solve y = f(x) for x:", sp.solve(sp.Eq(y, f), x))
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.8))
+M = np.array([[1 if (a, b) in R else 0 for b in S] for a in S])
+ax[0].imshow(M, cmap="Blues"); ax[0].set_xticks(range(7)); ax[0].set_xticklabels(S)
+ax[0].set_yticks(range(7)); ax[0].set_yticklabels(S); ax[0].set_title("(a) relation matrix of R")
+xs1 = np.linspace(-3, 2/3 - 0.02, 300); xs2 = np.linspace(2/3 + 0.02, 4, 300)
+fx = lambda t: (4*t + 3) / (6*t - 4)
+ax[1].plot(xs1, fx(xs1), "b"); ax[1].plot(xs2, fx(xs2), "b")
+D = line_gen_num(np.array([[-3.], [-3.]]), np.array([[4.], [4.]]), 20)
+ax[1].plot(D[0, :], D[1, :], "r--", label="y = x")
+ax[1].set_ylim(-3, 4); ax[1].set_xlim(-3, 4); ax[1].grid(alpha=0.3); ax[1].legend()
+ax[1].set_title("(b) graph of f is symmetric about y = x")
+plt.tight_layout()
 #If using termux
-plt.savefig('figs/2.2.12.png', dpi=200, bbox_inches='tight')
+plt.savefig('figs/2.2.12.png', dpi=150)
 subprocess.run(shlex.split("termux-open figs/2.2.12.png"))
 #else
 #plt.show()

@@ -1,6 +1,6 @@
 \contentsline {section}{\numberline {1}10}{4}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Formulae}{4}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Problems}{6}{subsection.1.2}%
-\contentsline {section}{\numberline {2}12}{20}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Formulae}{20}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Problems}{22}{subsection.2.2}%
+\contentsline {section}{\numberline {2}12}{27}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Formulae}{27}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Problems}{29}{subsection.2.2}%

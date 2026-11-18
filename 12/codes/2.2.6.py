@@ -1,41 +1,36 @@
 import numpy as np
 import numpy.linalg as LA
 import matplotlib.pyplot as plt
-
 #If using termux
 import subprocess
 import shlex
 #end if
 
-
-from math import comb
-
-rng = np.random.default_rng(3)
-N = 10**6                                         # number of trials
-
-# (a) X = number of diamonds in 4 draws with replacement:  p_X(r) = C(4,r)(1/4)^r (3/4)^(4-r)
-r = np.arange(5)
-pa_theory = np.array([comb(4, k) * 0.25**k * 0.75**(4 - k) for k in r])
-Xa = (rng.random((N, 4)) < 0.25).sum(axis=1)
-pa_sim = np.array([np.mean(Xa == k) for k in r])
-print("(a) P(X >= 3): theory", round(pa_theory[3:].sum(), 5), " simulation", round(np.mean(Xa >= 3), 5), " 13/256 =", round(13 / 256, 5))
-
-# (b) Z = number of students on time, with P(A) = 2/7, P(B) = 4/7 independent
-z = np.arange(3)
-pb_theory = np.array([(5 / 7) * (3 / 7), (2 / 7) * (3 / 7) + (5 / 7) * (4 / 7), (2 / 7) * (4 / 7)])
-Z = (rng.random(N) < 2 / 7).astype(int) + (rng.random(N) < 4 / 7).astype(int)
-pb_sim = np.array([np.mean(Z == k) for k in z])
-print("(b) P(Z = 1): theory", round(pb_theory[1], 5), " simulation", round(pb_sim[1], 5), " 26/49 =", round(26 / 49, 5))
-assert np.allclose(pa_theory, pa_sim, atol=3e-3) and np.allclose(pb_theory, pb_sim, atol=3e-3)
-
-fig, ax = plt.subplots(1, 2, figsize=(8, 3.6))
-for a_, k, th, sm, name, t in [(ax[0], r, pa_theory, pa_sim, '$p_X(r)$', '(a)'), (ax[1], z, pb_theory, pb_sim, '$p_Z(z)$', '(b)')]:
-    a_.stem(k - 0.07, th, linefmt='b-', markerfmt='bo', basefmt='k-', label='theory')
-    a_.stem(k + 0.07, sm, linefmt='r--', markerfmt='rx', basefmt='k-', label='simulation')
-    a_.set_ylabel(name); a_.set_title(t); a_.legend(fontsize=8); a_.grid(alpha=0.3)
-
+# Import custom CoordGeo modules
+from CoordGeo.line.funcs import dir_vec, line_gen_num
+# Q6: collinearity of (2,-1,3), (3,-5,1), (-1,11,9); Lagrange identity
+from mpl_toolkits.mplot3d import Axes3D  # noqa
+col = lambda *v: np.array(v, dtype=float).reshape(-1, 1)
+A, B, C = col(2, -1, 3), col(3, -5, 1), col(-1, 11, 9)
+AB, BC = dir_vec(A, B), dir_vec(B, C)
+print("AB =", AB.T, " BC =", BC.T, " BC/AB =", (BC / AB).T)
+print("rank[AB BC] =", LA.matrix_rank(np.block([AB, BC])), "(1 => collinear)")
+a, b = col(1, 2, 3), col(-2, 0, 5)
+axb = np.cross(a.flatten(), b.flatten())
+lhs = float(axb @ axb)
+rhs = (a.T @ a).item() * (b.T @ b).item() - (a.T @ b).item() ** 2
+print("Lagrange identity:", lhs, rhs)
+fig = plt.figure(figsize=(5, 4))
+ax = fig.add_subplot(111, projection="3d")
+ax.plot(*line_gen_num(A, B, 20), "b-"); ax.plot(*line_gen_num(B, C, 20), "b-")
+for name, p in zip("ABC", (A, B, C)):
+    ax.scatter(*p.flatten(), color="r", s=40)
+    ax.text(*p.flatten(), f" {name}{tuple(int(v) for v in p.flatten())}", fontsize=8)
+ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z")
+ax.view_init(elev=28, azim=35)   # side-on view: the line is not foreshortened and A, B, C stay apart
+plt.tight_layout()
 #If using termux
-plt.savefig('figs/2.2.6.png', dpi=200, bbox_inches='tight')
+plt.savefig('figs/2.2.6.png', dpi=150)
 subprocess.run(shlex.split("termux-open figs/2.2.6.png"))
 #else
 #plt.show()
