@@ -7,25 +7,30 @@ import subprocess
 import shlex
 #end if
 
+# Import custom CoordGeo modules
 
-u = lambda m: np.heaviside(m, 1)                 # unit step u(m)
-n = np.arange(-1, 7)
-x0, D = 2, 4
-x = (x0 + (n - 1) * D) * u(n - 1)                # x(n) = (x0 + (n-1)D) u(n-1)
-S4 = np.convolve(x[n >= 0], u(n[n >= 0]))[4]     # S(4) = (x * u)(4)
-print("x(1..4) =", x[(n >= 1) & (n <= 4)], " S(4) =", S4)
-assert S4 == 32
-assert np.isclose(x[n == 1][0] * x[n == 4][0] / (x[n == 2][0] * x[n == 3][0]), 7 / 15)
+from CoordGeo.line.funcs import line_gen
+from CoordGeo.plotting.funcs import label_pts
 
-D_ = np.linspace(-6, 6, 200)
-f = 15 * (8 - 1.5 * D_) * (8 + 1.5 * D_) - 7 * (8 - 0.5 * D_) * (8 + 0.5 * D_)
-fig, ax = plt.subplots(1, 2, figsize=(8, 3.6))
-ax[0].stem(n, x, basefmt='k-'); ax[0].set_xlabel('$n$'); ax[0].set_ylabel('$x(n)$'); ax[0].grid(alpha=0.3)
-ax[1].plot(D_, f, 'b-'); ax[1].plot([-4, 4], [0, 0], 'ro'); ax[1].axhline(0, color='k', lw=0.5)
-ax[1].set_xlabel('$D$'); ax[1].set_ylabel('$f(D)$'); ax[1].grid(alpha=0.3)
+A = np.array([[0.0], [100.0]]); B = np.array([[0.0], [0.0]])
+# the line of sight with depression angle t meets the ground y = 0: Gauss elimination on (lambda, x)
+def ground(t):
+    M = np.array([[np.sin(t), 0.0], [np.cos(t), -1.0]]); rhs = np.array([[100.0], [0.0]])
+    return LA.solve(M, rhs)[1, 0]
+x1, x2 = ground(np.pi / 4), ground(np.pi / 6)
+C = np.array([[x1], [0.0]]); D = np.array([[x2], [0.0]])
+print("BC =", round(x1, 4), " BD =", round(x2, 4), " CD =", round(x2 - x1, 4))
+assert np.isclose(x2 - x1, 100 * (np.sqrt(3) - 1))
+
+plt.figure(figsize=(6, 3.6))
+for U, W, st in [(A, B, 'k-'), (A, C, 'r-'), (A, D, 'b-'), (B, D, 'k-')]:
+    x = line_gen(U, W); plt.plot(x[0, :], x[1, :], st)
+pts = np.block([A, B, C, D]); plt.scatter(pts[0, :], pts[1, :], color='k', s=12)
+label_pts(pts, ['$A$', '$B$', '$C$', '$D$'])
+plt.grid(alpha=0.3); plt.axis('equal')
 
 #If using termux
-plt.savefig('figs/1.2.11.png', dpi=200, bbox_inches='tight')
-subprocess.run(shlex.split("termux-open figs/1.2.11.png"))
+plt.savefig('figs/1.2.12.png', dpi=200, bbox_inches='tight')
+subprocess.run(shlex.split("termux-open figs/1.2.12.png"))
 #else
 #plt.show()

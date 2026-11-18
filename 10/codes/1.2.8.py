@@ -1,5 +1,6 @@
+# code by Vishweshwar
+import sys
 import numpy as np
-import numpy.linalg as LA
 import matplotlib.pyplot as plt
 
 #If using termux
@@ -8,45 +9,35 @@ import shlex
 #end if
 
 # Import custom CoordGeo modules
-from CoordGeo.line.funcs import dir_vec, line_gen
+from CoordGeo.line.funcs import line_gen
 from CoordGeo.plotting.funcs import label_pts
 
-def area_tri(P, Q, R):
-    # area = (1/2)|det[Q - P, R - P]|
-    n = np.array([[0, 1], [-1, 0]]) @ dir_vec(P, Q)      # normal vector of PQ
-    return 0.5 * abs((n.T @ dir_vec(P, R)).item())
+f = lambda x: x**2 + 100 * x - 300000
+df = lambda x: 2 * x + 100
 
-# (a) parallelogram ABCD: A + C = B + D with B = (a, 0), C = (4, b)
-A = np.array([[-2], [1]]); D = np.array([[1], [2]])
-a = A[0, 0] + 4 - D[0, 0]            # x: -2 + 4 = a + 1
-b = D[1, 0] - A[1, 0]                # y: 1 + b = 0 + 2
-B = np.array([[a], [0]]); C = np.array([[4], [b]])
-print("a =", a, " b =", b)
-assert (a, b) == (1, 1)
-sides = [LA.norm(dir_vec(P, Q)) for P, Q in [(A, B), (B, C), (C, D), (D, A)]]
-print("sides =", np.round(sides, 4))
-assert np.allclose(sides, np.sqrt(10))
+# Newton-Raphson iterates from x0 = 1000
+xs = [1000.0]
+for _ in range(6):
+    xs.append(xs[-1] - f(xs[-1]) / df(xs[-1]))
+assert abs(xs[-1] - 500) < 1e-6
 
-# (b) quadrilateral ABCD: area = ar(ABC) + ar(ADC)
-A2 = np.array([[-5], [7]]); B2 = np.array([[-4], [-5]])
-C2 = np.array([[-1], [-6]]); D2 = np.array([[4], [5]])
-area = area_tri(A2, B2, C2) + area_tri(A2, D2, C2)
-print("area =", round(float(area), 6))
-assert np.isclose(area, 72)
-
-fig, ax = plt.subplots(1, 2, figsize=(8, 3.6))
-for axis, V, title in [(ax[0], [A, B, C, D], '(a)'), (ax[1], [A2, B2, C2, D2], '(b)')]:
-    plt.sca(axis)
-    for P, Q in zip(V, V[1:] + V[:1]):
-        x = line_gen(P, Q)
-        plt.plot(x[0, :], x[1, :], 'b-')
-    pts = np.block(V)
-    plt.scatter(pts[0, :], pts[1, :], color='r')
-    label_pts(pts, list('ABCD'))
-    plt.title(title); plt.grid(alpha=0.3); axis.set_aspect('equal')
+x = np.linspace(-700, 1100, 400)
+plt.figure(figsize=(5.5, 4.2))
+plt.plot(x, f(x), 'b-')
+plt.axhline(0, color='k', lw=0.5)
+for xn, xn1 in zip(xs[:3], xs[1:4]):          # first three steps, drawn as tangent lines
+    P = np.array([[xn], [f(xn)]]); Q = np.array([[xn1], [0.0]]); R = np.array([[xn], [0.0]])
+    t = line_gen(P, Q); v = line_gen(R, P)
+    plt.plot(t[0, :], t[1, :], 'r-', lw=1)
+    plt.plot(v[0, :], v[1, :], 'g:', lw=1)
+roots = np.array([[500.0, -600.0], [0.0, 0.0]])
+plt.scatter(roots[0, :], roots[1, :], color='k', zorder=3)
+label_pts(roots, ['$500$', '$-600$'])
+plt.xlabel('$x$'); plt.ylabel('$f(x)$')
+plt.grid(alpha=0.3)
 
 #If using termux
-plt.savefig('figs/1.2.8.png', dpi=200, bbox_inches='tight')
-subprocess.run(shlex.split("termux-open figs/1.2.8.png"))
+plt.savefig('figs/1.2.9.png', dpi=200, bbox_inches='tight')
+subprocess.run(shlex.split("termux-open figs/1.2.9.png"))
 #else
 #plt.show()

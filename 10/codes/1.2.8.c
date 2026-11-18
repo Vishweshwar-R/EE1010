@@ -1,19 +1,29 @@
 // code by Vishweshwar
+#include <math.h>
 #include <stdio.h>
+
+/* f(x) = x^2 + 100x - 300000 and its derivative */
+static double f(double x)  { return x * x + 100.0 * x - 300000.0; }
+static double df(double x) { return 2.0 * x + 100.0; }
+
+/* Newton-Raphson: x_{n+1} = x_n - f(x_n)/f'(x_n) */
+static double newton(double x0, int iters)
+{
+    double x = x0;
+    printf("x0 = %.1f\n n          x_n            f(x_n)\n", x0);
+    for (int n = 0; n <= iters; n++) {
+        printf("%2d  %14.6f  %16.6f\n", n, x, f(x));
+        x = x - f(x) / df(x);
+    }
+    return x;
+}
 
 int main(void)
 {
-    /* augmented matrix of x + y = 30, x - y = 14 */
-    double a[2][3] = {{1, 1, 30}, {1, -1, 14}};
+    double r1 = newton(1000.0, 6);     /* converges to the positive root */
+    double r2 = newton(-1000.0, 6);    /* converges to the negative root */
+    printf("roots: %.6f and %.6f\n", r1, r2);
 
-    /* R2 <- R2 - (a21/a11) R1 */
-    double m = a[1][0] / a[0][0];
-    for (int j = 0; j < 3; j++) a[1][j] -= m * a[0][j];
-    printf("[ %4.1f %4.1f | %4.1f ]\n[ %4.1f %4.1f | %4.1f ]\n", a[0][0], a[0][1], a[0][2], a[1][0], a[1][1], a[1][2]);
-
-    /* back substitution */
-    double y = a[1][2] / a[1][1];
-    double x = (a[0][2] - a[0][1] * y) / a[0][0];
-    printf("x = %.1f, y = %.1f\n", x, y);
-    return (x == 22.0 && y == 8.0) ? 0 : 1;
+    /* verify with the factorisation (x - 500)(x + 600) */
+    return (fabs(r1 - 500.0) < 1e-6 && fabs(r2 + 600.0) < 1e-6) ? 0 : 1;
 }

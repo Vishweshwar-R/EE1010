@@ -2,28 +2,23 @@
 #include <math.h>
 #include <stdio.h>
 
-/* f(x) = x^2 + 100x - 300000 and its derivative */
-static double f(double x)  { return x * x + 100.0 * x - 300000.0; }
-static double df(double x) { return 2.0 * x + 100.0; }
+static double fa(double x)  { return x * x + 48.0 * x - 324.0; }   /* (a) boat  */
+static double dfa(double x) { return 2.0 * x + 48.0; }
+static double fb(double x)  { return x * x - 39.0 * x - 126.0; }   /* (b) train */
+static double dfb(double x) { return 2.0 * x - 39.0; }
 
-/* Newton-Raphson: x_{n+1} = x_n - f(x_n)/f'(x_n) */
-static double newton(double x0, int iters)
+static double newton(double (*f)(double), double (*df)(double), double x0)
 {
     double x = x0;
-    printf("x0 = %.1f\n n          x_n            f(x_n)\n", x0);
-    for (int n = 0; n <= iters; n++) {
-        printf("%2d  %14.6f  %16.6f\n", n, x, f(x));
-        x = x - f(x) / df(x);
-    }
+    for (int n = 0; n < 50 && fabs(f(x)) > 1e-12; n++) x = x - f(x) / df(x);
     return x;
 }
 
 int main(void)
 {
-    double r1 = newton(1000.0, 6);     /* converges to the positive root */
-    double r2 = newton(-1000.0, 6);    /* converges to the negative root */
-    printf("roots: %.6f and %.6f\n", r1, r2);
-
-    /* verify with the factorisation (x - 500)(x + 600) */
-    return (fabs(r1 - 500.0) < 1e-6 && fabs(r2 + 600.0) < 1e-6) ? 0 : 1;
+    double a1 = newton(fa, dfa, 20.0), a2 = newton(fa, dfa, -100.0);
+    double b1 = newton(fb, dfb, 60.0), b2 = newton(fb, dfb, -10.0);
+    printf("(a) roots: %.9f and %.9f\n", a1, a2);
+    printf("(b) roots: %.9f and %.9f\n", b1, b2);
+    return (fabs(a1 - 6) < 1e-9 && fabs(a2 + 54) < 1e-9 && fabs(b1 - 42) < 1e-9 && fabs(b2 + 3) < 1e-9) ? 0 : 1;
 }
