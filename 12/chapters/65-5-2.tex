@@ -37,44 +37,6 @@
     \caption{The line and the plane}
     \label{fig:lineplane_q2}
 \end{figure}
-    \item Find the differential equation representing the family of curves $y = -A\cos 3x + B\sin 3x$.
-\par\hfill (12, 2018)\par
-\solution The family has two arbitrary constants $A$ and $B$, so by \ref{eq:EE26BTECH11225-family} we differentiate twice:
-\begin{align}
-    \frac{dy}{dx} &= 3A\sin 3x + 3B\cos 3x \\
-    \frac{d^2y}{dx^2} &= 9A\cos 3x - 9B\sin 3x = -9\left(-A\cos 3x + B\sin 3x\right) = -9y
-\end{align}
-Hence the differential equation is
-\begin{align}
-    \frac{d^2y}{dx^2} + 9y = 0
-\end{align}
-The following code verifies this symbolically and plots members of the family in \figref{fig:odefamily_q3}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.3.py}@*)
-\end{lstlisting}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.75\linewidth]{figs/2.2.3.png}
-    \caption{Members of the family $y=-A\cos 3x+B\sin 3x$}
-    \label{fig:odefamily_q3}
-\end{figure}
-    \item Find the differential of the function $\cos^{-1}(\sin 2x)$ w.r.t. $x$.
-\par\hfill (12, 2018)\par
-\solution Since $\sin 2x = \cos\left(\frac{\pi}{2} - 2x\right)$, from \eqref{eq:EE26BTECH11225-invtrig-1}, for $\frac{\pi}{2}-2x \in [0,\pi]$, i.e. $-\frac{\pi}{4}\leq x\leq\frac{\pi}{4}$:
-\begin{align}
-    y &= \cos^{-1}\left(\cos\left(\frac{\pi}{2}-2x\right)\right) = \frac{\pi}{2} - 2x \\
-    &\implies \frac{dy}{dx} = -2
-\end{align}
-The following code verifies the derivative numerically and plots \figref{fig:invtrig_q4}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/2.2.4.py}@*)
-\end{lstlisting}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.70\linewidth]{figs/2.2.4.png}
-    \caption{Plot of $\cos^{-1}(\sin 2x)$; it is the line $\frac{\pi}{2}-2x$ on the shaded region}
-    \label{fig:invtrig_q4}
-\end{figure}
     \item If an operation $*$ on the set of integers $\mathbb{Z}$ is defined by $a * b = 2a^2 + b$, then find (i) whether it is a binary or not, and (ii) if a binary, then is it commutative or not.
 \par\hfill (12, 2018)\par
 \solution (i) For any $a, b\in\mathbb{Z}$, $2a^2+b\in\mathbb{Z}$, so $*$ maps $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ and is a binary operation. \\[4pt]
@@ -351,8 +313,6 @@ The following code verifies both parts and generates \figref{fig:equiv_q19}.
     \caption{(a) Relation matrix of $R$; (b) graph of $f$, symmetric about $y=x$}
     \label{fig:equiv_q19}
 \end{figure}
-    \item
-    \begin{enumerate}[label=(\alph*), leftmargin=1.5em, labelsep=0.5em]
     \item Find the interval in which the function $f$ given by $f(x) = \sin 2x + \cos 2x$, $0\leq x\leq\pi$ is strictly decreasing.
 \par\hfill (12, 2018)\par
 \solution
